@@ -1,0 +1,1150 @@
+﻿@{
+    ViewData["Title"] = "FORMATO SUMINISTRO Y CREDITO";
+
+
+}
+
+
+
+
+
+<div class="container ">
+
+    <!-- For demo purpose -->
+    @*   <div class="row mb-4">
+    <div class="col-lg-8 mx-auto text-center">
+    <h1 class="display-4">Bootstrap 4 credit card form</h1>
+    <p class="lead mb-0">Easily build a well-structured credit card form using Bootstrap 4</p>
+    <p class="lead">Snippet by <a href="https://bootstrapious.com/snippets">Bootstrapious</a></p>
+    </div>
+    </div>*@
+    <!-- End -->
+
+
+    <div class="row">
+        <div class="container mx-auto">
+            <div class="row">
+                <nav class="card  mb-4">
+                    <div class="row">
+                       
+
+                        <div class="col-md-3">
+                            <div class="card mx-0 px-0 border-0">
+                                <div class="hstack g-2">
+
+                                    <img src="~/img/aliarlogo1.fw.png" alt="LogoAliar" width="160" height="90" class="img-fluid rounded-start">
+                                    <img src="~/img/LOGO LA FAZENDA.png" alt="LogoFazenda" width="140" height="90" class="img-fluid rounded-start">
+                                </div>
+
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-9">
+
+                            <div class="card-body mx-0 px-0">
+                                <div class="card border-0">
+                                    <h4 class="card-title " style="text-align:center">
+                                        AGROPECUARIA ALIAR S.A.
+                                    </h4>
+
+
+                                </div>
+
+                                <div class="container-fluid mx-0 px-0">
+                                    <div class="card-body mx-0 px-0 ">
+                                        <div class="row">
+                                            <div class="hstack g-2 border">
+
+                                                <div class="col-sm-7">
+                                                    <h6  style="text-align:left">FORMATO SOLICITUD SUMINISTRO Y CRÉDITO</h6>
+                                                </div>
+                                                <div class="vr"></div>
+                                                <div class="col-sm-2">
+                                                    <h6 class="">Número</h6>
+                                                </div>
+                                                <div class="vr"></div>
+                                                <div class="col-sm-2">
+                                                    <p class="card-text " style="text-align:right">####</p>
+
+                                                </div>
+
+                                            </div>
+
+
+
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div class="card-body mx-0 px-0">
+                                        <div class="row">
+                                            <div class="hstack g-2 border">
+                                                <div class="col-sm-3">
+                                                    <p class="" style="text-align:left">Código</p>
+                                                    <p style="text-align:left">FIN-FT-001</p>
+                                                </div>
+                                                <div class="col-1 vr"></div>
+                                                <div class="col-sm-2">
+                                                    <p class="" style="text-align:left">Versión</p>
+                                                    <p class="" style="text-align:justify">03</p>
+                                                </div>
+                                                <div class="col-1 vr"></div>
+                                                <div class="col-sm-4">
+                                                    <p class="" style="text-align:justify">Código Documento Asociado</p>
+                                                    <p style="text-align:left">FIN-PR-001</p>
+                                                </div>
+                                                <div class="col-1 vr"></div>
+                                                <div class="col-sm-3">
+                                                    <p class="" style="text-align:left">Fecha de Emisión</p>
+                                                    <p class="">@DateTime.Now.ToShortDateString()</p>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </nav>
+                <br />
+                <div class="card   mb-3">
+
+                    <h5 class="card-title border-bottom text-white" style="text-align:center; background-color:firebrick">
+                        1. DESCRIPCIÓN DE LA SOLICITUD
+                    </h5>
+                    <div class="container-fluid">
+
+                        <div class="card-body mx-0 px-0 ">
+                            <div class="hstack gap-2">
+                                <div class="p-sm-2">
+                                    <h7>Fecha de Solicitud</h7>
+                                </div>
+                                <div class="p-sm-2">
+                                    <div id=""><strong>@DateTime.Now.ToShortDateString()</strong></div>
+                                </div>
+                                <div class="vr"></div>
+                                <div class="p-sm-2">
+                                    <h7>Tipo Solicitud</h7>
+                                </div>
+
+                                <div class="p-sm-2">
+                                    <select class="form-select" aria-label="tipoSolicitud">
+                                        <option selected>--</option>
+                                        <option value="1">Nuevo</option>
+                                        <option value="2">Aumento</option>
+
+                                    </select>
+
+                                </div>
+                                <div class="vr"></div>
+                                <div class="p-sm-2">
+                                    <h7>Monto $</h7>
+                                </div>
+
+                                <div>
+                                    <input type="number" class="form-control" id="" placeholder="">
+
+                                </div>
+                                <div class="vr"></div>
+                                <div class="p-sm-2">
+                                    <h7>Plazo(Días)</h7>
+                                </div>
+
+                                <div class="p-sm-2">
+                                    <input type="number" class="form-control me-auto" id="" placeholder="">
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+
+
+                </div>
+
+                <div class="card  mb-3">
+                    <h5 class="card-title border-bottom text-white" style="text-align:center; background-color:firebrick">
+                        2. DATOS SOLICITANTE
+                    </h5>
+
+                    <div class="container-fluid mx-0 px-0">
+
+
+                        <div class="card-body mx-0 px-0 border-bottom">
+                            <div class="row">
+                                <div class="hstack gap-2">
+                                    <div class="p-sm-2">
+                                        <h6>Apellidos y Nombres o Razón Social</h6>
+                                    </div>
+
+
+                                    <input class="form-control me-auto" type="text" placeholder="" aria-label="">
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="card-body mx-0 px-0 border-bottom">
+                            <div class="row">
+                                <div class="hstack gap-2 ">
+                                    <div class="p-sm-1">
+                                        <h6>Tipo Persona</h6>
+                                    </div>
+
+                                    <div class="col-sm-2">
+                                        <select class="form-select me-auto" aria-label="tipoPersona">
+                                            <option selected>--</option>
+                                            <option value="1">Natural</option>
+                                            <option value="2">Jurídica</option>
+
+                                        </select>
+
+                                    </div>
+                                    <div class="vr"></div>
+                                    <div class="p-sm-2">
+                                        <h6>Tipo Identificación</h6>
+                                    </div>
+
+                                    <div class="col-sm-1">
+                                        <select class="form-select me-auto" aria-label="tipoPersona">
+                                            <option selected>--</option>
+                                            <option value="1">Nit</option>
+                                            <option value="2">C.C</option>
+                                            <option value="2">C.E</option>
+
+                                        </select>
+                                    </div>
+                                    <div class="vr"></div>
+                                    <div class="p-sm-2">
+                                        <h6>Número</h6>
+                                    </div>
+
+                                    <div class="col-sm-2">
+                                        <input class="form-control me-auto" type="text" placeholder="" aria-label="">
+                                    </div>
+                                    <div class=" col-1 vr"></div>
+                                    <div class="p-sm-2">
+                                        <h6>DV</h6>
+                                    </div>
+
+                                    <div class="col-sm-2">
+                                        <input class="form-control me-auto" type="text" placeholder="" aria-label="">
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="card-body mx-0 px-0 border-bottom">
+
+                            <div class="row">
+
+                                <div class="hstack gap-2 ">
+
+                                    <div class="p-sm-1">
+                                        <h6>Representante Legal</h6>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <input class="form-control me-auto" type="text" placeholder="" aria-label="">
+                                    </div>
+                                    <div class="col-1 vr"></div>
+
+                                    <div class="p-sm-2">
+                                        <h6>Cargo</h6>
+                                    </div>
+
+                                    <div class="col-sm-2">
+                                        <input class="form-control me-auto" type="text" placeholder="" aria-label="">
+                                    </div>
+
+                                    <div class="vr"></div>
+
+                                    <div class="p-sm-2">
+                                        <h6>Correo Electrónico</h6>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <input class="form-control me-auto" type="email" placeholder="" aria-label="">
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="card-body mx-0 px-0 border-bottom">
+
+                            <div class="row">
+
+                                <div class="hstack gap-2 ">
+                                    <div class="p-sm-1">
+                                        <h6>Dirección Correspondencia</h6>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input class="form-control me-auto" type="text" placeholder="" aria-label="">
+                                    </div>
+                                    <div class="col-1 vr"></div>
+                                    <div class="p-sm-1">
+                                        <h6>Ciudad</h6>
+                                    </div>
+
+                                    <div class="col-sm-2">
+                                        <input class="form-control me-auto" type="text" placeholder="" aria-label="">
+                                    </div>
+                                    <div class="col-1 vr"></div>
+                                    <div class="p-sm-1">
+                                        <h6>Departamento</h6>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input class="form-control me-auto" type="text" placeholder="" aria-label="">
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="card-body mx-0 px-0 ">
+                            <div class="row">
+                                <div class="hstack gap-2 ">
+                                    <div class="p-sm-1">
+                                        <h6>Teléfono</h6>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input class="form-control me-auto" type="tel" placeholder="" aria-label="">
+                                    </div>
+                                    <div class="col-1 vr"></div>
+                                    <div class="p-sm-1">
+                                        <h6>Celular</h6>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input class="form-control me-auto" type="tel" placeholder="" aria-label="">
+                                    </div>
+                                    <div class="col-1 vr"></div>
+                                    <div class="p-sm-1">
+                                        <h6>Correo Electrónico Facturación</h6>
+                                    </div>
+
+                                    <div class="col-sm-4">
+                                        <input class="form-control me-auto" type="email" placeholder="" aria-label="">
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+                <div class="card   mb-3">
+                    <h5 class="card-title border-bottom text-white" style="text-align:center; background-color:firebrick">
+                        3. REFERENCIAS COMERCIALES
+                    </h5>
+                    <div class="container-fluid px-0">
+
+                        <div class="card-body px-0 border-bottom">
+                            <div class="row">
+
+                                <div class="hstack gap-2 ">
+                                    <div class="p-sm-2 mx-0 px-0">
+                                        <h6>Entidad y/o Razón Social</h6>
+                                    </div>
+                                    <div class="col-sm-3 mx-0 px-0">
+                                        <input class="form-control me-auto" type="text" placeholder="" aria-label="">
+                                    </div>
+                                    <div class="vr"></div>
+                                    <div class="p-sm-2 mx-0 px-0">
+                                        <h6>Dirección</h6>
+                                    </div>
+                                    <div class="col-sm-6 mx-0 px-0">
+                                        <input class="form-control me-auto" type="text" placeholder="" aria-label="">
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="card-body  px-0 border-bottom ">
+
+                            <div class="row">
+                                <div class="hstack gap-2 ">
+                                    <div class="p-sm-2">
+                                        <h6>Nombre de Contacto:</h6>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input class="form-control me-auto" type="text" placeholder="" aria-label="">
+                                    </div>
+                                    <div class="vr"></div>
+                                    <div class="p-sm-2">
+                                        <h6>Cargo:</h6>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input class="form-control me-auto" type="text" placeholder="" aria-label="">
+                                    </div>
+                                    <div class="vr"></div>
+                                    <div class="p-sm-2">
+                                        <h6>Telefono:</h6>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input class="form-control me-auto" type="tel" placeholder="" aria-label="">
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="card-body px-0 border-bottom">
+
+                            <div class="row">
+                                <div class="hstack gap-2">
+                                    <div class="p-sm-2">
+                                        <h6>Entidad y/o Razón Social</h6>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input class="form-control me-auto" type="text" placeholder="" aria-label="">
+                                    </div>
+                                    <div class="vr"></div>
+                                    <div class="p-sm-2">
+                                        <h6>Dirección</h6>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input class="form-control me-auto" type="text" placeholder="" aria-label="">
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="card-body  px-0 border-bottom ">
+
+                            <div class="row">
+                                <div class="hstack gap-2 ">
+                                    <div class="p-sm-2">
+                                        <h6>Nombre de Contacto:</h6>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input class="form-control me-auto" type="text" placeholder="" aria-label="">
+                                    </div>
+                                    <div class="vr"></div>
+                                    <div class="p-sm-2">
+                                        <h6>Cargo:</h6>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input class="form-control me-auto" type="text" placeholder="" aria-label="">
+                                    </div>
+                                    <div class="vr"></div>
+                                    <div class="p-sm-2">
+                                        <h6>Telefono:</h6>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input class="form-control me-auto" type="tel" placeholder="" aria-label="">
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="card mb-3">
+                    <h5 class="card-title border-bottom text-white" style="text-align:center; background-color:firebrick">
+                        4. REFERENCIA BANCARIA
+                    </h5>
+
+                    <div class="container-fluid mx-0 px-0">
+                        <div class="card-body mx-0 px-0 border-bottom">
+                            <div class="col-sm-12">
+                                <div class="row">
+                                    <div class="hstack gap-2">
+
+                                        <div class=" col-sm-2 mx-0 px-0">
+                                            <h6>Entidad Financiera</h6>
+                                        </div>
+                                        <div class="col-sm-3 mx-0 px-0">
+                                            <input class="form-control me-auto" type="text" placeholder="" aria-label="">
+                                        </div>
+                                        <div class="col-1 vr"></div>
+                                        <div class=" col-sm-2  mx-0 px-0">
+                                            <h6>Tipo de Cuenta</h6>
+                                        </div>
+                                        <div class="col-sm-4  mx-0 px-0">
+                                            <input class="form-control me-auto" type="text" placeholder="" aria-label="">
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="card-body mx-0 px-0">
+                            <div class="col-sm-12">
+                                <div class="row">
+                                    <div class="hstack gap-2">
+
+                                        <div class="col-sm-2 mx-0 px-0">
+                                            <h6>Número de cuenta</h6>
+                                        </div>
+                                        <div class="col-sm-3 mx-0 px-0">
+                                            <input class="form-control me-auto" type="text" placeholder="" aria-label="">
+                                        </div>
+                                        <div class="col-1 vr"></div>
+                                        <div class="col-sm-2">
+                                            <h6>Oficina</h6>
+                                        </div>
+                                        <div class="col-1 col-sm-4">
+                                            <input class="form-control me-auto" type="text" placeholder="" aria-label="">
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="card mb-3">
+                    <h5 class="card-title border-bottom text-white" style="text-align:center; background-color:firebrick">
+                        5. CONTACTOS
+                    </h5>
+                    <div class="row">
+
+                        <div class="hstack gap-2">
+
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Área</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">cargo</th>
+                                        <th scope="col">Telefono</th>
+                                        <th scope="col">Celular</th>
+                                        <th scope="col">Correo Electrónico</th>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Tesorería</th>
+                                        <td><input class="form-control me-auto" type="text" placeholder="" aria-label=""></td>
+                                        <td><input class="form-control me-auto" type="text" placeholder="" aria-label=""></td>
+                                        <td><input class="form-control me-auto" type="tel" placeholder="" aria-label=""></td>
+                                        <td><input class="form-control me-auto" type="tel" placeholder="" aria-label=""></td>
+                                        <td><input class="form-control me-auto" type="email" placeholder="" aria-label=""></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Contabilidad</th>
+                                        <td><input class="form-control me-auto" type="text" placeholder="" aria-label=""></td>
+                                        <td><input class="form-control me-auto" type="text" placeholder="" aria-label=""></td>
+                                        <td><input class="form-control me-auto" type="tel" placeholder="" aria-label=""></td>
+                                        <td><input class="form-control me-auto" type="tel" placeholder="" aria-label=""></td>
+                                        <td><input class="form-control me-auto" type="email" placeholder="" aria-label=""></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Compras</th>
+                                        <td><input class="form-control me-auto" type="text" placeholder="" aria-label=""></td>
+                                        <td><input class="form-control me-auto" type="text" placeholder="" aria-label=""></td>
+                                        <td><input class="form-control me-auto" type="tel" placeholder="" aria-label=""></td>
+                                        <td><input class="form-control me-auto" type="tel" placeholder="" aria-label=""></td>
+                                        <td><input class="form-control me-auto" type="email" placeholder="" aria-label=""></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        @*  <div class="hstack gap-2 border-bottom">
+                        <div class="p-2">
+                        <h6>Área</h6>
+                        </div>
+                        <div class="col-md-2">
+                        <input class="form-control me-auto" type="text" placeholder="" aria-label="">
+                        </div>
+                        <div class="vr"></div>
+                        <div class="p-2">
+                        <h6>Nombre</h6>
+                        </div>
+                        <div class="col-md-1">
+                        <input class="form-control me-auto" type="text" placeholder="" aria-label="">
+                        </div>
+                        <div class="vr"></div>
+                        <div class="p-2">
+                        <h6>cargo</h6>
+                        </div>
+                        <div class="col-md-2">
+                        <input class="form-control me-auto" type="text" placeholder="" aria-label="">
+                        </div>
+                        <div class="vr"></div>
+                        <div class="p-2">
+                        <h6>Telefono</h6>
+                        </div>
+                        <div class="col-md-2">
+                        <input class="form-control me-auto" type="number" placeholder="" aria-label="">
+                        </div>
+                        <div class="vr"></div>
+                        <div class="p-2">
+                        <h6>Celular</h6>
+                        </div>
+                        <div class="col-md-2">
+                        <input class="form-control me-auto" type="number" placeholder="" aria-label="">
+                        </div>
+                        <div class="p-2">
+                        <h6>Correo Electrónico</h6>
+                        </div>
+                        <div class="col-md-2">
+                        <input class="form-control me-auto" type="email" placeholder="" aria-label="">
+                        </div>
+
+                        </div>*@
+
+                    </div>
+
+                </div>
+
+                <div class="card mb-3">
+                    <h5 class="card-title border-bottom text-white" style="text-align:center; background-color:firebrick">
+                        6. DOCUMENTOS REQUERIDOS
+                    </h5>
+
+                    <div class="container-fluid mx-0 px-0">
+                        <div class="card-body mx-0 px-0 border-bottom">
+
+                            <div class="row">
+                                <div class="hstack gap-2 ">
+                                    <div class="col-sm-9">
+                                        <p style="font-size:13px;">RUT Actualizado.</p>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input class="form-control me-auto" type="file" placeholder="" aria-label="">
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+ 
+                        </div>
+
+                        <div class="card-body mx-0 px-0 border-bottom">
+                            
+                            <div class="row">
+                                <div class="hstack gap-2 ">
+                                    <div class="col-sm-9">
+                                        <p style="font-size:13px;">Estados Financieros a 31 de Diciembre vigencia inmediatamente anterior (Estado de situación financiera y Estado de Resultados).</p>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input class="form-control me-auto" type="file" placeholder="" aria-label="">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="card-body mx-0 px-0 border-bottom">
+                            <div class="row">
+                                <div class="hstack gap-2 ">
+                                    <div class="col-sm-9">
+                                        <p style="font-size:13px;">
+                                            Certificado de Existencia y Representación Legal inferior a 30 días.
+                                        </p>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input class="form-control me-auto" type="file" placeholder="" aria-label="">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="card-body mx-0 px-0 border-bottom">
+
+                            <div class="row">
+                                <div class="hstack gap-2">
+                                    <div class="col-sm-9">
+                                        <p style="font-size:12px; text-align:justify">
+                                            Para no obligados a llevar contabilidad, anexar certificación de ingresos firmada por Contador Público,
+                                            adjuntar fotocopia de la tarjeta profesional y certificado de antecedentes expedido
+                                            por la Junta Cental de Contadores.
+                                        </p>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input class="form-control me-auto" type="file" placeholder="" aria-label="">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                      
+                        <div class="card-footer border-0 mx-0 px-0">
+                            <div class="row">
+                                <div class="hstack gap-2">
+                                    <p style="text-align:justify;font-size:13px">
+                                        <span style="color:darkred"><b>Importante:</b></span>
+                                        <b>
+                                            Una vez aprobado el crédito Agropecuaria Aliar le enviará un pagaré y la carta de instrucciónes por correo certificado a la
+                                            dirección de correspondencia diligenciada en el formato para su firma y autenticación biométrica, el cual debe enviar a la oficina principal
+                                            ubicada en la dirección: Calle 29 N°25-72 Centro Comercial Cañaveral Ed. Urbanas Piso 3 y 4 en Floridablanca, Santander.
+                                        </b>
+                                    </p>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+                <div class="card mb-3">
+                    <h5 class="card-title border-bottom text-white" style="text-align:center; background-color:firebrick">
+                        7. AUTORIZACIÓN CONSULTA CENTRALES DE RIESGO Y TRATAMIENTO DE DATOS PERSONALES
+                    </h5>
+                    <div class="card-body mx-0 px-0">
+                        <div class="row">
+                            <div class="hstack gap-1">
+                                <p style="text-align:justify;font-size:13px">
+                                    De forma libre, previamente informada y voluntaria, autorizo a AGROPECUARIA ALIAR S.A. a reportar, consultar, y solicitar a las centrales de riesgos de información
+                                    financiera o cualquier otra entidad que maneje, tenga acceso, o administre base de datos con los mismos fines, todos los datos personales relativos a mi comportamiento comercial,
+                                    financiero y de servicios, los cuales sean el resultado o surjan con ocasión a la relación comercial entre el titular y la compañía. Lo anterior implica que el
+                                    cumplimiento o incumplimiento de mis obligaciones se reflejará en las mencionadas bases de datos, referentes a mi actual o pasado comportamiento frente a obligaciones a mi cargo.
+                                    Con la presente autorización, presto mi consentimiento para la consulta e inclusión de mis datos personales en las centrales de información financiera que tenga acceso la compañía.
+                                    Esta autorización se extenderá a favor de quien represente los derechos e intereses de AGROPECUARIA ALIAR S.A. En mi calidad de titular, tengo conocimiento de mis derechos a presentar
+                                    consultas y reclamos, y demás derechos y deberes contenidos en la Ley. Finalmente, acepto las condiciones del tratamiento, las cuales me han sido informadas, aceptando además, mi derecho a
+                                    consultar la Política de Tratamiento de Datos Personales de la compañía, disponible para su conocimiento en la página www.aliar.com.co.
+                                </p>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="card mb-3">
+                    <h5 class="card-title border-bottom text-white" style="text-align:center; background-color:firebrick">
+                        8. ACUERDO DE SUMINISTRO
+                    </h5>
+                    <div class="card-body mx-0 px-0">
+                        <div class="row">
+                            <div class="hstack gap-1">
+                                <p style="text-align:justify;font-size:12px">
+                                    En el evento de ser aceptada la solicitud de suministro crédito aquí presentada, MANIFESTAMOS lo siguiente:
+                                    <b>1.</b> Entendemos que se configura un acuerdo comercial de suministro y que <strong>AGROPECUARIA ALIAR S.A. –LA FAZENDA-</strong> se obliga para con la sociedad o persona natural
+                                    que represento <strong>-CLIENTE-</strong> a suministrar periódicamente los productos cárnicos requeridos,
+                                    <b>2.</b> Me obligo con <strong>AGROPECUARIA ALIAR S.A. –LA FAZENDA-</strong>  a cumplir oportunamente
+                                    con el pago de los productos cárnicos alimenticios suministrados que solicite y que <strong>LA FAZENDA</strong> me (nos) suministre según su disponibilidad.
+                                    <b>3.</b> El precio que pagaré a <strong>LA FAZENDA</strong>
+                                    por los productos suministrados será el que corresponda al valor informado o concedido por <strong>la FAZENDA</strong> a la fecha del pedido.
+                                    Me comprometo y obligo a cumplir con el pago del valor
+                                    de los productos despachados por parte de <strong>LA FAZENDA</strong> y al cumplimiento en general de las políticas comerciales aplicables, tales como fechas de pedido, pagos,
+                                    descuentos, publicidad, facturación, entregas entre otras.
+                                    <b>4.</b> Conozco y acepto las políticas de la compañía, resaltando expresamente las siguientes:  <b>a).</b> El crédito tiene dos componentes, cupo y plazo, exceder cualquiera de los dos retiene
+                                    automáticamente los despachos.  b). El pago de los productos despachados se deben realizar a través de: transferencias electrónicas, consignaciones bancarias y cheques girados únicamente
+                                    a nombre de <strong>AGROPECUARIA ALIAR S.A.</strong> <b>c).</b> Ningún funcionario de Agropecuaria Aliar está autorizado a recibir dinero en EFECTIVO o CONSIGNACIONES a sus cuentas personales.
+                                    <strong>Cláusula aceleratoria:</strong> La mora en el pago total o parcial de cualquier obligación a cargo del <strong>CLIENTE</strong> a favor de <strong>AGROPECUARIA ALIAR SA</strong>, dará derecho a
+                                    esta última para declarar vencidas las obligaciones del <strong>CLIENTE</strong> y exigir el pago inmediato de la totalidad de las mismas. <strong>AGROPECUARIA ALIAR SA</strong> se reserva
+                                    el derecho de restituir el plazo de cualquiera de las obligaciones declaradas vencidas; en tal evento, los intereses de mora se liquidarán sobre el valor de las cuotas vencidas de las
+                                    correspondientes obligaciones, sea que comprendan sólo capital, capital e intereses, o sólo intereses. <strong>AGROPECUARIA ALIAR SA</strong> notificará al <strong>CLIENTE</strong> que hará
+                                    efectiva esta cláusula aceleratoria sin que medie su incumplimiento, con una antelación de TRES (3) días hábiles a la fecha en que se entenderá acelerado el plazo de la totalidad de sus
+                                    obligaciones, sin reparo de cualquier otra garantía que respalde obligaciones mediante títulos valores a favor de la compañía.
+                                </p>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="card mb-4">
+                    <h5 class="card-title border-bottom text-white" style="text-align:center; background-color:firebrick">
+                        9. FIRMA
+                    </h5>
+                    <div class="container-fluid px-0">
+
+                        <div class="card-body mx-0 px-0">
+
+                            <div class="row">
+                                <div class="col-sm-8">
+
+                                    <div class="row">
+                                        <div class="card-body">
+
+                                            <div class="hstack gap-3">
+                                                <div class="col-2 col-sm-2">
+                                                    <p style="font-size:13px;">Nombre y Apellido</p>
+                                                </div>
+                                                <div class="col-10 col-sm-6">
+                                                    <input class="form-control me-auto" type="text" placeholder="" aria-label="">
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="card-body">
+                                            <div class="hstack gap-3">
+                                                <div class="col-2 col-sm-2">
+                                                    <p style="font-size:13px;">N° Cédula</p>
+                                                </div>
+                                                <div class="col-10 col-sm-6">
+                                                    <input class="form-control me-auto" type="text" placeholder="" aria-label="">
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="card-body">
+                                            <div class="hstack gap-3">
+                                                <div class="col-2 col-sm-2">
+                                                    <p style="font-size:13px;">En representación legal de</p>
+                                                </div>
+                                                <div class="col-10 col-sm-6">
+                                                    <input class="form-control me-auto" type="text" placeholder="" aria-label="">
+                                                </div>
+
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="card border-0">
+                                        <div class="card-body border-0"></div>
+                                    </div>
+                                    <div class="card border-0">
+                                        <div class="card-body border-0"></div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-body">
+                                            SignRequest
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+                <div class="card mb-3">
+                    <h5 class="card-title border-bottom text-white" style="text-align:center; background-color:firebrick">
+                        10. PARA USO EXCLUSIVO DE AGROPECUARIA ALIAR S.A.
+                    </h5>
+                    <div class="container-fluid px-0">
+
+                        <div class="card-body border-bottom mx-0 px-0">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="hstack gap-3">
+
+                                        <div class="col-sm-2 mx-0 px-0">
+                                            <p style="font-size:13px;">Centro de Distribución</p>
+                                        </div>
+                                        <div class="col-2 col-sm-3">
+                                            <select class="form-select me-auto" aria-label="CentroDistribucion">
+                                                <option selected></option>
+                                                <option value="1">Distribuidora Bogotá</option>
+                                                <option value="2">Distribuidora Bucaramanga</option>
+                                                <option value="3">Distribuidora Medellín</option>
+                                                <option value="4">Agricultura</option>
+                                                <option value="5">Ganadería</option>
+                                                <option value="6">Harinas</option>
+                                                <option value="7">Planta de Sacrificio</option>
+                                                <option value="8">Frigorífico</option>
+
+                                            </select>
+                                        </div>
+                                        <div class="col-1 vr"></div>
+                                        <div class="col-1 col-sm-1">
+                                            <p style="font-size:13px;">Cupo Sugerido $</p>
+                                        </div>
+                                        <div class="col-2 col-sm-1">
+                                            <input class="form-control me-auto" type="text" placeholder="" aria-label="">
+                                        </div>
+                                        <div class="col-1 vr"></div>
+                                        <div class="col-sm-1">
+                                            <p style="font-size:13px;">Plazo(Días)</p>
+                                        </div>
+                                        <div class="col-1 col-sm-2">
+                                            <input class="form-control me-auto" type="text" placeholder="" aria-label="">
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="card-body mx-0 px-0">
+
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div class="row">
+                                        <div class="hstack gap-2">
+                                            <div class="col-sm-3">
+                                                <p style="font-size:13px;">Nombre y Apellido del Asesor Comercial</p>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <input class="form-control me-auto" type="text" placeholder="" aria-label="">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            SignRequest
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+                @*
+                <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Código</label>
+                <input class="form-control" id="" placeholder="">
+                </div>
+                <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Versión</label>
+                <input class="form-control" id="" />
+                </div>*@
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @* <div class="row">
+    <div class="col-lg-12 mx-auto">
+    <div class="bg-white rounded-lg shadow-sm p-5">
+    <!-- Credit card form tabs -->
+    <ul role="tablist" class="nav bg-light nav-pills rounded-pill nav-fill mb-3">
+    <li class="nav-item">
+    <a data-toggle="pill" href="#nav-tab-card" class="nav-link active rounded-pill">
+    <i class="fa fa-credit-card"></i>
+    Credit Card
+    </a>
+    </li>
+    <li class="nav-item">
+    <a data-toggle="pill" href="#nav-tab-paypal" class="nav-link rounded-pill">
+    <i class="fa fa-paypal"></i>
+    Paypal
+    </a>
+    </li>
+    <li class="nav-item">
+    <a data-toggle="pill" href="#nav-tab-bank" class="nav-link rounded-pill">
+    <i class="fa fa-university"></i>
+    Bank Transfer
+    </a>
+    </li>
+    </ul>
+    <!-- End -->
+    <!-- Credit card form content -->
+    <div class="tab-content">
+
+    <!-- credit card info-->
+    <div id="nav-tab-card" class="tab-pane fade show active">
+    <p class="alert alert-success">Some text success or error</p>
+    <form role="form">
+    <div class="form-group">
+    <label for="username">Full name (on the card)</label>
+    <input type="text" name="username" placeholder="Jason Doe" required class="form-control">
+    </div>
+    <div class="form-group">
+    <label for="cardNumber">Card number</label>
+    <div class="input-group">
+    <input type="text" name="cardNumber" placeholder="Your card number" class="form-control" required>
+    <div class="input-group-append">
+    <span class="input-group-text text-muted">
+    <i class="fa fa-cc-visa mx-1"></i>
+    <i class="fa fa-cc-amex mx-1"></i>
+    <i class="fa fa-cc-mastercard mx-1"></i>
+    </span>
+    </div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-sm-8">
+    <div class="form-group">
+    <label><span class="hidden-xs">Expiration</span></label>
+    <div class="input-group">
+    <input type="number" placeholder="MM" name="" class="form-control" required>
+    <input type="number" placeholder="YY" name="" class="form-control" required>
+    </div>
+    </div>
+    </div>
+    <div class="col-sm-4">
+    <div class="form-group mb-4">
+    <label data-toggle="tooltip" title="Three-digits code on the back of your card">
+    CVV
+    <i class="fa fa-question-circle"></i>
+    </label>
+    <input type="text" required class="form-control">
+    </div>
+    </div>
+
+
+
+    </div>
+    <button type="button" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm"> Confirm  </button>
+    </form>
+    </div>
+    <!-- End -->
+    <!-- Paypal info -->
+    <div id="nav-tab-paypal" class="tab-pane fade">
+    <p>Paypal is easiest way to pay online</p>
+    <p>
+    <button type="button" class="btn btn-primary rounded-pill"><i class="fa fa-paypal mr-2"></i> Log into my Paypal</button>
+    </p>
+    <p class="text-muted">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+    </div>
+    <!-- End -->
+    <!-- bank transfer info -->
+    <div id="nav-tab-bank" class="tab-pane fade">
+    <h6>Bank account details</h6>
+    <dl>
+    <dt>Bank</dt>
+    <dd> THE WORLD BANK</dd>
+    </dl>
+    <dl>
+    <dt>Account number</dt>
+    <dd>7775877975</dd>
+    </dl>
+    <dl>
+    <dt>IBAN</dt>
+    <dd>CZ7775877975656</dd>
+    </dl>
+    <p class="text-muted">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+    </div>
+    <!-- End -->
+    </div>
+    <!-- End -->
+
+    </div>
+    </div>
+    </div>*@
+</div>
+
+
+
