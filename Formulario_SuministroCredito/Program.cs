@@ -1,7 +1,39 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using Formulario_SuministroCredito.Data;
+using Formulario_SuministroCredito.Models;
+using Formulario_SuministroCredito.Validator;
+using MySql.Data.MySqlClient;
+using MySqlConnector;
+using System.Data;
+using System.Data.SqlClient;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+
+//MySql
+var dbMySqlConexion = builder.Configuration.GetConnectionString("mySqlConexion");
+builder.Services.AddSingleton<IDbConnection>((sp) => new MySqlConnector.MySqlConnection(dbMySqlConexion));
+
+
+//sqlserver
+//var dbConnectionString = builder.Configuration.GetConnectionString("conexionPredeterminada");
+//builder.Services.AddSingleton<IDbConnection>((sp) => new SqlConnection(dbConnectionString));
+////inyeccción mi propio dependencia
+//builder.Services.AddScoped<ISumiCredRepository, SumiCredRepository>();
+
+//inyeccción mi propio dependencia
+builder.Services.AddScoped<ISumiCredRepository, SumiCredRepository>();
+
+//inyección fluentValidator
+builder.Services.AddTransient<IValidator<SuministroCredito>, SuministrosValidator>();
+
+
+
+
 
 var app = builder.Build();
 
@@ -22,6 +54,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=SumiCred}/{action=Index}/{id?}");
 
 app.Run();

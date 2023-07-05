@@ -29,3 +29,20 @@
     flex-direction: column;
     align-self: stretch;
 }
+
+/*#seccionLegal {
+
+    display:none
+}
+*/
+
+.input-group-append {
+    cursor: pointer;
+}
+
+
+.spanValidated {
+    color:crimson;
+    font-size:10px;
+     
+}

@@ -1,0 +1,395 @@
+﻿@model IEnumerable<Formulario_SuministroCredito.Models.SuministroCredito>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Insert">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Consecutivo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaRegistro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tipo_solicitud)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Monto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Plazo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apellidos_nombres_razon_social)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tipo_persona)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tipo_identificacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Numero_identificacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DV)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Representante_legal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cargo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Correo_electronico)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Direccion_correspondencia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ciudad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Departamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefono)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Celular)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Correo_electronico_facturacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Entidad_razon_social_ref_comerciales)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Direccion_ref_comerciales)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nom_contacto_ref_comerciales)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cargo_ref_comerciales)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefono_ref_comerciales)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Entidad_razon_social_ref_comerciales_dos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Direccion_ref_comerciales_dos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nom_contacto_ref_comerciales_dos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cargo_ref_comerciales_dos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefono_ref_comerciales_dos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Entidad_financiera)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tipo_cuenta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Numero_cuenta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Oficina)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre_contacto_tesoreria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cargo_contacto_tesoreria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefono_contacto_tesoreria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Celular_contacto_tesoreria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Correo_electronico_contacto_tesoreria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre_contacto_contabilidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cargo_contacto_contabilidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefono_contacto_contabilidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Celular_contacto_contabilidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Correo_electronico_contacto_contabilidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre_contacto_compras)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cargo_contacto_compras)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefono_contacto_compras)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Celular_contacto_compras)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Correo_electronico_contacto_compras)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ruta_rut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ruta_estado_financiero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ruta_existencia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ruta_cert_ingresos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ruta_tarjeta_profesional)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ruta_cert_antecedentes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre_apellido_firma)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nro_cedula_firma)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Representa_legal_firma)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Centro_distribucion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cupo_sugerido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Plazo_aliar)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nom_asesor_comercial)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Consecutivo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaRegistro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tipo_solicitud)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Monto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Plazo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellidos_nombres_razon_social)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tipo_persona)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tipo_identificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Numero_identificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Representante_legal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cargo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Correo_electronico)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion_correspondencia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ciudad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Departamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Celular)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Correo_electronico_facturacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Entidad_razon_social_ref_comerciales)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion_ref_comerciales)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nom_contacto_ref_comerciales)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cargo_ref_comerciales)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono_ref_comerciales)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Entidad_razon_social_ref_comerciales_dos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion_ref_comerciales_dos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nom_contacto_ref_comerciales_dos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cargo_ref_comerciales_dos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono_ref_comerciales_dos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Entidad_financiera)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tipo_cuenta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Numero_cuenta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Oficina)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre_contacto_tesoreria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cargo_contacto_tesoreria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono_contacto_tesoreria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Celular_contacto_tesoreria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Correo_electronico_contacto_tesoreria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre_contacto_contabilidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cargo_contacto_contabilidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono_contacto_contabilidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Celular_contacto_contabilidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Correo_electronico_contacto_contabilidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre_contacto_compras)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cargo_contacto_compras)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono_contacto_compras)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Celular_contacto_compras)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Correo_electronico_contacto_compras)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ruta_rut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ruta_estado_financiero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ruta_existencia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ruta_cert_ingresos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ruta_tarjeta_profesional)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ruta_cert_antecedentes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre_apellido_firma)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nro_cedula_firma)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Representa_legal_firma)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Centro_distribucion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cupo_sugerido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Plazo_aliar)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nom_asesor_comercial)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,333 @@
+﻿@model Formulario_SuministroCredito.Models.SuministroCredito
+
+@{
+    ViewData["Title"] = "Insertar";
+}
+
+<h1>Insertar</h1>
+
+<h4>SuministroCredito</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Insert">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Consecutivo" class="control-label"></label>
+                <input asp-for="Consecutivo" class="form-control" />
+                <span asp-validation-for="Consecutivo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaRegistro" class="control-label"></label>
+                <input asp-for="FechaRegistro" class="form-control" />
+                <span asp-validation-for="FechaRegistro" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tipo_solicitud" class="control-label"></label>
+                <input asp-for="Tipo_solicitud" class="form-control" />
+                <span asp-validation-for="Tipo_solicitud" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Monto" class="control-label"></label>
+                <input asp-for="Monto" class="form-control" />
+                <span asp-validation-for="Monto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Plazo" class="control-label"></label>
+                <input asp-for="Plazo" class="form-control" />
+                <span asp-validation-for="Plazo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Apellidos_nombres_razon_social" class="control-label"></label>
+                <input asp-for="Apellidos_nombres_razon_social" class="form-control" />
+                <span asp-validation-for="Apellidos_nombres_razon_social" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tipo_persona" class="control-label"></label>
+                <input asp-for="Tipo_persona" class="form-control" />
+                <span asp-validation-for="Tipo_persona" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tipo_identificacion" class="control-label"></label>
+                <input asp-for="Tipo_identificacion" class="form-control" />
+                <span asp-validation-for="Tipo_identificacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Numero_identificacion" class="control-label"></label>
+                <input asp-for="Numero_identificacion" class="form-control" />
+                <span asp-validation-for="Numero_identificacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DV" class="control-label"></label>
+                <input asp-for="DV" class="form-control" />
+                <span asp-validation-for="DV" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Representante_legal" class="control-label"></label>
+                <input asp-for="Representante_legal" class="form-control" />
+                <span asp-validation-for="Representante_legal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cargo" class="control-label"></label>
+                <input asp-for="Cargo" class="form-control" />
+                <span asp-validation-for="Cargo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Correo_electronico" class="control-label"></label>
+                <input asp-for="Correo_electronico" class="form-control" />
+                <span asp-validation-for="Correo_electronico" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Direccion_correspondencia" class="control-label"></label>
+                <input asp-for="Direccion_correspondencia" class="form-control" />
+                <span asp-validation-for="Direccion_correspondencia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ciudad" class="control-label"></label>
+                <input asp-for="Ciudad" class="form-control" />
+                <span asp-validation-for="Ciudad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Departamento" class="control-label"></label>
+                <input asp-for="Departamento" class="form-control" />
+                <span asp-validation-for="Departamento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Telefono" class="control-label"></label>
+                <input asp-for="Telefono" class="form-control" />
+                <span asp-validation-for="Telefono" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Celular" class="control-label"></label>
+                <input asp-for="Celular" class="form-control" />
+                <span asp-validation-for="Celular" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Correo_electronico_facturacion" class="control-label"></label>
+                <input asp-for="Correo_electronico_facturacion" class="form-control" />
+                <span asp-validation-for="Correo_electronico_facturacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Entidad_razon_social_ref_comerciales" class="control-label"></label>
+                <input asp-for="Entidad_razon_social_ref_comerciales" class="form-control" />
+                <span asp-validation-for="Entidad_razon_social_ref_comerciales" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Direccion_ref_comerciales" class="control-label"></label>
+                <input asp-for="Direccion_ref_comerciales" class="form-control" />
+                <span asp-validation-for="Direccion_ref_comerciales" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nom_contacto_ref_comerciales" class="control-label"></label>
+                <input asp-for="Nom_contacto_ref_comerciales" class="form-control" />
+                <span asp-validation-for="Nom_contacto_ref_comerciales" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cargo_ref_comerciales" class="control-label"></label>
+                <input asp-for="Cargo_ref_comerciales" class="form-control" />
+                <span asp-validation-for="Cargo_ref_comerciales" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Telefono_ref_comerciales" class="control-label"></label>
+                <input asp-for="Telefono_ref_comerciales" class="form-control" />
+                <span asp-validation-for="Telefono_ref_comerciales" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Entidad_razon_social_ref_comerciales_dos" class="control-label"></label>
+                <input asp-for="Entidad_razon_social_ref_comerciales_dos" class="form-control" />
+                <span asp-validation-for="Entidad_razon_social_ref_comerciales_dos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Direccion_ref_comerciales_dos" class="control-label"></label>
+                <input asp-for="Direccion_ref_comerciales_dos" class="form-control" />
+                <span asp-validation-for="Direccion_ref_comerciales_dos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nom_contacto_ref_comerciales_dos" class="control-label"></label>
+                <input asp-for="Nom_contacto_ref_comerciales_dos" class="form-control" />
+                <span asp-validation-for="Nom_contacto_ref_comerciales_dos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cargo_ref_comerciales_dos" class="control-label"></label>
+                <input asp-for="Cargo_ref_comerciales_dos" class="form-control" />
+                <span asp-validation-for="Cargo_ref_comerciales_dos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Telefono_ref_comerciales_dos" class="control-label"></label>
+                <input asp-for="Telefono_ref_comerciales_dos" class="form-control" />
+                <span asp-validation-for="Telefono_ref_comerciales_dos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Entidad_financiera" class="control-label"></label>
+                <input asp-for="Entidad_financiera" class="form-control" />
+                <span asp-validation-for="Entidad_financiera" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tipo_cuenta" class="control-label"></label>
+                <input asp-for="Tipo_cuenta" class="form-control" />
+                <span asp-validation-for="Tipo_cuenta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Numero_cuenta" class="control-label"></label>
+                <input asp-for="Numero_cuenta" class="form-control" />
+                <span asp-validation-for="Numero_cuenta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Oficina" class="control-label"></label>
+                <input asp-for="Oficina" class="form-control" />
+                <span asp-validation-for="Oficina" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nombre_contacto_tesoreria" class="control-label"></label>
+                <input asp-for="Nombre_contacto_tesoreria" class="form-control" />
+                <span asp-validation-for="Nombre_contacto_tesoreria" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cargo_contacto_tesoreria" class="control-label"></label>
+                <input asp-for="Cargo_contacto_tesoreria" class="form-control" />
+                <span asp-validation-for="Cargo_contacto_tesoreria" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Telefono_contacto_tesoreria" class="control-label"></label>
+                <input asp-for="Telefono_contacto_tesoreria" class="form-control" />
+                <span asp-validation-for="Telefono_contacto_tesoreria" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Celular_contacto_tesoreria" class="control-label"></label>
+                <input asp-for="Celular_contacto_tesoreria" class="form-control" />
+                <span asp-validation-for="Celular_contacto_tesoreria" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Correo_electronico_contacto_tesoreria" class="control-label"></label>
+                <input asp-for="Correo_electronico_contacto_tesoreria" class="form-control" />
+                <span asp-validation-for="Correo_electronico_contacto_tesoreria" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nombre_contacto_contabilidad" class="control-label"></label>
+                <input asp-for="Nombre_contacto_contabilidad" class="form-control" />
+                <span asp-validation-for="Nombre_contacto_contabilidad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cargo_contacto_contabilidad" class="control-label"></label>
+                <input asp-for="Cargo_contacto_contabilidad" class="form-control" />
+                <span asp-validation-for="Cargo_contacto_contabilidad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Telefono_contacto_contabilidad" class="control-label"></label>
+                <input asp-for="Telefono_contacto_contabilidad" class="form-control" />
+                <span asp-validation-for="Telefono_contacto_contabilidad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Celular_contacto_contabilidad" class="control-label"></label>
+                <input asp-for="Celular_contacto_contabilidad" class="form-control" />
+                <span asp-validation-for="Celular_contacto_contabilidad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Correo_electronico_contacto_contabilidad" class="control-label"></label>
+                <input asp-for="Correo_electronico_contacto_contabilidad" class="form-control" />
+                <span asp-validation-for="Correo_electronico_contacto_contabilidad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nombre_contacto_compras" class="control-label"></label>
+                <input asp-for="Nombre_contacto_compras" class="form-control" />
+                <span asp-validation-for="Nombre_contacto_compras" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cargo_contacto_compras" class="control-label"></label>
+                <input asp-for="Cargo_contacto_compras" class="form-control" />
+                <span asp-validation-for="Cargo_contacto_compras" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Telefono_contacto_compras" class="control-label"></label>
+                <input asp-for="Telefono_contacto_compras" class="form-control" />
+                <span asp-validation-for="Telefono_contacto_compras" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Celular_contacto_compras" class="control-label"></label>
+                <input asp-for="Celular_contacto_compras" class="form-control" />
+                <span asp-validation-for="Celular_contacto_compras" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Correo_electronico_contacto_compras" class="control-label"></label>
+                <input asp-for="Correo_electronico_contacto_compras" class="form-control" />
+                <span asp-validation-for="Correo_electronico_contacto_compras" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ruta_rut" class="control-label"></label>
+                <input asp-for="Ruta_rut" class="form-control" />
+                <span asp-validation-for="Ruta_rut" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ruta_estado_financiero" class="control-label"></label>
+                <input asp-for="Ruta_estado_financiero" class="form-control" />
+                <span asp-validation-for="Ruta_estado_financiero" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ruta_existencia" class="control-label"></label>
+                <input asp-for="Ruta_existencia" class="form-control" />
+                <span asp-validation-for="Ruta_existencia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ruta_cert_ingresos" class="control-label"></label>
+                <input asp-for="Ruta_cert_ingresos" class="form-control" />
+                <span asp-validation-for="Ruta_cert_ingresos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ruta_tarjeta_profesional" class="control-label"></label>
+                <input asp-for="Ruta_tarjeta_profesional" class="form-control" />
+                <span asp-validation-for="Ruta_tarjeta_profesional" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ruta_cert_antecedentes" class="control-label"></label>
+                <input asp-for="Ruta_cert_antecedentes" class="form-control" />
+                <span asp-validation-for="Ruta_cert_antecedentes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nombre_apellido_firma" class="control-label"></label>
+                <input asp-for="Nombre_apellido_firma" class="form-control" />
+                <span asp-validation-for="Nombre_apellido_firma" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nro_cedula_firma" class="control-label"></label>
+                <input asp-for="Nro_cedula_firma" class="form-control" />
+                <span asp-validation-for="Nro_cedula_firma" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Representa_legal_firma" class="control-label"></label>
+                <input asp-for="Representa_legal_firma" class="form-control" />
+                <span asp-validation-for="Representa_legal_firma" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Centro_distribucion" class="control-label"></label>
+                <input asp-for="Centro_distribucion" class="form-control" />
+                <span asp-validation-for="Centro_distribucion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cupo_sugerido" class="control-label"></label>
+                <input asp-for="Cupo_sugerido" class="form-control" />
+                <span asp-validation-for="Cupo_sugerido" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Plazo_aliar" class="control-label"></label>
+                <input asp-for="Plazo_aliar" class="form-control" />
+                <span asp-validation-for="Plazo_aliar" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nom_asesor_comercial" class="control-label"></label>
+                <input asp-for="Nom_asesor_comercial" class="form-control" />
+                <span asp-validation-for="Nom_asesor_comercial" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
