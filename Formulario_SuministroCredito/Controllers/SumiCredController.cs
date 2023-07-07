@@ -29,7 +29,7 @@ namespace Formulario_SuministroCredito.Controllers
         {
             var suministros = await _sumiCredRepository.GetAll();
 
-            //var contador = _sumiCredRepository.CountRowDb();
+           
 
             return View(suministros);
         }
@@ -38,6 +38,8 @@ namespace Formulario_SuministroCredito.Controllers
         // GET: SumiCredController/Create
         public ActionResult Insert()
         {
+            //var contador = _sumiCredRepository.CountRowDb();
+
             return View();
         }
 
@@ -55,7 +57,7 @@ namespace Formulario_SuministroCredito.Controllers
         {
             try
             {
-
+                var contador = _sumiCredRepository.CountRowDb();
 
                 var suministroCredito = new SuministroCredito()
                 {
@@ -120,9 +122,14 @@ namespace Formulario_SuministroCredito.Controllers
                     Cupo_sugerido = collection["Cupo_sugerido"],
                     Plazo_aliar = collection["Plazo_aliar"],
                     Nom_asesor_comercial = collection["Nom_asesor_comercial"],
-                    RutFile = collection.Files["RutFile"]
+                    RutFile = collection.Files["RutFile"],
+                    EstadoFinancieroFile = collection.Files["EstadoFinancieroFile"],
+                    ExistenciaFile = collection.Files["ExistenciaFile"],
+                    CertificadoIngresosFile = collection.Files["CertificadoIngresosFile"],
+                    TarjetaProfesionalFile = collection.Files["TarjetaProfesionalFile"],
+                    CertificadoAntecedentesFile = collection.Files["CertificadoAntecedentesFile"],
+                    NumeroContador = contador
                     
-
 
                 };
 
@@ -152,24 +159,6 @@ namespace Formulario_SuministroCredito.Controllers
         }
 
 
-        //public async Task<IActionResult> Upload(IFormFile file)
-        //{
-        //    if (file != null && file.Length > 0)
-        //    {
-        //        var fileName = Path.GetFileName(file.FileName);
-        //        var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/ruta/especifica", fileName);
-        //        using (var stream = new FileStream(path, FileMode.Create))
-        //        {
-        //            await file.CopyToAsync(stream);
-        //        }
-        //        ViewBag.Message = "Archivo guardado correctamente.";
-        //    }
-        //    else
-        //    {
-        //        ViewBag.Message = "Error al guardar el archivo.";
-        //    }
-        //    return View();
-        //}
 
 
 

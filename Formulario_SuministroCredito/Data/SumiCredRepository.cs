@@ -1,20 +1,47 @@
 ﻿using Dapper;
 using Formulario_SuministroCredito.Models;
+using Google.Apis.Auth.OAuth2;
+using Google.Apis.Drive.v3;
+using Google.Apis.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
+using System.Security.Policy;
+using static iText.StyledXmlParser.Jsoup.Select.Evaluator;
 
 namespace Formulario_SuministroCredito.Data
 {
     public class SumiCredRepository : ISumiCredRepository
     {
         private readonly IDbConnection _dbconnection;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public SumiCredRepository(IDbConnection dbConnection)
+        public SumiCredRepository(IDbConnection dbConnection, IWebHostEnvironment webHostEnvironment)
         {
-                _dbconnection = dbConnection;
+            _dbconnection = dbConnection;
+            _webHostEnvironment = webHostEnvironment;
         }
 
-      
+
+        static string[] Scopes = { DriveService.Scope.Drive };
+        static string ApplicationName = "Drive API .NET Quickstart";
+        private const string MimeTypeFolder = "application/vnd.google-apps.folder";
+        private const string carpetaPrincipal = "1XP3rr0b8a9lFS3TuMNf3fjZehHq9YncK";
+        private string url0 = "";
+        private string url1 = "";
+        private string url2 = "";
+        private string url3 = "";
+        private string url4 = "";
+        private string url5 = "";
+        private string url6 = "";
+
+        public string Url0 { get { return url0; } }
+        public string Url1 { get { return url1; } }
+        public string Url2 { get { return url2; } }
+        public string Url3 { get { return url3; } }
+        public string Url4 { get { return url4; } }
+        public string Url5 { get { return url5; } }
+
+        
 
 
         public async Task<IEnumerable<SuministroCredito>> GetAll()
@@ -26,12 +53,13 @@ namespace Formulario_SuministroCredito.Data
         }
 
 
-        string ISumiCredRepository.CountRowDb()
+        public string CountRowDb()
         {
             var sql = @"select count(*) from n97eed5_MaestrosProcesos.Suministro_Credito";
 
             var count = _dbconnection.ExecuteScalar(sql);
-            return (string)count;
+            
+            return count.ToString();
         }
 
 
@@ -40,11 +68,27 @@ namespace Formulario_SuministroCredito.Data
         //    throw new NotImplementedException();
         //}
 
+           
+
 
         public async Task<bool> Insert(SuministroCredito suministroCredito)
         {
 
-            AdjuntarArchivos(suministroCredito.RutFile);
+
+            AdjuntarArchivos(suministroCredito.RutFile, 
+                             suministroCredito.EstadoFinancieroFile, 
+                             suministroCredito.ExistenciaFile, 
+                             suministroCredito.CertificadoIngresosFile, 
+                             suministroCredito.TarjetaProfesionalFile, 
+                             suministroCredito.CertificadoAntecedentesFile);
+
+            suministroCredito.Ruta_rut = Url0;
+            suministroCredito.Ruta_estado_financiero = Url1;
+            suministroCredito.Ruta_existencia= Url2;
+            suministroCredito.Ruta_cert_ingresos = Url3;
+            suministroCredito.Ruta_tarjeta_profesional = Url4;
+            suministroCredito.Ruta_cert_antecedentes = Url5;
+       
 
 
 
@@ -161,12 +205,12 @@ namespace Formulario_SuministroCredito.Data
                                                             @Telefono_contacto_compras,
                                                             @Celular_contacto_compras,
                                                             @Correo_electronico_contacto_compras,    
-                                                            'null',
-                                                            'null',
-                                                            'null',
-                                                            'null',
-                                                            'null',
-                                                            'null',
+                                                            @Ruta_rut,
+                                                            @Ruta_estado_financiero,
+                                                            @Ruta_existencia,
+                                                            @Ruta_cert_ingresos,
+                                                            @Ruta_tarjeta_profesional,
+                                                            @Ruta_cert_antecedentes,
                                                             @Nombre_apellido_firma,
                                                             @Nro_cedula_firma,
                                                             @Representante_legal,
@@ -291,33 +335,280 @@ namespace Formulario_SuministroCredito.Data
         }
 
         [NonAction]
-        public  bool AdjuntarArchivos(IFormFile file)
+        public  bool AdjuntarArchivos(IFormFile file, IFormFile file2, IFormFile file3, IFormFile file4, IFormFile file5, IFormFile file6)
         {
-            string path = "";
+           
             try
             {
-                if (file.Length > 0)
+
+                string contentRootPath = _webHostEnvironment.ContentRootPath;
+                string path = Path.Combine(contentRootPath, "Uploads", "credentials.json");
+                string path2 = Path.Combine(contentRootPath, "Uploads", "token.json");
+
+                UserCredential credential;
+
+                using (var stream = new FileStream(path, FileMode.Open, FileAccess.Read))
                 {
-                    path = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, "UploadedFiles"));
-                    if (!Directory.Exists(path))
-                    {
-                        Directory.CreateDirectory(path);
-                    }
-                    using (var fileStream = new FileStream(Path.Combine(path, file.FileName), FileMode.Create))
-                    {
-                        file.CopyToAsync(fileStream);
-                    }
-                    return true;
+                    // The file token.json stores the user's access and refresh tokens, and is created
+                    // automatically when the authorization flow completes for the first time.
+                    string credPath = path2;
+                    credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                        GoogleClientSecrets.FromStream(stream).Secrets,
+                        //GoogleClientSecrets.Load(stream).Secrets,
+                        Scopes,
+                        "user",
+                        CancellationToken.None,
+                        new Google.Apis.Util.Store.FileDataStore(credPath, true)).Result;
+
                 }
-                else
+
+
+                // Create Drive API service.
+
+                var service = new DriveService(new BaseClientService.Initializer()
                 {
-                    return false;
+                    HttpClientInitializer = credential,
+                    ApplicationName = ApplicationName,
+                });
+
+
+
+
+                if (file != null)
+                {
+
+                    //string url0 = "";
+                    string archivo0 = ("RUT-" + DateTime.Now.ToString("yyyyMMddHHmmss")).ToLower();
+                    int BufferSize = 1130702268;//2130702268
+                    byte[] fileByte = new byte[BufferSize];
+
+                    BinaryReader rdr1 = new BinaryReader(file.OpenReadStream());
+                    fileByte = rdr1.ReadBytes((int)file.Length);
+
+                    Google.Apis.Drive.v3.Data.File body = new Google.Apis.Drive.v3.Data.File();
+                    body.Name = System.IO.Path.GetFileName(archivo0);
+                    body.Description = "Test Description";
+                    body.MimeType = MimeType.GetMimeType(fileByte, archivo0);
+                    body.Parents = new List<string> { carpetaPrincipal };
+
+
+                    System.IO.MemoryStream stream2 = new System.IO.MemoryStream(fileByte);
+                    FilesResource.CreateMediaUpload request = service.Files.Create(body, stream2, MimeType.GetMimeType(fileByte, archivo0));
+                    request.Fields = "id, name, webViewLink";
+                    var result = request.Upload();
+                    Google.Apis.Drive.v3.Data.File fileR = request.ResponseBody; //returns null value
+                    if (fileR.WebViewLink != null)
+                    {
+
+                        url0 = fileR.WebViewLink;
+                         
+
+                    }
                 }
+
+
+                if (file2 != null)
+                {
+
+                    
+                    string archivo0 = ("Estado_financiero-" + DateTime.Now.ToString("yyyyMMddHHmmss")).ToLower();
+                    int BufferSize = 1130702268;//2130702268
+                    byte[] fileByte = new byte[BufferSize];
+
+                    BinaryReader rdr1 = new BinaryReader(file2.OpenReadStream());
+                    fileByte = rdr1.ReadBytes((int)file2.Length);
+
+                    Google.Apis.Drive.v3.Data.File body = new Google.Apis.Drive.v3.Data.File();
+                    body.Name = System.IO.Path.GetFileName(archivo0);
+                    body.Description = "Test Description";
+                    body.MimeType = MimeType.GetMimeType(fileByte, archivo0);
+                    body.Parents = new List<string> { carpetaPrincipal };
+
+
+                    System.IO.MemoryStream stream2 = new System.IO.MemoryStream(fileByte);
+                    FilesResource.CreateMediaUpload request = service.Files.Create(body, stream2, MimeType.GetMimeType(fileByte, archivo0));
+                    request.Fields = "id, name, webViewLink";
+                    var result = request.Upload();
+                    Google.Apis.Drive.v3.Data.File fileR = request.ResponseBody; //returns null value
+                    if (fileR.WebViewLink != null)
+                    {
+
+                        url1 = fileR.WebViewLink;
+
+                    }
+                }
+
+
+                if (file3 != null)
+                {
+
+                    
+                    string archivo0 = ("Existencia-" + DateTime.Now.ToString("yyyyMMddHHmmss")).ToLower();
+                    int BufferSize = 1130702268;//2130702268
+                    byte[] fileByte = new byte[BufferSize];
+
+                    BinaryReader rdr1 = new BinaryReader(file3.OpenReadStream());
+                    fileByte = rdr1.ReadBytes((int)file3.Length);
+
+                    Google.Apis.Drive.v3.Data.File body = new Google.Apis.Drive.v3.Data.File();
+                    body.Name = System.IO.Path.GetFileName(archivo0);
+                    body.Description = "Test Description";
+                    body.MimeType = MimeType.GetMimeType(fileByte, archivo0);
+                    body.Parents = new List<string> { carpetaPrincipal };
+
+
+                    System.IO.MemoryStream stream2 = new System.IO.MemoryStream(fileByte);
+                    FilesResource.CreateMediaUpload request = service.Files.Create(body, stream2, MimeType.GetMimeType(fileByte, archivo0));
+                    request.Fields = "id, name, webViewLink";
+                    var result = request.Upload();
+                    Google.Apis.Drive.v3.Data.File fileR = request.ResponseBody; //returns null value
+                    if (fileR.WebViewLink != null)
+                    {
+
+                        url2 = fileR.WebViewLink;
+
+                    }
+                }
+
+
+                if (file4 != null)
+                {
+
+                    string archivo0 = ("Certificado_ingresos-" + DateTime.Now.ToString("yyyyMMddHHmmss")).ToLower();
+                    int BufferSize = 1130702268;//2130702268
+                    byte[] fileByte = new byte[BufferSize];
+
+                    BinaryReader rdr1 = new BinaryReader(file4.OpenReadStream());
+                    fileByte = rdr1.ReadBytes((int)file4.Length);
+
+                    Google.Apis.Drive.v3.Data.File body = new Google.Apis.Drive.v3.Data.File();
+                    body.Name = System.IO.Path.GetFileName(archivo0);
+                    body.Description = "Test Description";
+                    body.MimeType = MimeType.GetMimeType(fileByte, archivo0);
+                    body.Parents = new List<string> { carpetaPrincipal };
+
+
+                    System.IO.MemoryStream stream2 = new System.IO.MemoryStream(fileByte);
+                    FilesResource.CreateMediaUpload request = service.Files.Create(body, stream2, MimeType.GetMimeType(fileByte, archivo0));
+                    request.Fields = "id, name, webViewLink";
+                    var result = request.Upload();
+                    Google.Apis.Drive.v3.Data.File fileR = request.ResponseBody; //returns null value
+                    if (fileR.WebViewLink != null)
+                    {
+
+                        url3 = fileR.WebViewLink;
+
+                    }
+                }
+
+                if (file5 != null)
+                {
+
+                   
+                    string archivo0 = ("Tarjeta_profesional-" + DateTime.Now.ToString("yyyyMMddHHmmss")).ToLower();
+                    int BufferSize = 1130702268;//2130702268
+                    byte[] fileByte = new byte[BufferSize];
+
+                    BinaryReader rdr1 = new BinaryReader(file5.OpenReadStream());
+                    fileByte = rdr1.ReadBytes((int)file5.Length);
+
+                    Google.Apis.Drive.v3.Data.File body = new Google.Apis.Drive.v3.Data.File();
+                    body.Name = System.IO.Path.GetFileName(archivo0);
+                    body.Description = "Test Description";
+                    body.MimeType = MimeType.GetMimeType(fileByte, archivo0);
+                    body.Parents = new List<string> { carpetaPrincipal };
+
+
+                    System.IO.MemoryStream stream2 = new System.IO.MemoryStream(fileByte);
+                    FilesResource.CreateMediaUpload request = service.Files.Create(body, stream2, MimeType.GetMimeType(fileByte, archivo0));
+                    request.Fields = "id, name, webViewLink";
+                    var result = request.Upload();
+                    Google.Apis.Drive.v3.Data.File fileR = request.ResponseBody; //returns null value
+                    if (fileR.WebViewLink != null)
+                    {
+
+                        url4 = fileR.WebViewLink;
+
+                    }
+                }
+
+                if (file6 != null)
+                {
+
+
+                    string archivo0 = ("Certificado_antecedentes-" + DateTime.Now.ToString("yyyyMMddHHmmss")).ToLower();
+                    int BufferSize = 1130702268;//2130702268
+                    byte[] fileByte = new byte[BufferSize];
+
+                    BinaryReader rdr1 = new BinaryReader(file6.OpenReadStream());
+                    fileByte = rdr1.ReadBytes((int)file6.Length);
+
+                    Google.Apis.Drive.v3.Data.File body = new Google.Apis.Drive.v3.Data.File();
+                    body.Name = System.IO.Path.GetFileName(archivo0);
+                    body.Description = "Test Description";
+                    body.MimeType = MimeType.GetMimeType(fileByte, archivo0);
+                    body.Parents = new List<string> { carpetaPrincipal };
+
+
+                    System.IO.MemoryStream stream2 = new System.IO.MemoryStream(fileByte);
+                    FilesResource.CreateMediaUpload request = service.Files.Create(body, stream2, MimeType.GetMimeType(fileByte, archivo0));
+                    request.Fields = "id, name, webViewLink";
+                    var result = request.Upload();
+                    Google.Apis.Drive.v3.Data.File fileR = request.ResponseBody; //returns null value
+                    if (fileR.WebViewLink != null)
+                    {
+
+                        url5 = fileR.WebViewLink;
+
+                    }
+                }
+
+
+
+
+
+
+
+
+
+
+                return true;
+
+
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception("File Copy Failed", ex);
+
+                throw;
             }
+
+
+
+            //try
+            //{
+            //    string pathArchAdjuntar = "";
+            //    if (file.Length > 0)
+            //    {
+            //        pathArchAdjuntar = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, "UploadedFiles"));
+            //        if (!Directory.Exists(pathArchAdjuntar))
+            //        {
+            //            Directory.CreateDirectory(pathArchAdjuntar);
+            //        }
+            //        using (var fileStream = new FileStream(Path.Combine(pathArchAdjuntar, file.FileName), FileMode.Create))
+            //        {
+            //            file.CopyToAsync(fileStream);
+            //        }
+            //        return true;
+            //    }
+            //    else
+            //    {
+            //        return false;
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw new Exception("File Copy Failed", ex);
+            //}
         }
 
 

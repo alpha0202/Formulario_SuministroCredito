@@ -7,7 +7,7 @@ namespace Formulario_SuministroCredito.Models
 
 
         public int IdSuministro_Credito { get; set; }
-        public string Consecutivo { get; set; } = "0";
+        public string Consecutivo { get; set; } 
         public DateTime FechaRegistro { get; set;} = DateTime.Now;
         public string Tipo_solicitud { get; set; }
 
@@ -84,6 +84,7 @@ namespace Formulario_SuministroCredito.Models
         public string Plazo_aliar { get; set; }
         public string Nom_asesor_comercial { get; set; }
 
+        public string NumeroContador { get; set; } 
 
 
        

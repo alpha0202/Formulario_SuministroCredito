@@ -17,6 +17,7 @@
     <PackageReference Include="Google.Apis.Core" Version="1.61.0" />
     <PackageReference Include="Google.Apis.Drive.v3" Version="1.61.0.3082" />
     <PackageReference Include="Google.Protobuf" Version="3.23.3" />
+    <PackageReference Include="Grpc.Core" Version="2.46.6" />
     <PackageReference Include="itext7" Version="8.0.0" />
     <PackageReference Include="itext7.pdfhtml" Version="5.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="7.0.8" />

@@ -10,27 +10,36 @@ $(function () {
 //habilitar las secciones del representante legal
 const tipo_persona = document.querySelector("#tipoPersona");
 const seccion_Legal = document.querySelector("#seccionLegal");
+const seccion_firma_legal = document.querySelector("#seccion_firma_legal")
 
 tipo_persona.addEventListener("change", () => {
     if (tipo_persona.value === "Jurídica") {
         seccion_Legal.classList.remove("invisible");
         seccion_firma_legal.classList.remove("invisible");
+        seccion_Legal.classList.add("required");
+        seccion_firma_legal.classList.add("required");
     } else {
         seccion_Legal.classList.add("invisible");
         seccion_firma_legal.classList.add("invisible");
+        seccion_Legal.classList.remove("required");
+        seccion_firma_legal.classList.remove("required");
     }
 });
 
 
+
 //habilitar seccion de anexar documentos para personal no obligado.
 const seccionNoObligados = document.querySelector("#seccion_no_obligados");
+const seccionClass_NoObligados = document.querySelector("#no_obligatorios");
+
 
 tipo_persona.addEventListener("change", () => {
     if (tipo_persona.value ==="Jurídica") {
         seccionNoObligados.classList.add("invisible")
-
+        seccionClass_NoObligados.classList.add("invisible")
     } else {
         seccionNoObligados.classList.remove("invisible")
+        seccionClass_NoObligados.classList.remove("invisible")
     }
 });
 
@@ -48,6 +57,11 @@ function autoCompleteNew(e) {
     $("#representaLegal_firma").val(value);
 
 }
+
+
+
+
+
 
 
 
