@@ -46,3 +46,36 @@
     font-size:10px;
      
 }
+
+.form-control-rl i {
+    visibility: hidden;
+    position: absolute;
+    top: 40px;
+    right: 10px;
+}
+
+
+.form-control-rl.error i.fa-exclamation-circle {
+    color: #e74c3c;
+    visibility: visible;
+}
+
+
+.form-control-rl.success i.fa-check-circle {
+    color: #2ecc71;
+    visibility: visible;
+}
+
+
+.form-control-rl small {
+    color: #e74c3c;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    visibility: hidden;
+}
+
+
+.form-control-rl.error small {
+    visibility: visible;
+}

@@ -32,7 +32,7 @@ namespace Formulario_SuministroCredito.Data
         private string url3 = "";
         private string url4 = "";
         private string url5 = "";
-        private string url6 = "";
+       
 
         public string Url0 { get { return url0; } }
         public string Url1 { get { return url1; } }
@@ -46,10 +46,81 @@ namespace Formulario_SuministroCredito.Data
 
         public async Task<IEnumerable<SuministroCredito>> GetAll()
         {
-            var sql = @"select * from Suministro_Credito";
+            var sql = @"SELECT * FROM n97eed5_MaestrosProcesos.Suministro_Credito";
 
              var resultado =  await _dbconnection.QueryAsync<SuministroCredito>(sql, new { });
             return resultado;
+        }
+
+        public async Task<SuministroCredito> GetDatail(int id)
+        {
+            var sql = @"SELECT     
+                                   fecha_registro,    
+                                   tipo_solicitud, 
+                                   monto, 
+                                   plazo,
+                                   apellidos_nombres_razon_social,
+                                   tipo_persona,
+                                   tipo_identificacion,
+                                   numero_identificacion,    
+                                   dv,
+                                   representante_legal,
+                                   cargo,
+                                   correo_electronico,
+                                   direccion_correspondecia,
+                                   ciudad,
+                                   departamento,
+                                   telefono,
+                                   celular,
+                                   correo_electronico_facturacion,
+                                   entidad_razon_social_ref_comerciales,
+                                   direccion_ref_comerciales,
+                                   nom_contacto_ref_comerciales,
+                                   cargo_ref_comerciales,
+                                   telefono_ref_comerciales,
+                                   entidad_razon_social_ref_comerciales_dos,
+                                   direccion_ref_comerciales_dos,
+                                   nom_contacto_ref_comerciales_dos,
+                                   cargo_ref_comerciales_dos,
+                                   telefono_ref_comerciales_dos,
+                                   entidad_financiera,
+                                   tipo_cuenta,
+                                   numero_cuenta,
+                                   oficina,                                                      
+                                   nombre_contacto_tesoreria,
+                                   cargo_contacto_tesoreria,
+                                   telefono_contacto_tesoreria,
+                                   celular_contacto_tesoreria,
+                                   correo_electronico_contacto_tesoreria,                                                       
+                                   nombre_contacto_contabilidad,
+                                   cargo_contacto_contabilidad,
+                                   telefono_contacto_contabilidad,
+                                   celular_contacto_contabilidad,
+                                   correo_electronico_contacto_contabilidad,                                                    
+                                   nombre_contacto_compras,
+                                   cargo_contacto_compras,
+                                   telefono_contacto_compras,
+                                   celular_contacto_compras,
+                                   correo_electronico_contacto_compras,    
+                                   ruta_rut,
+                                   ruta_estado_financiero,
+                                   ruta_existencia,
+                                   ruta_cert_ingresos,
+                                   ruta_tarjeta_profesional,
+                                   ruta_cert_antecedentes,
+                                   nombre_apellido_firma,
+                                   nro_cedula_firma,
+                                   representa_legal_firma,
+                                   centro_distribucion,
+                                   cupo_sugerido,
+                                   plazo_aliar,
+                                   nom_asesor_comercial
+                      
+
+                        FROM n97eed5_MaestrosProcesos.Suministro_Credito
+                        WHERE idSuministro_Credito = @IdSuministro_Credito ";
+
+            return await _dbconnection.QueryFirstOrDefaultAsync<SuministroCredito>(sql, new { IdSuministro_Credito = id });
         }
 
 
@@ -63,12 +134,7 @@ namespace Formulario_SuministroCredito.Data
         }
 
 
-        //public Task<SuministroCredito> GetDatail(int id)
-        //{
-        //    throw new NotImplementedException();
-        //}
 
-           
 
 
         public async Task<bool> Insert(SuministroCredito suministroCredito)
@@ -95,7 +161,6 @@ namespace Formulario_SuministroCredito.Data
             try
             {
                 var sql = @"INSERT INTO Suministro_Credito(
-                                                        consecutivo, 
                                                         fecha_registro,    
                                                         tipo_solicitud, 
                                                         monto, 
@@ -157,7 +222,7 @@ namespace Formulario_SuministroCredito.Data
                                                         plazo_aliar,
                                                         nom_asesor_comercial)                                          
                                                   VALUES
-                                                           (@Consecutivo, 
+                                                           (
                                                             @FechaRegistro,    
                                                             @Tipo_solicitud, 
                                                             @Monto, 
@@ -221,8 +286,7 @@ namespace Formulario_SuministroCredito.Data
 
 
                 await _dbconnection.ExecuteAsync(sql, new
-                {
-                    suministroCredito.Consecutivo,
+                {                  
                     suministroCredito.FechaRegistro,
                     suministroCredito.Tipo_solicitud,
                     suministroCredito.Monto,
@@ -302,6 +366,7 @@ namespace Formulario_SuministroCredito.Data
 
 
 
+    
 
 
 
@@ -611,28 +676,80 @@ namespace Formulario_SuministroCredito.Data
             //}
         }
 
+        public SuministroCredito GetById(int id)
+        {
+            var sql = @"SELECT     
+                                   fecha_registro,    
+                                   tipo_solicitud, 
+                                   monto, 
+                                   plazo,
+                                   apellidos_nombres_razon_social,
+                                   tipo_persona,
+                                   tipo_identificacion,
+                                   numero_identificacion,    
+                                   dv,
+                                   representante_legal,
+                                   cargo,
+                                   correo_electronico,
+                                   direccion_correspondecia,
+                                   ciudad,
+                                   departamento,
+                                   telefono,
+                                   celular,
+                                   correo_electronico_facturacion,
+                                   entidad_razon_social_ref_comerciales,
+                                   direccion_ref_comerciales,
+                                   nom_contacto_ref_comerciales,
+                                   cargo_ref_comerciales,
+                                   telefono_ref_comerciales,
+                                   entidad_razon_social_ref_comerciales_dos,
+                                   direccion_ref_comerciales_dos,
+                                   nom_contacto_ref_comerciales_dos,
+                                   cargo_ref_comerciales_dos,
+                                   telefono_ref_comerciales_dos,
+                                   entidad_financiera,
+                                   tipo_cuenta,
+                                   numero_cuenta,
+                                   oficina,                                                      
+                                   nombre_contacto_tesoreria,
+                                   cargo_contacto_tesoreria,
+                                   telefono_contacto_tesoreria,
+                                   celular_contacto_tesoreria,
+                                   correo_electronico_contacto_tesoreria,                                                       
+                                   nombre_contacto_contabilidad,
+                                   cargo_contacto_contabilidad,
+                                   telefono_contacto_contabilidad,
+                                   celular_contacto_contabilidad,
+                                   correo_electronico_contacto_contabilidad,                                                    
+                                   nombre_contacto_compras,
+                                   cargo_contacto_compras,
+                                   telefono_contacto_compras,
+                                   celular_contacto_compras,
+                                   correo_electronico_contacto_compras,    
+                                   ruta_rut,
+                                   ruta_estado_financiero,
+                                   ruta_existencia,
+                                   ruta_cert_ingresos,
+                                   ruta_tarjeta_profesional,
+                                   ruta_cert_antecedentes,
+                                   nombre_apellido_firma,
+                                   nro_cedula_firma,
+                                   representa_legal_firma,
+                                   centro_distribucion,
+                                   cupo_sugerido,
+                                   plazo_aliar,
+                                   nom_asesor_comercial
+                      
 
+                        FROM n97eed5_MaestrosProcesos.Suministro_Credito
+                        WHERE idSuministro_Credito = @IdSuministro_Credito ";
+
+            var detalle = _dbconnection.QueryFirstOrDefault<SuministroCredito>(sql, new { IdSuministro_Credito = id });
+            return detalle;
+        }
     }
 
 
-        //public async Task<IActionResult> Upload(IFormFile file)
-        //{
-        //    if (file != null && file.Length > 0)
-        //    {
-        //        var fileName = Path.GetFileName(file.FileName);
-        //        var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/ruta/especifica", fileName);
-        //        using (var stream = new FileStream(path, FileMode.Create))
-        //        {
-        //            await file.CopyToAsync(stream);
-        //        }
-        //        ViewBag.Message = "Archivo guardado correctamente.";
-        //    }
-        //    else
-        //    {
-        //        ViewBag.Message = "Error al guardar el archivo.";
-        //    }
-        //    return View();
-        //}
 
     
 }

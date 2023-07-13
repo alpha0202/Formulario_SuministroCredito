@@ -7,10 +7,10 @@ namespace Formulario_SuministroCredito.Data
     {
 
         Task<IEnumerable<SuministroCredito>> GetAll();
-        //Task<SuministroCredito> GetDatail(int id);
+        Task<SuministroCredito> GetDatail(int id);
         Task<bool> Insert(SuministroCredito suministroCredito);
-      
-      
+
+        public SuministroCredito GetById(int id);
 
         public string CountRowDb();
 

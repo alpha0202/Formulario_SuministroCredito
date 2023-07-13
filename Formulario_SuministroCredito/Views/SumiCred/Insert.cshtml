@@ -3,6 +3,7 @@
 
 @{
     ViewData["Title"] = "Insert";
+
 }
 
 
@@ -25,7 +26,7 @@
 
     <div class="row">
         <div class="container mx-auto">
-            <form asp-action="Insert" asp-controller="SumiCred" name="suministros"  class="validarForm" method="post" enctype="multipart/form-data" novalidate>
+            <form asp-action="Insert" asp-controller="SumiCred" name="suministros" class="validarForm" id="formSuministros" method="post" enctype="multipart/form-data" novalidate>
                
                 <div class="row">
                     <nav class="card  mb-4">
@@ -65,11 +66,9 @@
                                                         <h6 class="" style="text-align:center">Número</h6>
                                                     </div>
                                                     <div class="vr"></div>
-                                                    <div class="form-group col-sm-2">
-                                                     
-                                                        <input class="form-control" style="text-align:right" value="" name="consec" id="consecutivo" readonly />
-
-
+                                                    <div class="form-group col-sm-2 disabled" style="text-align:center" id="Mi_consecutivo">
+                                                        <strong>@ViewData["MiContador"]</strong>
+                                                        @*<input class="form-control" style="text-align:right" value="" name="consec" id="consecutivo" readonly />*@
 
                                                     </div>
 
@@ -187,11 +186,9 @@
 
 
 
-
-
                     </div>
 
-                    <div class="card  mb-3  ">
+                    <div class="card  mb-3 ">
                         <div class="row">
                             <h5 class="card-title border-bottom text-white" style="text-align:center; background-color:firebrick">
                                 2. DATOS SOLICITANTE
@@ -208,8 +205,8 @@
                                         <div class="p-sm-2">
                                             <h6>Apellidos y Nombres o Razón Social</h6>
                                         </div>
-
-                                        <div class="col-sm-8">
+                                        <div class="p-sm-2"></div>
+                                        <div class="col-sm-9">
                                             <input asp-for="Apellidos_nombres_razon_social" class="form-control me-auto" type="text" placeholder="" aria-label="" required>
 
                                             <div>
@@ -339,12 +336,17 @@
                                                 <h6>Correo Electrónico</h6>
                                             </div>
 
-                                            <div class="col-sm-3">
-                                                <input asp-for="Correo_electronico" class="form-control me-auto" type="email" placeholder="" aria-label="" >
-                                            <div>
-                                                <span class="spanValidated" asp-validation-for="Correo_electronico"></span>
+                                            <div class="form-control-rl col-sm-3">
+                                                <input asp-for="Correo_electronico" class="form-control me-auto" type="email" placeholder="" id="email_reprLegal" aria-label="">
+                                            <span asp-validation-for="Correo_electronico" class="text-danger"></span>
+                                                <i class="fas fa-check-circle"></i>
+                                                <i class="fas fa-exclamation-circle"></i>
+                                                <small>Error message</small>
+
                                             </div>
-                                            </div>
+                                               @* <div>
+                                                    <span class="spanValidated" asp-validation-for="Correo_electronico"></span>
+                                                </div>*@
 
                                         </div>
                                     </div>
@@ -364,18 +366,18 @@
                                             </div>
                                             <div class="col-1 vr"></div>
                                             <div class="p-sm-1">
+                                                <h6>Departamento</h6>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <input asp-for="Departamento" class="form-control me-auto" type="text" placeholder="" aria-label="" required>
+                                            </div>
+                                            <div class="col-1 vr"></div>
+                                            <div class="p-sm-1">
                                                 <h6>Ciudad</h6>
                                             </div>
 
                                             <div class="col-sm-2">
                                                 <input asp-for="Ciudad" class="form-control me-auto" type="text" placeholder="" aria-label="" required>
-                                            </div>
-                                            <div class="col-1 vr"></div>
-                                            <div class="p-sm-1">
-                                                <h6>Departamento</h6>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <input asp-for="Departamento" class="form-control me-auto" type="text" placeholder="" aria-label="" required>
                                             </div>
 
 
@@ -549,7 +551,6 @@
 
 
                         </div>
-
 
                     </div>
 
@@ -754,7 +755,8 @@
                             </div>
 
                             <div class="no_obligatorio" id="no_obligatorios">
-                                <div class="card-body mx-0 px-0 border-bottom">
+
+                                <div class="card-body mx-0 px-0 border-0">
                                     <div class="col-sm-12">
                                         <div class="row">
                                             <div class="hstack gap-2 no_obligados" id="seccion_no_obligados">
@@ -776,7 +778,7 @@
 
                                 </div>
 
-                                <div class="card-body mx-0 px-0 border-bottom">
+                                <div class="card-body mx-0 px-0 border-0">
                                     <div class="col-sm-12">
                                         <div class="row">
                                             <div class="hstack gap-2 no_obligados" id="seccion_no_obligados">
@@ -798,7 +800,7 @@
 
                                 </div>
 
-                                <div class="card-body mx-0 px-0 border-bottom">
+                                <div class="card-body mx-0 px-0 border-0">
                                     <div class="col-sm-12">
                                         <div class="row">
                                             <div class="hstack gap-2 no_obligados" id="seccion_no_obligados">
@@ -858,14 +860,14 @@
                             <div class="row">
                                 <div class="hstack gap-1">
                                     <p style="text-align:justify;font-size:13px">
-                                        De forma libre, previamente informada y voluntaria, autorizo a AGROPECUARIA ALIAR S.A. a reportar, consultar, y solicitar a las centrales de riesgos de información
+                                        De forma libre, previamente informada y voluntaria, autorizo a <strong>AGROPECUARIA ALIAR S.A.</strong> a reportar, consultar, y solicitar a las centrales de riesgos de información
                                         financiera o cualquier otra entidad que maneje, tenga acceso, o administre base de datos con los mismos fines, todos los datos personales relativos a mi comportamiento comercial,
                                         financiero y de servicios, los cuales sean el resultado o surjan con ocasión a la relación comercial entre el titular y la compañía. Lo anterior implica que el
                                         cumplimiento o incumplimiento de mis obligaciones se reflejará en las mencionadas bases de datos, referentes a mi actual o pasado comportamiento frente a obligaciones a mi cargo.
                                         Con la presente autorización, presto mi consentimiento para la consulta e inclusión de mis datos personales en las centrales de información financiera que tenga acceso la compañía.
-                                        Esta autorización se extenderá a favor de quien represente los derechos e intereses de AGROPECUARIA ALIAR S.A. En mi calidad de titular, tengo conocimiento de mis derechos a presentar
-                                        consultas y reclamos, y demás derechos y deberes contenidos en la Ley. Finalmente, acepto las condiciones del tratamiento, las cuales me han sido informadas, aceptando además, mi derecho a
-                                        consultar la Política de Tratamiento de Datos Personales de la compañía, disponible para su conocimiento en la página www.aliar.com.co.
+                                        Esta autorización se extenderá a favor de quien represente los derechos e intereses de <strong>AGROPECUARIA ALIAR S.A.</strong> En mi calidad de titular, tengo conocimiento de mis 
+                                        derechos a presentar consultas y reclamos, y demás derechos y deberes contenidos en la Ley. Finalmente, acepto las condiciones del tratamiento, las cuales me han sido informadas, 
+                                        aceptando además, mi derecho a consultar la Política de Tratamiento de Datos Personales de la compañía, disponible para su conocimiento en la página <a href="https://www.aliar.com.co/" target="_blank">www.aliar.com.co</a>.
                                     </p>
                                 </div>
 
@@ -902,7 +904,7 @@
                             <div class="row">
                                 <div class="hstack gap-1">
                                     <p style="text-align:justify;font-size:12px">
-                                        En el evento de ser aceptada la solicitud de suministro crédito aquí presentada, MANIFESTAMOS lo siguiente:
+                                        En el evento de ser aceptada la solicitud de suministro crédito aquí presentada, <strong>MANIFESTAMOS</strong> lo siguiente:
                                         <b>1.</b> Entendemos que se configura un acuerdo comercial de suministro y que <strong>AGROPECUARIA ALIAR S.A. –LA FAZENDA-</strong> se obliga para con la sociedad o persona natural
                                         que represento <strong>-CLIENTE-</strong> a suministrar periódicamente los productos cárnicos requeridos,
                                         <b>2.</b> Me obligo con <strong>AGROPECUARIA ALIAR S.A. –LA FAZENDA-</strong>  a cumplir oportunamente
@@ -914,8 +916,8 @@
                                         descuentos, publicidad, facturación, entregas entre otras.
                                         <b>4.</b> Conozco y acepto las políticas de la compañía, resaltando expresamente las siguientes:  <b>a).</b> El crédito tiene dos componentes, cupo y plazo, exceder cualquiera de los dos retiene
                                         automáticamente los despachos.  b). El pago de los productos despachados se deben realizar a través de: transferencias electrónicas, consignaciones bancarias y cheques girados únicamente
-                                        a nombre de <strong>AGROPECUARIA ALIAR S.A.</strong> <b>c).</b> Ningún funcionario de Agropecuaria Aliar está autorizado a recibir dinero en EFECTIVO o CONSIGNACIONES a sus cuentas personales.
-                                        <strong>Cláusula aceleratoria:</strong> La mora en el pago total o parcial de cualquier obligación a cargo del <strong>CLIENTE</strong> a favor de <strong>AGROPECUARIA ALIAR SA</strong>, dará derecho a
+                                        a nombre de <strong>AGROPECUARIA ALIAR S.A.</strong> <b>c).</b> Ningún funcionario de Agropecuaria Aliar está autorizado a recibir dinero en <strong>EFECTIVO</strong> o <strong>CONSIGNACIONES</strong> 
+                                        a sus cuentas personales.<strong>Cláusula aceleratoria:</strong> La mora en el pago total o parcial de cualquier obligación a cargo del <strong>CLIENTE</strong> a favor de <strong>AGROPECUARIA ALIAR SA</strong>, dará derecho a
                                         esta última para declarar vencidas las obligaciones del <strong>CLIENTE</strong> y exigir el pago inmediato de la totalidad de las mismas. <strong>AGROPECUARIA ALIAR SA</strong> se reserva
                                         el derecho de restituir el plazo de cualquiera de las obligaciones declaradas vencidas; en tal evento, los intereses de mora se liquidarán sobre el valor de las cuotas vencidas de las
                                         correspondientes obligaciones, sea que comprendan sólo capital, capital e intereses, o sólo intereses. <strong>AGROPECUARIA ALIAR SA</strong> notificará al <strong>CLIENTE</strong> que hará
@@ -949,7 +951,7 @@
                     <div class="card mb-4">
                         <div class="row">
                             <h5 class="card-title border-bottom text-white" style="text-align:center; background-color:firebrick">
-                                9. FIRMA
+                                FIRMA
                             </h5>
 
                         </div>
@@ -1034,7 +1036,7 @@
                     </div>
 
 
-                    <div class="card mb-3">
+                    <div class="card mb-3" hidden>
 
                         <div class="row">
                         <h5 class="card-title border-bottom text-white" style="text-align:center; background-color:firebrick">
@@ -1131,8 +1133,17 @@
                         <div class="container-fluid">
                             <div class="card-body">
                                 <input type="submit" value="guardar" class="btn btn-outline-success" />
+                               
                             </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4">
 
+                                        <a  value="generar" class="btn-outline-info" asp-action="PdfNew" asp-controller="SumiCred" >Pdf</a>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
 
@@ -1169,138 +1180,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    @* <div class="row">
-        <div class="col-lg-12 mx-auto">
-            <div class="bg-white rounded-lg shadow-sm p-5">
-                <!-- Credit card form tabs -->
-                <ul role="tablist" class="nav bg-light nav-pills rounded-pill nav-fill mb-3">
-                    <li class="nav-item">
-                        <a data-toggle="pill" href="#nav-tab-card" class="nav-link active rounded-pill">
-                            <i class="fa fa-credit-card"></i>
-                            Credit Card
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a data-toggle="pill" href="#nav-tab-paypal" class="nav-link rounded-pill">
-                            <i class="fa fa-paypal"></i>
-                            Paypal
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a data-toggle="pill" href="#nav-tab-bank" class="nav-link rounded-pill">
-                            <i class="fa fa-university"></i>
-                            Bank Transfer
-                        </a>
-                    </li>
-                </ul>
-                <!-- End -->
-                <!-- Credit card form content -->
-                <div class="tab-content">
-
-                    <!-- credit card info-->
-                    <div id="nav-tab-card" class="tab-pane fade show active">
-                        <p class="alert alert-success">Some text success or error</p>
-                        <form role="form">
-                            <div class="form-group">
-                                <label for="username">Full name (on the card)</label>
-                                <input type="text" name="username" placeholder="Jason Doe" required class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="cardNumber">Card number</label>
-                                <div class="input-group">
-                                    <input type="text" name="cardNumber" placeholder="Your card number" class="form-control" required>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text text-muted">
-                                            <i class="fa fa-cc-visa mx-1"></i>
-                                            <i class="fa fa-cc-amex mx-1"></i>
-                                            <i class="fa fa-cc-mastercard mx-1"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-8">
-                                    <div class="form-group">
-                                        <label><span class="hidden-xs">Expiration</span></label>
-                                        <div class="input-group">
-                                            <input type="number" placeholder="MM" name="" class="form-control" required>
-                                            <input type="number" placeholder="YY" name="" class="form-control" required>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="form-group mb-4">
-                                        <label data-toggle="tooltip" title="Three-digits code on the back of your card">
-                                            CVV
-                                            <i class="fa fa-question-circle"></i>
-                                        </label>
-                                        <input type="text" required class="form-control">
-                                    </div>
-                                </div>
-
-
-
-                            </div>
-                            <button type="button" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm"> Confirm  </button>
-                        </form>
-                    </div>
-                    <!-- End -->
-                    <!-- Paypal info -->
-                    <div id="nav-tab-paypal" class="tab-pane fade">
-                        <p>Paypal is easiest way to pay online</p>
-                        <p>
-                            <button type="button" class="btn btn-primary rounded-pill"><i class="fa fa-paypal mr-2"></i> Log into my Paypal</button>
-                        </p>
-                        <p class="text-muted">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        </p>
-                    </div>
-                    <!-- End -->
-                    <!-- bank transfer info -->
-                    <div id="nav-tab-bank" class="tab-pane fade">
-                        <h6>Bank account details</h6>
-                        <dl>
-                            <dt>Bank</dt>
-                            <dd> THE WORLD BANK</dd>
-                        </dl>
-                        <dl>
-                            <dt>Account number</dt>
-                            <dd>7775877975</dd>
-                        </dl>
-                        <dl>
-                            <dt>IBAN</dt>
-                            <dd>CZ7775877975656</dd>
-                        </dl>
-                        <p class="text-muted">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        </p>
-                    </div>
-                    <!-- End -->
-                </div>
-                <!-- End -->
-
-            </div>
-        </div>
-    </div>*@
 
 
 

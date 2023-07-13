@@ -1,0 +1,422 @@
+﻿@model Formulario_SuministroCredito.Models.SuministroCredito
+
+@{
+    ViewData["Title"] = "PdfNew";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pdf_SuministroCredito</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <style>
+      
+
+        body {
+            font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"
+        }
+
+  
+
+       /* p.title {
+            font-weight: bold;
+            text-align:center;
+        }
+*/
+        .Encabezados {
+            background-color: firebrick;
+            text-align:center;
+            color:white;
+            font-size: 13px;
+            font-weight:bold;
+        }
+
+      /*  .table {
+            width: 100%;
+        }
+*/
+        td, th {
+            /*border: 1px solid #dddddd;
+            text-align: left;*/
+            padding: 0px;
+            font-size:12px
+        }
+
+        .titulos_encabezados {
+            text-align:center;
+            padding-left:5px;
+        }
+        
+        .td_titulos {
+            font-weight:bold;
+        }
+
+        .table_encabezados {
+            
+            
+            width:100%;
+                   
+           
+        }
+
+        p{
+            font-size:10px;
+        }
+     
+    </style>
+</head>
+
+<body>
+
+    <div class="container mx-0 px-0">
+
+        <table xmlns="http://www.w3.org/1999/xhtml" cellspacing="0" cellpadding="0" dir="ltr">
+            <colgroup><col width="178" /><col width="53" /><col width="57" /><col width="64" /><col width="64" /><col width="58" /><col width="64" /><col width="50" /><col width="66" /><col width="61" /><col width="57" /><col width="58" /><col width="110" /><col width="82" /><col width="75" /><col width="79" /></colgroup>
+            <tbody>
+                <tr>
+                    <td rowspan="4" colspan="1">
+                        <img src="~/img/aliarlogo1.fw.png" alt="LogoAliar" style="width:60px;height:45px;padding-left:20px">
+                        <img src="~/img/LOGO LA FAZENDA.png" alt="LogoFazenda" style="width:64px;height:45px;padding-left:20px">
+                    </td>
+                    <td rowspan="1" colspan="15" style="text-align:center;font-weight:bold">AGROPECUARIA ALIAR S.A.</td>
+                   
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="12" style="text-align:center;font-weight:bold">FORMATO SOLICITUD SUMINISTRO Y CR&Eacute;DITO</td>
+                    <td style="text-align:center;font-weight:bold">N&uacute;mero:</td>
+                    @*<td rowspan="1" colspan="2" style="text-align:center;">@Model.NumeroContador</td>*@
+                    <td rowspan="1" colspan="2" style="text-align:center;">@Model.IdSuministro_Credito</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="3" class="titulos_encabezados" style="font-weight:bold">C&oacute;digo</td>
+                    <td rowspan="1" colspan="4" class="titulos_encabezados" style="font-weight:bold">Versi&oacute;n</td>
+                    <td rowspan="1" colspan="5" class="titulos_encabezados" style="font-weight:bold">C&oacute;digo Documento Asociado</td>
+                    <td rowspan="1" colspan="3" class="titulos_encabezados" style="font-weight:bold">Fecha de Emisi&oacute;n</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="3" class="titulos_encabezados" >FIN-FT-001</td>
+                    <td rowspan="1" colspan="4" class="titulos_encabezados" >03</td>
+                    <td rowspan="1" colspan="5" class="titulos_encabezados" >FIN-PR-001</td>
+                    <td rowspan="1" colspan="3" class="titulos_encabezados" >21/2/2023</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+    
+        <table xmlns="http://www.w3.org/1999/xhtml" cellspacing="0" cellpadding="0" dir="ltr">
+            <colgroup><col width="198" /><col width="53" /><col width="57" /><col width="64" /><col width="64" /><col width="58" /><col width="64" /><col width="50" /><col width="66" /><col width="61" /><col width="57" /><col width="58" /><col width="110" /><col width="82" /><col width="75" /><col width="79" /></colgroup>
+            <tbody>
+                <tr>
+                    <td rowspan="1" colspan="16" class="Encabezados">1. DESCRIPCI&Oacute;N DE LA SOLICITUD</td>
+                </tr>
+                <tr>
+                    <td class="td_titulos">Fecha de Solicitud</td>
+                    <td rowspan="1" colspan="3" style="text-align:center">@DateTime.Today.ToString("dd-MMM-yyyy")</td>
+                    <td class="td_titulos" rowspan="1" colspan="2" >Tipo de Solicitud</td>
+                    <td rowspan="1" colspan="3" >@Model.Tipo_solicitud</td>
+                    <td class="td_titulos" rowspan="1" colspan="2" >Monto $</td>
+                    <td rowspan="1" colspan="2" >@Model.Monto</td>
+                    <td class="td_titulos" >Plazo (D&iacute;as)</td>
+                    <td rowspan="1" colspan="2">@Model.Plazo</td>
+                </tr>
+            </tbody>
+        </table>
+        <br />
+        <table xmlns="http://www.w3.org/1999/xhtml" cellspacing="0" cellpadding="0" dir="ltr">
+            <colgroup><col width="198" /><col width="53" /><col width="57" /><col width="64" /><col width="64" /><col width="58" /><col width="64" /><col width="50" /><col width="66" /><col width="61" /><col width="57" /><col width="58" /><col width="110" /><col width="82" /><col width="75" /><col width="79" /></colgroup>
+            <tbody>
+                <tr>
+                    <td rowspan="1" colspan="16" class="Encabezados">2. DATOS DEL SOLICITANTE</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" class="td_titulos" colspan="6">Apellidos y Nombres o Raz&oacute;n Social</td>
+                    <td rowspan="1" colspan="10">@Model.Apellidos_nombres_razon_social</td>
+                </tr>
+                <tr>
+                    <td class="td_titulos">Tipo de Persona</td>
+                    <td rowspan="1" colspan="3" class="td_titulos">@Model.Tipo_persona</td>
+                    <td rowspan="1" colspan="3" class="td_titulos">Tipo de Identificaci&oacute;n</td>
+                    <td rowspan="1" colspan="3">@Model.Tipo_identificacion</td>
+                    <td rowspan="1" colspan="2" class="td_titulos">N&uacute;mero</td>
+                    <td rowspan="1" colspan="2" >@Model.Numero_identificacion</td>
+                    <td class="td_titulos">DV</td>
+                    <td>@Model.DV</td>
+                </tr>
+                <tr>
+                    <td class="td_titulos">Representante Legal</td>
+                    <td rowspan="1" colspan="6">@Model.Representante_legal</td>
+                    <td rowspan="1" colspan="2" class="td_titulos">Cargo</td>
+                    <td rowspan="1" colspan="3">@Model.Cargo</td>
+                    <td class="td_titulos">Correo Electr&oacute;nico</td>
+                    <td rowspan="1" colspan="3">@Model.Correo_electronico</td>
+                </tr>
+                <tr>
+                    <td class="td_titulos" colspan="6">Direcci&oacute;n de Correspondencia</td>
+                    <td rowspan="1" colspan="10">@Model.Direccion_correspondencia</td>
+
+                
+                </tr>
+                <tr>
+                    <td class="td_titulos">Departamento</td>
+                    <td rowspan="1" colspan="6">@Model.Departamento</td>                 
+                    <td class="td_titulos">Ciudad</td>
+                    <td rowspan="1" colspan="4">@Model.Ciudad</td>
+                    <td class="td_titulos">Tel&eacute;fono</td>
+                    <td rowspan="1" colspan="3">@Model.Telefono</td>
+                </tr>
+
+                <tr>
+                    <td class="td_titulos">Celular</td>
+                    <td rowspan="1" colspan="4">@Model.Celular</td>
+                    <td class="td_titulos" rowspan="1" colspan="6" >Correo para Facturaci&oacute;n Electr&oacute;nica</td>
+                    <td rowspan="1" colspan="8">@Model.Correo_electronico_facturacion</td>
+                </tr>
+            </tbody>
+        </table>
+        <br />
+        <table xmlns="http://www.w3.org/1999/xhtml" cellspacing="0" cellpadding="0" dir="ltr">
+            <colgroup><col width="198" /><col width="53" /><col width="57" /><col width="64" /><col width="64" /><col width="58" /><col width="64" /><col width="50" /><col width="66" /><col width="61" /><col width="57" /><col width="58" /><col width="110" /><col width="82" /><col width="75" /><col width="79" /></colgroup>
+            <tbody>
+                <tr>
+                    <td rowspan="1" colspan="16" class="Encabezados">3. REFERENCIAS COMERCIALES</td>
+                </tr>
+                <tr>
+                    <td class="td_titulos">Entidad y/o Raz&oacute;n Social:</td>
+                    <td rowspan="1" colspan="6" style="padding-left:8px">@Model.Entidad_razon_social_ref_comerciales</td>
+                    <td class="td_titulos" rowspan="1" >Direcci&oacute;n:</td>
+                    <td rowspan="1" colspan="6" style="padding-left:8px">@Model.Direccion_ref_comerciales</td>
+                                     
+                </tr>
+                <tr>
+                    <td class="td_titulos">Nombre de Contacto:</td>
+                    <td rowspan="1" colspan="6">@Model.Nom_contacto_ref_comerciales</td>
+                    <td class="td_titulos" rowspan="1" colspan="2" >Cargo:</td>
+                    <td rowspan="1" colspan="3">@Model.Cargo_ref_comerciales</td>
+                    <td class="td_titulos">Tel&eacute;fono (S):</td>
+                    <td rowspan="1" colspan="3">@Model.Telefono_ref_comerciales</td>
+                </tr>
+                <tr>
+                    <td class="td_titulos">Entidad y/o Raz&oacute;n Social:</td>
+                    <td rowspan="1" colspan="6">@Model.Entidad_razon_social_ref_comerciales_dos</td>
+                    <td class="td_titulos"  rowspan="1" >Direcci&oacute;n:</td>
+                    <td rowspan="1" colspan="6" style="padding-left:8px">@Model.Direccion_ref_comerciales_dos</td>
+                </tr>
+                <tr>
+                    <td class="td_titulos">Nombre de Contacto:</td>
+                    <td rowspan="1" colspan="6">@Model.Nom_contacto_ref_comerciales_dos</td>
+                    <td class="td_titulos" rowspan="1" colspan="2" >Cargo:</td>
+                    <td rowspan="1" colspan="3">@Model.Cargo_ref_comerciales_dos</td>
+                    <td class="td_titulos" >Tel&eacute;fono (S):</td>
+                    <td rowspan="1" colspan="3">@Model.Telefono_ref_comerciales_dos</td>
+                </tr>
+            </tbody>
+        </table>
+        <br />
+        <table xmlns="http://www.w3.org/1999/xhtml" cellspacing="0" cellpadding="0" dir="ltr">
+            <colgroup><col width="198" /><col width="53" /><col width="57" /><col width="64" /><col width="64" /><col width="58" /><col width="64" /><col width="50" /><col width="66" /><col width="61" /><col width="57" /><col width="58" /><col width="110" /><col width="82" /><col width="75" /><col width="79" /></colgroup>
+            <tbody>
+                <tr>
+                    <td rowspan="1" colspan="16" class="Encabezados">4. REFERENCIA BANCARIA</td>
+                </tr>
+                <tr>
+                    <td class="td_titulos">Entidad Financiera</td>
+                    <td rowspan="1" colspan="3">@Model.Entidad_financiera</td>
+                    <td class="td_titulos" rowspan="1" >Tipo de Cuenta</td>
+                    <td rowspan="1" colspan="3">@Model.Tipo_cuenta</td>
+                    <td class="td_titulos" rowspan="1" >N&uacute;mero de Cuenta</td>
+                    <td rowspan="1" colspan="2">@Model.Numero_cuenta</td>
+                    <td class="td_titulos">Oficina</td>
+                    <td rowspan="1" colspan="2">@Model.Oficina</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <br />
+        <table xmlns="http://www.w3.org/1999/xhtml" cellspacing="0" cellpadding="0" dir="ltr">
+            <colgroup><col width="198" /><col width="53" /><col width="57" /><col width="64" /><col width="64" /><col width="58" /><col width="64" /><col width="50" /><col width="66" /><col width="61" /><col width="57" /><col width="58" /><col width="110" /><col width="82" /><col width="75" /><col width="79" /></colgroup>
+            <tbody>
+                <tr>
+                    <td rowspan="1" colspan="16" class="Encabezados">5. CONTACTOS</td>
+                </tr>
+                <tr>
+                    <td class="td_titulos">&Aacute;rea</td>
+                    <td class="td_titulos" rowspan="1" colspan="5" >Nombre</td>
+                    <td class="td_titulos" rowspan="1" colspan="3" >Cargo</td>
+                    <td class="td_titulos" rowspan="1" colspan="2" >Tel&eacute;fono</td>
+                    <td class="td_titulos" rowspan="1" colspan="2" >Celular</td>
+                    <td class="td_titulos" rowspan="1" colspan="3" >Correo Electr&oacute;nico</td>
+                </tr>
+                <tr>
+                    <td class="td_titulos">Tesorer&iacute;a</td>
+                    <td rowspan="1" colspan="5">@Model.Nombre_contacto_tesoreria</td>
+                    <td rowspan="1" colspan="3">@Model.Cargo_contacto_tesoreria</td>
+                    <td rowspan="1" colspan="2">@Model.Telefono_contacto_tesoreria</td>
+                    <td rowspan="1" colspan="2">@Model.Celular_contacto_tesoreria</td>
+                    <td rowspan="1" colspan="3">@Model.Correo_electronico_contacto_tesoreria</td>
+                </tr>
+                <tr>
+                    <td class ="td_titulos">Contabilidad</td>
+                    <td rowspan="1" colspan="5">@Model.Nombre_contacto_contabilidad</td>
+                    <td rowspan="1" colspan="3">@Model.Cargo_contacto_contabilidad</td>
+                    <td rowspan="1" colspan="2">@Model.Telefono_contacto_contabilidad</td>
+                    <td rowspan="1" colspan="2">@Model.Celular_contacto_contabilidad</td>
+                    <td rowspan="1" colspan="3">@Model.Correo_electronico_contacto_contabilidad</td>
+                </tr>
+                <tr>
+                    <td class="td_titulos">Compras</td>
+                    <td rowspan="1" colspan="5">@Model.Nombre_contacto_compras</td>
+                    <td rowspan="1" colspan="3">@Model.Cargo_contacto_compras</td>
+                    <td rowspan="1" colspan="2">@Model.Telefono_contacto_compras</td>
+                    <td rowspan="1" colspan="2">@Model.Celular_contacto_compras</td>
+                    <td rowspan="1" colspan="3">@Model.Correo_electronico_contacto_compras</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br />
+        <table xmlns="http://www.w3.org/1999/xhtml" cellspacing="0" cellpadding="0" dir="ltr">
+            <colgroup><col width="198" /><col width="53" /><col width="57" /><col width="64" /><col width="64" /><col width="58" /><col width="64" /><col width="50" /><col width="66" /><col width="61" /><col width="57" /><col width="58" /><col width="110" /><col width="82" /><col width="75" /><col width="79" /></colgroup>
+            <tbody>
+                <tr>
+                    <td rowspan="1" colspan="16" class="Encabezados">6. DOCUMENTOS REQUERIDOS</td>
+                </tr>
+                <tr>
+                    <td colspan="15"></td>
+                    
+                    <td class="td_titulos">Anexos</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="15" >* RUT Actualizado.</td>
+                    
+                    <td style="padding-left:6px"><input type="checkbox" checked /></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="15" >* Estados Financieros a 31 de Diciembre vigencia inmediatamente anterior (Estado de situaci&oacute;n financiera y Estado de Resultados).</td>
+                    <td style ="padding-left:6px"><input type="checkbox" checked /></td>
+                    <td></td>
+                   
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="15" >* Certificado de Existencia y Representaci&oacute;n Legal inferior a 30 d&iacute;as.</td>
+                   
+                    <td style="padding-left:6px"><input type="checkbox" checked /></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="15" >* Para no obligados a llevar contabilidad, anexar certificaci&oacute;n de ingresos firmada por Contador P&uacute;blico, adjuntar fotocopia de la tarjeta profesional y certificado de antecedentes expedido por la Junta Cental de Contadores.</td>
+                    <td></td>
+                    
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="16"><span><strong>Importante:</strong></span><span> Una vez aprobado el cr&eacute;dito Agropecuaria Aliar le enviar&aacute; un pagar&eacute; y la carta de instrucci&oacute;nes por correo certificado a la direcci&oacute;n de correspondencia diligenciada en el formato para su firma y autenticaci&oacute;n biom&eacute;trica, el cual debe enviar a la oficina principal ubicada en la direcci&oacute;n: Calle 29 N&deg;25-72 Centro Comercial Ca&ntilde;averal Ed. Urbanas Piso 3 y 4 en Floridablanca, Santander.</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br />
+
+        <table xmlns="http://www.w3.org/1999/xhtml" cellspacing="0" cellpadding="0" dir="ltr">
+            <colgroup><col width="198" /><col width="53" /><col width="57" /><col width="64" /><col width="64" /><col width="58" /><col width="64" /><col width="50" /><col width="66" /><col width="61" /><col width="57" /><col width="58" /><col width="110" /><col width="82" /><col width="75" /><col width="79" /></colgroup>
+            <tbody>
+                <tr>
+                    <td rowspan="1" colspan="16" class="Encabezados">7. AUTORIZACI&Oacute;N CONSULTA CENTRALES DE RIESGO Y TRATAMIENTO DE DATOS PERSONALES</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="16">
+                        <p style="text-align:justify;font-size:12px">
+                            De forma libre, previamente informada y voluntaria, autorizo a <strong>AGROPECUARIA ALIAR S.A.</strong> a reportar, consultar, y solicitar a las centrales de riesgos de información
+                            financiera o cualquier otra entidad que maneje, tenga acceso, o administre base de datos con los mismos fines, todos los datos personales relativos a mi comportamiento comercial,
+                            financiero y de servicios, los cuales sean el resultado o surjan con ocasión a la relación comercial entre el titular y la compañía. Lo anterior implica que el
+                            cumplimiento o incumplimiento de mis obligaciones se reflejará en las mencionadas bases de datos, referentes a mi actual o pasado comportamiento frente a obligaciones a mi cargo.
+                            Con la presente autorización, presto mi consentimiento para la consulta e inclusión de mis datos personales en las centrales de información financiera que tenga acceso la compañía.
+                            Esta autorización se extenderá a favor de quien represente los derechos e intereses de <strong>AGROPECUARIA ALIAR S.A.</strong> En mi calidad de titular, tengo conocimiento de mis
+                            derechos a presentar consultas y reclamos, y demás derechos y deberes contenidos en la Ley. Finalmente, acepto las condiciones del tratamiento, las cuales me han sido informadas,
+                            aceptando además, mi derecho a consultar la Política de Tratamiento de Datos Personales de la compañía, disponible para su conocimiento en la página <a href="https://www.aliar.com.co/" target="_blank">www.aliar.com.co</a>.
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+       
+        <br />
+        <table xmlns="http://www.w3.org/1999/xhtml" cellspacing="0" cellpadding="0" dir="ltr">
+            <colgroup><col width="198" /><col width="53" /><col width="57" /><col width="64" /><col width="64" /><col width="58" /><col width="64" /><col width="50" /><col width="66" /><col width="61" /><col width="57" /><col width="58" /><col width="110" /><col width="82" /><col width="75" /><col width="79" /></colgroup>
+            <tbody>
+                <tr>
+                    <td rowspan="1" colspan="16" class="Encabezados">8. ACUERDO DE SUMINISTRO</td>
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="16">
+                        <p style="text-align:justify;font-size:12px">
+                            En el evento de ser aceptada la solicitud de suministro crédito aquí presentada, <strong>MANIFESTAMOS</strong> lo siguiente:<br />
+                            <b>1.</b> Entendemos que se configura un acuerdo comercial de suministro y que <strong>AGROPECUARIA ALIAR S.A. –LA FAZENDA-</strong> se obliga para con la sociedad o persona natural
+                            que represento <strong>-CLIENTE-</strong> a suministrar periódicamente los productos cárnicos requeridos,
+                            <b>2.</b> Me obligo con <strong>AGROPECUARIA ALIAR S.A. –LA FAZENDA-</strong>  a cumplir oportunamente
+                            con el pago de los productos cárnicos alimenticios suministrados que solicite y que <strong>LA FAZENDA</strong> me (nos) suministre según su disponibilidad.
+                            <b>3.</b> El precio que pagaré a <strong>LA FAZENDA</strong>
+                            por los productos suministrados será el que corresponda al valor informado o concedido por <strong>la FAZENDA</strong> a la fecha del pedido.
+                            Me comprometo y obligo a cumplir con el pago del valor
+                            de los productos despachados por parte de <strong>LA FAZENDA</strong> y al cumplimiento en general de las políticas comerciales aplicables, tales como fechas de pedido, pagos,
+                            descuentos, publicidad, facturación, entregas entre otras.
+                            <b>4.</b> Conozco y acepto las políticas de la compañía, resaltando expresamente las siguientes:  <b>a).</b> El crédito tiene dos componentes, cupo y plazo, exceder cualquiera de los dos retiene
+                            automáticamente los despachos.  b). El pago de los productos despachados se deben realizar a través de: transferencias electrónicas, consignaciones bancarias y cheques girados únicamente
+                            a nombre de <strong>AGROPECUARIA ALIAR S.A.</strong> <b>c).</b> Ningún funcionario de Agropecuaria Aliar está autorizado a recibir dinero en <strong>EFECTIVO</strong> o <strong>CONSIGNACIONES</strong>
+                            a sus cuentas personales.<strong>Cláusula aceleratoria:</strong> La mora en el pago total o parcial de cualquier obligación a cargo del <strong>CLIENTE</strong> a favor de <strong>AGROPECUARIA ALIAR SA</strong>, dará derecho a
+                            esta última para declarar vencidas las obligaciones del <strong>CLIENTE</strong> y exigir el pago inmediato de la totalidad de las mismas. <strong>AGROPECUARIA ALIAR SA</strong> se reserva
+                            el derecho de restituir el plazo de cualquiera de las obligaciones declaradas vencidas; en tal evento, los intereses de mora se liquidarán sobre el valor de las cuotas vencidas de las
+                            correspondientes obligaciones, sea que comprendan sólo capital, capital e intereses, o sólo intereses. <strong>AGROPECUARIA ALIAR SA</strong> notificará al <strong>CLIENTE</strong> que hará
+                            efectiva esta cláusula aceleratoria sin que medie su incumplimiento, con una antelación de TRES (3) días hábiles a la fecha en que se entenderá acelerado el plazo de la totalidad de sus
+                            obligaciones, sin reparo de cualquier otra garantía que respalde obligaciones mediante títulos valores a favor de la compañía.
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+      
+        <br />
+        <table xmlns="http://www.w3.org/1999/xhtml" cellspacing="0" cellpadding="0" dir="ltr">
+            <colgroup><col width="198" /><col width="53" /><col width="57" /><col width="64" /><col width="64" /><col width="58" /><col width="64" /><col width="50" /><col width="66" /><col width="61" /><col width="57" /><col width="58" /><col width="110" /><col width="82" /><col width="75" /><col width="79" /></colgroup>
+            <tbody>
+                <tr>
+                    <td rowspan="1" colspan="16" class="Encabezados">9. FIRMA</td>
+                </tr>
+               
+                <tr>
+                    <td class="td_titulos">Nombre y Apellido</td>
+                    <td rowspan="1" colspan="10">@Model.Nombre_apellido_firma</td>
+                   
+                    <td rowspan="6" colspan="5" >
+                        <div>SignRequest</div>
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td class="td_titulos">N&deg; C&eacute;dula</td>
+                    <td rowspan="1" colspan="10">@Model.Nro_cedula_firma</td>
+                  
+                </tr>
+                <tr>
+                    <td class="td_titulos">En representaci&oacute;n legal de</td>
+                    <td rowspan="1" colspan="10">@Model.Representa_legal_firma</td>
+                   
+                </tr>
+               
+               
+            </tbody>
+        </table>
+
+
+
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Data;
 
 namespace Formulario_SuministroCredito.Models
 {
@@ -7,7 +8,7 @@ namespace Formulario_SuministroCredito.Models
 
 
         public int IdSuministro_Credito { get; set; }
-        public string Consecutivo { get; set; } 
+        //public string Consecutivo { get; set; } 
         public DateTime FechaRegistro { get; set;} = DateTime.Now;
         public string Tipo_solicitud { get; set; }
 
@@ -25,6 +26,9 @@ namespace Formulario_SuministroCredito.Models
         public string Representante_legal { get; set; }
 
         public string Cargo { get; set; }
+
+        [Required(ErrorMessage = "Debe ingresar un Email.")]
+        [EmailAddress(ErrorMessage = "Dirección de correo incorrecto.")]
         public string Correo_electronico { get; set; }
         public string Direccion_correspondencia { get; set; }
         public string Ciudad { get; set; }
