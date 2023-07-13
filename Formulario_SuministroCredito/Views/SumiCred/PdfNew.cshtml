@@ -80,7 +80,7 @@
                 <tr>
                     <td rowspan="4" colspan="1">
                         <img src="~/img/aliarlogo1.fw.png" alt="LogoAliar" style="width:60px;height:45px;padding-left:20px">
-                        <img src="~/img/LOGO LA FAZENDA.png" alt="LogoFazenda" style="width:64px;height:45px;padding-left:20px">
+                        <img src="~/img/LOGO LA FAZENDA.png" alt="LogoFazenda" style="width:65px;height:45px;padding-left:20px">
                     </td>
                     <td rowspan="1" colspan="15" style="text-align:center;font-weight:bold">AGROPECUARIA ALIAR S.A.</td>
                    
@@ -117,13 +117,14 @@
                 </tr>
                 <tr>
                     <td class="td_titulos">Fecha de Solicitud</td>
-                    <td rowspan="1" colspan="3" style="text-align:center">@DateTime.Today.ToString("dd-MMM-yyyy")</td>
+                    @*<td rowspan="1" colspan="3" style="text-align:center">@DateTime.Today.ToString("dd-MMM-yyyy")</td>*@
+                    <td rowspan="1" colspan="3" style="text-align:center">@Model.Fecha_registro.ToString("dd-MMM-yyyy")</td>
                     <td class="td_titulos" rowspan="1" colspan="2" >Tipo de Solicitud</td>
-                    <td rowspan="1" colspan="3" >@Model.Tipo_solicitud</td>
+                    <td rowspan="1" colspan="3" style="padding-left:8px">@Model.Tipo_solicitud</td>
                     <td class="td_titulos" rowspan="1" colspan="2" >Monto $</td>
-                    <td rowspan="1" colspan="2" >@Model.Monto</td>
+                    <td rowspan="1" colspan="2" style="padding-left:8px">@Model.Monto</td>
                     <td class="td_titulos" >Plazo (D&iacute;as)</td>
-                    <td rowspan="1" colspan="2">@Model.Plazo</td>
+                    <td rowspan="1" colspan="2" style="padding-left:8px">@Model.Plazo</td>
                 </tr>
             </tbody>
         </table>
@@ -136,46 +137,46 @@
                 </tr>
                 <tr>
                     <td rowspan="1" class="td_titulos" colspan="6">Apellidos y Nombres o Raz&oacute;n Social</td>
-                    <td rowspan="1" colspan="10">@Model.Apellidos_nombres_razon_social</td>
+                    <td rowspan="1" colspan="10" style="padding-left:8px">@Model.Apellidos_nombres_razon_social</td>
                 </tr>
                 <tr>
                     <td class="td_titulos">Tipo de Persona</td>
-                    <td rowspan="1" colspan="3" class="td_titulos">@Model.Tipo_persona</td>
+                    <td rowspan="1" colspan="3" style="padding-left:8px">@Model.Tipo_persona</td>
                     <td rowspan="1" colspan="3" class="td_titulos">Tipo de Identificaci&oacute;n</td>
-                    <td rowspan="1" colspan="3">@Model.Tipo_identificacion</td>
+                    <td rowspan="1" colspan="3" style="padding-left:8px">@Model.Tipo_identificacion</td>
                     <td rowspan="1" colspan="2" class="td_titulos">N&uacute;mero</td>
-                    <td rowspan="1" colspan="2" >@Model.Numero_identificacion</td>
+                    <td rowspan="1" colspan="2" style="padding-left:8px">@Model.Numero_identificacion</td>
                     <td class="td_titulos">DV</td>
-                    <td>@Model.DV</td>
+                    <td style="padding-left:8px">@Model.DV</td>
                 </tr>
                 <tr>
                     <td class="td_titulos">Representante Legal</td>
-                    <td rowspan="1" colspan="6">@Model.Representante_legal</td>
+                    <td rowspan="1" colspan="6" style="padding-left:8px">@Model.Representante_legal</td>
                     <td rowspan="1" colspan="2" class="td_titulos">Cargo</td>
-                    <td rowspan="1" colspan="3">@Model.Cargo</td>
+                    <td rowspan="1" colspan="3" style="padding-left:8px">@Model.Cargo</td>
                     <td class="td_titulos">Correo Electr&oacute;nico</td>
-                    <td rowspan="1" colspan="3">@Model.Correo_electronico</td>
+                    <td rowspan="1" colspan="3" style="padding-left:8px">@Model.Correo_electronico</td>
                 </tr>
                 <tr>
                     <td class="td_titulos" colspan="6">Direcci&oacute;n de Correspondencia</td>
-                    <td rowspan="1" colspan="10">@Model.Direccion_correspondencia</td>
+                    <td rowspan="1" colspan="10" style="padding-left:8px">@Model.Direccion_correspondencia</td>
 
                 
                 </tr>
                 <tr>
                     <td class="td_titulos">Departamento</td>
-                    <td rowspan="1" colspan="6">@Model.Departamento</td>                 
+                    <td rowspan="1" colspan="6" style="padding-left:8px">@Model.Departamento</td>
                     <td class="td_titulos">Ciudad</td>
-                    <td rowspan="1" colspan="4">@Model.Ciudad</td>
+                    <td rowspan="1" colspan="4" style="padding-left:8px">@Model.Ciudad</td>
                     <td class="td_titulos">Tel&eacute;fono</td>
-                    <td rowspan="1" colspan="3">@Model.Telefono</td>
+                    <td rowspan="1" colspan="3" style="padding-left:8px">@Model.Telefono</td>
                 </tr>
 
                 <tr>
                     <td class="td_titulos">Celular</td>
-                    <td rowspan="1" colspan="4">@Model.Celular</td>
+                    <td rowspan="1" colspan="4" style="padding-left:8px">@Model.Celular</td>
                     <td class="td_titulos" rowspan="1" colspan="6" >Correo para Facturaci&oacute;n Electr&oacute;nica</td>
-                    <td rowspan="1" colspan="8">@Model.Correo_electronico_facturacion</td>
+                    <td rowspan="1" colspan="8" style="padding-left:8px">@Model.Correo_electronico_facturacion</td>
                 </tr>
             </tbody>
         </table>
@@ -195,25 +196,25 @@
                 </tr>
                 <tr>
                     <td class="td_titulos">Nombre de Contacto:</td>
-                    <td rowspan="1" colspan="6">@Model.Nom_contacto_ref_comerciales</td>
-                    <td class="td_titulos" rowspan="1" colspan="2" >Cargo:</td>
-                    <td rowspan="1" colspan="3">@Model.Cargo_ref_comerciales</td>
+                    <td rowspan="1" colspan="6" style="padding-left:8px">@Model.Nom_contacto_ref_comerciales</td>
+                    <td class="td_titulos" rowspan="1" colspan="1" >Cargo:</td>
+                    <td rowspan="1" colspan="4" style="padding-left:8px">@Model.Cargo_ref_comerciales</td>
                     <td class="td_titulos">Tel&eacute;fono (S):</td>
-                    <td rowspan="1" colspan="3">@Model.Telefono_ref_comerciales</td>
+                    <td rowspan="1" colspan="3" style="padding-left:8px">@Model.Telefono_ref_comerciales</td>
                 </tr>
                 <tr>
                     <td class="td_titulos">Entidad y/o Raz&oacute;n Social:</td>
-                    <td rowspan="1" colspan="6">@Model.Entidad_razon_social_ref_comerciales_dos</td>
+                    <td rowspan="1" colspan="6" style="padding-left:8px">@Model.Entidad_razon_social_ref_comerciales_dos</td>
                     <td class="td_titulos"  rowspan="1" >Direcci&oacute;n:</td>
-                    <td rowspan="1" colspan="6" style="padding-left:8px">@Model.Direccion_ref_comerciales_dos</td>
+                    <td rowspan="1" colspan="6" style="padding-left:8px" >@Model.Direccion_ref_comerciales_dos</td>
                 </tr>
                 <tr>
                     <td class="td_titulos">Nombre de Contacto:</td>
-                    <td rowspan="1" colspan="6">@Model.Nom_contacto_ref_comerciales_dos</td>
-                    <td class="td_titulos" rowspan="1" colspan="2" >Cargo:</td>
-                    <td rowspan="1" colspan="3">@Model.Cargo_ref_comerciales_dos</td>
+                    <td rowspan="1" colspan="6" style="padding-left:8px">@Model.Nom_contacto_ref_comerciales_dos</td>
+                    <td class="td_titulos" rowspan="1" colspan="1" >Cargo:</td>
+                    <td rowspan="1" colspan="4" style="padding-left:8px">@Model.Cargo_ref_comerciales_dos</td>
                     <td class="td_titulos" >Tel&eacute;fono (S):</td>
-                    <td rowspan="1" colspan="3">@Model.Telefono_ref_comerciales_dos</td>
+                    <td rowspan="1" colspan="3" style="padding-left:8px">@Model.Telefono_ref_comerciales_dos</td>
                 </tr>
             </tbody>
         </table>
@@ -254,27 +255,27 @@
                 </tr>
                 <tr>
                     <td class="td_titulos">Tesorer&iacute;a</td>
-                    <td rowspan="1" colspan="5">@Model.Nombre_contacto_tesoreria</td>
-                    <td rowspan="1" colspan="3">@Model.Cargo_contacto_tesoreria</td>
-                    <td rowspan="1" colspan="2">@Model.Telefono_contacto_tesoreria</td>
-                    <td rowspan="1" colspan="2">@Model.Celular_contacto_tesoreria</td>
-                    <td rowspan="1" colspan="3">@Model.Correo_electronico_contacto_tesoreria</td>
+                    <td rowspan="1" colspan="5" style="padding-left:7px">@Model.Nombre_contacto_tesoreria</td>
+                    <td rowspan="1" colspan="3" style="padding-left:7px">@Model.Cargo_contacto_tesoreria</td>
+                    <td rowspan="1" colspan="2" style="padding-left:7px">@Model.Telefono_contacto_tesoreria</td>
+                    <td rowspan="1" colspan="2" style="padding-left:7px">@Model.Celular_contacto_tesoreria</td>
+                    <td rowspan="1" colspan="3" style="padding-left:7px">@Model.Correo_electronico_contacto_tesoreria</td>
                 </tr>
                 <tr>
                     <td class ="td_titulos">Contabilidad</td>
-                    <td rowspan="1" colspan="5">@Model.Nombre_contacto_contabilidad</td>
-                    <td rowspan="1" colspan="3">@Model.Cargo_contacto_contabilidad</td>
-                    <td rowspan="1" colspan="2">@Model.Telefono_contacto_contabilidad</td>
-                    <td rowspan="1" colspan="2">@Model.Celular_contacto_contabilidad</td>
-                    <td rowspan="1" colspan="3">@Model.Correo_electronico_contacto_contabilidad</td>
+                    <td rowspan="1" colspan="5" style="padding-left:7px">@Model.Nombre_contacto_contabilidad</td>
+                    <td rowspan="1" colspan="3" style="padding-left:7px">@Model.Cargo_contacto_contabilidad</td>
+                    <td rowspan="1" colspan="2" style="padding-left:7px">@Model.Telefono_contacto_contabilidad</td>
+                    <td rowspan="1" colspan="2" style="padding-left:7px">@Model.Celular_contacto_contabilidad</td>
+                    <td rowspan="1" colspan="3" style="padding-left:7px">@Model.Correo_electronico_contacto_contabilidad</td>
                 </tr>
                 <tr>
                     <td class="td_titulos">Compras</td>
-                    <td rowspan="1" colspan="5">@Model.Nombre_contacto_compras</td>
-                    <td rowspan="1" colspan="3">@Model.Cargo_contacto_compras</td>
-                    <td rowspan="1" colspan="2">@Model.Telefono_contacto_compras</td>
-                    <td rowspan="1" colspan="2">@Model.Celular_contacto_compras</td>
-                    <td rowspan="1" colspan="3">@Model.Correo_electronico_contacto_compras</td>
+                    <td rowspan="1" colspan="5" style="padding-left:7px">@Model.Nombre_contacto_compras</td>
+                    <td rowspan="1" colspan="3" style="padding-left:7px">@Model.Cargo_contacto_compras</td>
+                    <td rowspan="1" colspan="2" style="padding-left:7px">@Model.Telefono_contacto_compras</td>
+                    <td rowspan="1" colspan="2" style="padding-left:7px">@Model.Celular_contacto_compras</td>
+                    <td rowspan="1" colspan="3" style="padding-left:7px">@Model.Correo_electronico_contacto_compras</td>
                 </tr>
             </tbody>
         </table>
@@ -408,7 +409,7 @@
                     <td rowspan="1" colspan="10">@Model.Representa_legal_firma</td>
                    
                 </tr>
-               
+              
                
             </tbody>
         </table>

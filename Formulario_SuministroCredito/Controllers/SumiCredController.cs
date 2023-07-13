@@ -25,17 +25,12 @@ namespace Formulario_SuministroCredito.Controllers
             _validator = validator;
         }
 
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
+      
 
         public async Task<ActionResult> Index()
         {
             var suministros = await _sumiCredRepository.GetAll();
-
-           
-
+          
             return View(suministros);
         }
 
@@ -44,7 +39,6 @@ namespace Formulario_SuministroCredito.Controllers
         {
             var detalle = await _sumiCredRepository.GetDatail(id);
             //PdfNew(detalle);
-
 
             return View(detalle);
         }
@@ -79,8 +73,7 @@ namespace Formulario_SuministroCredito.Controllers
 
                 var suministroCredito = new SuministroCredito()
                 {
-                    //Consecutivo = collection["Consecutivo"],
-                    //FechaRegistro= DateTime.Now,
+                    Fecha_registro = DateTime.Now,
                     Tipo_solicitud = collection["Tipo_solicitud"],
                     Monto = collection["Monto"],
                     Plazo = collection["Plazo"],
@@ -146,10 +139,11 @@ namespace Formulario_SuministroCredito.Controllers
                     CertificadoIngresosFile = collection.Files["CertificadoIngresosFile"],
                     TarjetaProfesionalFile = collection.Files["TarjetaProfesionalFile"],
                     CertificadoAntecedentesFile = collection.Files["CertificadoAntecedentesFile"],
-                    NumeroContador = contador
-                    
+                    NumeroContador = contador,
+                    Fecha_solicitud = DateTime.Now.ToString("yyyy-MMM-dd")
 
-                };
+
+            };
                 //var response = contador;
                 //ViewData["MiContador"] = response;
 
@@ -186,7 +180,8 @@ namespace Formulario_SuministroCredito.Controllers
             var suministroCredito = new SuministroCredito()
             {
                 NumeroContador = contador,
-                FechaRegistro = detalle.FechaRegistro,
+                IdSuministro_Credito= detalle.IdSuministro_Credito,
+                Fecha_registro = detalle.Fecha_registro,
                 Tipo_solicitud=detalle.Tipo_solicitud,
                 Monto = detalle.Monto,
                 Plazo = detalle.Plazo,
@@ -235,7 +230,8 @@ namespace Formulario_SuministroCredito.Controllers
                 Correo_electronico_contacto_compras = detalle.Correo_electronico_contacto_compras,
                 Nombre_apellido_firma = detalle.Nombre_apellido_firma,
                 Nro_cedula_firma =detalle.Nro_cedula_firma,
-                Representa_legal_firma = detalle.Representa_legal_firma
+                Representa_legal_firma = detalle.Representa_legal_firma,
+                Fecha_solicitud = detalle.Fecha_solicitud
 
             };
 

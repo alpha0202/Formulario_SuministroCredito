@@ -5,15 +5,12 @@ namespace Formulario_SuministroCredito.Models
 {
     public class SuministroCredito
     {
+        private DateTime _fechaRegistro;
 
-
-        public int IdSuministro_Credito { get; set; }
-        //public string Consecutivo { get; set; } 
-        public DateTime FechaRegistro { get; set;} = DateTime.Now;
+        public int IdSuministro_Credito { get; set; }  
+        public DateTime Fecha_registro { get { return _fechaRegistro; } set { _fechaRegistro = value; } }
         public string Tipo_solicitud { get; set; }
-
         public string Monto { get; set; }
-
         public string Plazo { get; set; }
 
         public string Apellidos_nombres_razon_social { get; set; }
@@ -22,9 +19,7 @@ namespace Formulario_SuministroCredito.Models
         public string Numero_identificacion { get; set; }
 
         public string DV { get; set; }
-
         public string Representante_legal { get; set; }
-
         public string Cargo { get; set; }
 
         [Required(ErrorMessage = "Debe ingresar un Email.")]
@@ -53,6 +48,7 @@ namespace Formulario_SuministroCredito.Models
         public string Tipo_cuenta { get; set; }
         public string Numero_cuenta { get; set; }
         public string Oficina { get; set; }
+
         public string Nombre_contacto_tesoreria { get; set; }
         public string Cargo_contacto_tesoreria { get; set; }
         public string Telefono_contacto_tesoreria { get; set; }
@@ -68,6 +64,7 @@ namespace Formulario_SuministroCredito.Models
         public string Telefono_contacto_compras { get; set; }
         public string Celular_contacto_compras { get; set; }
         public string Correo_electronico_contacto_compras { get; set; }
+
         public string Ruta_rut { get; set; }
         public string Ruta_estado_financiero { get; set; }
         public string Ruta_existencia { get; set; }
@@ -80,18 +77,21 @@ namespace Formulario_SuministroCredito.Models
         public IFormFile CertificadoIngresosFile { get; set; }
         public IFormFile TarjetaProfesionalFile { get; set; }
         public IFormFile CertificadoAntecedentesFile { get; set; }
+
         public string Nombre_apellido_firma { get; set; }
         public string Nro_cedula_firma { get; set; }
         public string Representa_legal_firma { get; set; }
+
         public string Centro_distribucion { get; set; }
         public string Cupo_sugerido { get; set; }
         public string Plazo_aliar { get; set; }
         public string Nom_asesor_comercial { get; set; }
 
-        public string NumeroContador { get; set; } 
+        public string NumeroContador { get; set; }
+        public string Fecha_solicitud { get; set; }
 
 
-       
+
 
     }
 

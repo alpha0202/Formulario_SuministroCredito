@@ -25,12 +25,15 @@
 
         <thead>
             <tr>
-                @* <th>
-                @Html.DisplayNameFor(model => model.Consecutivo)
-                </th>*@
-                <th>
-                    @Html.DisplayNameFor(model => model.FechaRegistro)
+                 <th>
+                @Html.DisplayNameFor(model => model.IdSuministro_Credito)
                 </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fecha_registro)
+                </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Fecha_solicitud)
+                    </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Tipo_solicitud)
                 </th>
@@ -215,12 +218,15 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    @*  <td>
-                @Html.ActionLink("GoPDF", "PdfNew", new {  id=item  })
-                </td>*@
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FechaRegistro)
+                      <td>
+                            @Html.DisplayFor(modelItem => item.IdSuministro_Credito)
                     </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fecha_registro)
+                    </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Fecha_solicitud)
+                        </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Tipo_solicitud)
                     </td>

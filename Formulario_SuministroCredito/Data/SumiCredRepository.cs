@@ -126,7 +126,7 @@ namespace Formulario_SuministroCredito.Data
 
         public string CountRowDb()
         {
-            var sql = @"select count(*) from n97eed5_MaestrosProcesos.Suministro_Credito";
+            var sql = @"select count(*) + 1 as contador from n97eed5_MaestrosProcesos.Suministro_Credito";
 
             var count = _dbconnection.ExecuteScalar(sql);
             
@@ -173,7 +173,7 @@ namespace Formulario_SuministroCredito.Data
                                                         representante_legal,
                                                         cargo,
                                                         correo_electronico,
-                                                        direccion_correspondecia,
+                                                        direccion_correspondencia,
                                                         ciudad,
                                                         departamento,
                                                         telefono,
@@ -220,7 +220,8 @@ namespace Formulario_SuministroCredito.Data
                                                         centro_distribucion,
                                                         cupo_sugerido,
                                                         plazo_aliar,
-                                                        nom_asesor_comercial)                                          
+                                                        nom_asesor_comercial,
+                                                        fecha_solicitud)                                          
                                                   VALUES
                                                            (
                                                             @FechaRegistro,    
@@ -282,12 +283,13 @@ namespace Formulario_SuministroCredito.Data
                                                             @Centro_distribucion,
                                                             @Cupo_sugerido,
                                                             @Plazo_aliar,
-                                                            @Nom_asesor_comercial)";
+                                                            @Nom_asesor_comercial,
+                                                            @FechaSolicitud)";
 
 
                 await _dbconnection.ExecuteAsync(sql, new
                 {                  
-                    suministroCredito.FechaRegistro,
+                    suministroCredito.Fecha_registro,
                     suministroCredito.Tipo_solicitud,
                     suministroCredito.Monto,
                     suministroCredito.Plazo,
@@ -346,7 +348,9 @@ namespace Formulario_SuministroCredito.Data
                     suministroCredito.Centro_distribucion,
                     suministroCredito.Cupo_sugerido,
                     suministroCredito.Plazo_aliar,
-                    suministroCredito.Nom_asesor_comercial
+                    suministroCredito.Nom_asesor_comercial,
+                    suministroCredito.Fecha_solicitud
+                    
 
 
                 });
@@ -368,36 +372,6 @@ namespace Formulario_SuministroCredito.Data
 
     
 
-
-
-        public async Task<bool> UploadFile(IFormFile file)
-        {
-            string path = "";
-            try
-            {
-                if (file.Length > 0)
-                {
-                    path = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, "img"));
-                    if (!Directory.Exists(path))
-                    {
-                        Directory.CreateDirectory(path);
-                    }
-                    using (var fileStream = new FileStream(Path.Combine(path, file.FileName), FileMode.Create))
-                    {
-                        await file.CopyToAsync(fileStream);
-                    }
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("File Copy Failed", ex);
-            }
-        }
 
         [NonAction]
         public  bool AdjuntarArchivos(IFormFile file, IFormFile file2, IFormFile file3, IFormFile file4, IFormFile file5, IFormFile file6)
@@ -678,7 +652,7 @@ namespace Formulario_SuministroCredito.Data
 
         public SuministroCredito GetById(int id)
         {
-            var sql = @"SELECT     
+            var sql = @"SELECT     idSuministro_Credito,
                                    fecha_registro,    
                                    tipo_solicitud, 
                                    monto, 
@@ -691,7 +665,7 @@ namespace Formulario_SuministroCredito.Data
                                    representante_legal,
                                    cargo,
                                    correo_electronico,
-                                   direccion_correspondecia,
+                                   direccion_correspondencia,
                                    ciudad,
                                    departamento,
                                    telefono,
@@ -747,6 +721,36 @@ namespace Formulario_SuministroCredito.Data
             var detalle = _dbconnection.QueryFirstOrDefault<SuministroCredito>(sql, new { IdSuministro_Credito = id });
             return detalle;
         }
+
+        public async Task<bool> UploadFile(IFormFile file)
+        {
+            string path = "";
+            try
+            {
+                if (file.Length > 0)
+                {
+                    path = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, "img"));
+                    if (!Directory.Exists(path))
+                    {
+                        Directory.CreateDirectory(path);
+                    }
+                    using (var fileStream = new FileStream(Path.Combine(path, file.FileName), FileMode.Create))
+                    {
+                        await file.CopyToAsync(fileStream);
+                    }
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("File Copy Failed", ex);
+            }
+        }
+
     }
 
 
