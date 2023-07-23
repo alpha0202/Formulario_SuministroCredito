@@ -14,9 +14,9 @@ namespace Formulario_SuministroCredito.Data
 
         public string CountRowDb();
 
-        Task<bool> UploadFile(IFormFile file);
+        //Task<bool> UploadFile(IFormFile file);
 
-
-
+        //Task<List<DptoCiudades>> Dpto_Ciudades();
+        //Task<IActionResult> Dpto_Ciudades();
     }
 }

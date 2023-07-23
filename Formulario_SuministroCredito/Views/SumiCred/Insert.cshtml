@@ -13,15 +13,7 @@
 
 <div class="container ">
 
-    <!-- For demo purpose -->
-    @*   <div class="row mb-4">
-        <div class="col-lg-8 mx-auto text-center">
-            <h1 class="display-4">Bootstrap 4 credit card form</h1>
-            <p class="lead mb-0">Easily build a well-structured credit card form using Bootstrap 4</p>
-            <p class="lead">Snippet by <a href="https://bootstrapious.com/snippets">Bootstrapious</a></p>
-        </div>
-    </div>*@
-    <!-- End -->
+  
 
 
     <div class="row">
@@ -103,7 +95,7 @@
                                                         <div class="col-1 vr"></div>
                                                         <div class="col-sm-3">
                                                             <h6 class="" style="text-align:center">Fecha de Emisión</h6>
-                                                            <p  class="" style="text-align:center">@DateTime.Today.ToString("dd-MMM-yyyy")</p>
+                                                            <p  class="" style="text-align:center">21-Feb-2023</p>
                                                         </div>
 
                                                     </div>
@@ -142,6 +134,7 @@
 
                                         <div class="p-sm-2">
                                             <div id=""><strong>@DateTime.Today.ToString("dd-MMM-yyyy")</strong></div>
+                                           
                                         </div>
                                         @*<input asp-for="FechaRegistro" class="form-control me-auto disabled" id="fecha_reg" placeholder="@DateTime.Today.ToString("dd-MMM-yyyy") > *@
                                     </div>
@@ -369,7 +362,18 @@
                                                 <h6>Departamento</h6>
                                             </div>
                                             <div class="col-sm-3">
-                                                <input asp-for="Departamento" class="form-control me-auto" type="text" placeholder="" aria-label="" required>
+                                            <input asp-for="Departamento" class="form-control me-auto" type="text" placeholder="" aria-label=""required>
+                                           @* <select asp-for="Departamento" class="form-select me-auto" aria-label="tipoIdentificacion" required >
+                                                
+                                                <option id="departamentos"></option>
+                                                
+                                               
+                                                    
+                                                
+
+                                            </select>
+                                            *@
+
                                             </div>
                                             <div class="col-1 vr"></div>
                                             <div class="p-sm-1">
@@ -695,6 +699,7 @@
                         </div>
 
                         <div class="container-fluid mx-0 px-0">
+
                             <div class="card-body mx-0 px-0 border-bottom">
                                 <div class="col-sm-12">
                                     <div class="row">
@@ -703,14 +708,11 @@
                                                 <p style="font-size:13px;">RUT Actualizado.</p>
                                             </div>
                                             <div class="col-sm-3">
-                                                <input asp-for="RutFile" class="form-control me-auto" type="file" name="rutFile" id="rut_file" required>
+                                                <input asp-for="RutFile" class="form-control me-auto" type="file" name="rutFile" id="rut_file" accept="image/jpeg,image/png,application/pdf,.doc,.docx" required>
                                             </div>
                                         </div>
 
                                     </div>
-
-
-
 
                                 </div>
 
@@ -724,7 +726,7 @@
                                                 <p style="font-size:13px;">Estados Financieros a 31 de Diciembre vigencia inmediatamente anterior (Estado de situación financiera y Estado de Resultados).</p>
                                             </div>
                                             <div class="col-sm-3">
-                                                <input asp-for="EstadoFinancieroFile" class="form-control me-auto" type="file" placeholder="" aria-label="" >
+                                                <input asp-for="EstadoFinancieroFile" class="form-control me-auto" type="file" accept="image/jpeg,image/png,application/pdf,.doc,.docx" placeholder="" aria-label="">
                                             </div>
                                         </div>
 
@@ -744,7 +746,7 @@
                                                 </p>
                                             </div>
                                             <div class="col-sm-3">
-                                                <input asp-for="ExistenciaFile" class="form-control me-auto" type="file" placeholder="" aria-label="" >
+                                                <input asp-for="ExistenciaFile" class="form-control me-auto" type="file" accept="image/jpeg,image/png,application/pdf,.doc,.docx" placeholder="" aria-label="">
                                             </div>
                                         </div>
 
@@ -754,7 +756,7 @@
 
                             </div>
 
-                            <div class="no_obligatorio" id="no_obligatorios">
+                            <div class="no_obligatorio invisible" id="no_obligatorios">
 
                                 <div class="card-body mx-0 px-0 border-0">
                                     <div class="col-sm-12">
@@ -768,7 +770,7 @@
                                                     </p>
                                                 </div>
                                                 <div class="col-sm-3">
-                                                    <input asp-for="CertificadoIngresosFile" class="form-control me-auto" type="file" placeholder="" aria-label="">
+                                                    <input asp-for="CertificadoIngresosFile" class="form-control me-auto" type="file" accept="image/jpeg,image/png,application/pdf,.doc,.docx" placeholder="" aria-label="">
                                                 </div>
                                             </div>
 
@@ -790,7 +792,7 @@
                                                     </p>*@
                                                 </div>
                                                 <div class="col-sm-3">
-                                                    <input asp-for="TarjetaProfesionalFile" class="form-control me-auto" type="file" placeholder="" aria-label="">
+                                                    <input asp-for="TarjetaProfesionalFile" class="form-control me-auto" type="file" accept="image/jpeg,image/png,application/pdf,.doc,.docx" placeholder="" aria-label="">
                                                 </div>
                                             </div>
 
@@ -812,7 +814,7 @@
                                                     </p>*@
                                                 </div>
                                                 <div class="col-sm-3">
-                                                    <input asp-for="CertificadoAntecedentesFile" class="form-control me-auto" type="file" placeholder="" aria-label="">
+                                                    <input asp-for="CertificadoAntecedentesFile" class="form-control me-auto" type="file" accept="image/jpeg,image/png,application/pdf,.doc,.docx" placeholder="" aria-label="">
                                                 </div>
                                             </div>
 
@@ -823,6 +825,8 @@
                                 </div>
 
                             </div>
+
+
 
                             <div class="card-footer border-0 mx-0 px-0">
                                 <div class="row">
@@ -1135,7 +1139,7 @@
                                 <input type="submit" value="guardar" class="btn btn-outline-success" />
                                
                             </div>
-                            <div class="card-body">
+                           @* <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-4">
 
@@ -1143,7 +1147,7 @@
                                     </div>
                                 </div>
 
-                            </div>
+                            </div>*@
                         </div>
                     </div>
 

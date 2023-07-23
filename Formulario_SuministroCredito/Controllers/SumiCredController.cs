@@ -11,26 +11,43 @@ using Rotativa.AspNetCore;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.IO;
+using System.Text.Json;
+using System.Net.Http;
+using Newtonsoft.Json;
+using Grpc.Core;
+using Path = System.IO.Path;
+using Rotativa;
+using ViewAsPdf = Rotativa.AspNetCore.ViewAsPdf;
+using Formulario_SuministroCredito.Service;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace Formulario_SuministroCredito.Controllers
 {
     public class SumiCredController : Controller
     {
         private readonly ISumiCredRepository _sumiCredRepository;
+        private readonly IServiceFileUpload _serviceFileUpload;
         private readonly IValidator<SuministroCredito> _validator;
+        private readonly HttpClient _httpClient;    
+       
 
-        public SumiCredController(ISumiCredRepository sumiCredRepository, IValidator<SuministroCredito> validator)
+        public SumiCredController(ISumiCredRepository sumiCredRepository, IValidator<SuministroCredito> validator, HttpClient httpClient, IServiceFileUpload serviceFileUpload)
         {
             _sumiCredRepository = sumiCredRepository;
             _validator = validator;
+            _httpClient = httpClient;
+            _serviceFileUpload = serviceFileUpload;
+           
         }
 
       
 
         public async Task<ActionResult> Index()
         {
+
             var suministros = await _sumiCredRepository.GetAll();
-          
+
+
             return View(suministros);
         }
 
@@ -48,12 +65,24 @@ namespace Formulario_SuministroCredito.Controllers
         // GET: SumiCredController/Create
         public IActionResult Insert()
         {
+           
             var contador = _sumiCredRepository.CountRowDb();
             var response = contador;
             ViewData["MiContador"] = response;
 
+            //var res = await _httpClient.GetAsync("https://raw.githubusercontent.com/marcovega/colombia-json/master/colombia.min.json");
+            //var content = await res.Content.ReadAsStringAsync();
+            ////var colombia = JsonSerializer.Deserialize<List<Dictionary<string, object>>>(content);
+            //var colombia = JsonConvert.DeserializeObject<List<DptoCiudades>>(content);
+            //var colombia = System.Text.Json.JsonSerializer.Deserialize<List<DptoCiudades>>(content);
+            //return Ok(colombia);
+            //ViewData["Pais"] = colombia;
+
             return View();
         }
+
+
+
 
         // GET: SumiCredController/Create
         public ActionResult Insertar()
@@ -143,25 +172,28 @@ namespace Formulario_SuministroCredito.Controllers
                     Fecha_solicitud = DateTime.Now.ToString("yyyy-MMM-dd")
 
 
-            };
+                };
                 //var response = contador;
                 //ViewData["MiContador"] = response;
 
-                SuministrosValidator validadorSumi = new SuministrosValidator();
+                //SuministrosValidator validadorSumi = new SuministrosValidator();
 
-                //var resValidate = await _validator.ValidateAsync(suministroCredito);
-                var resValidate = await validadorSumi.ValidateAsync(suministroCredito);
+                ////var resValidate = await _validator.ValidateAsync(suministroCredito);
+                //var resValidate = await validadorSumi.ValidateAsync(suministroCredito);
 
-                if (!resValidate.IsValid)
-                {
-                    resValidate.AddToModelState(this.ModelState);
-                    return View("Insert",suministroCredito);
-                }
+                //if (!resValidate.IsValid)
+                //{
+                //    resValidate.AddToModelState(this.ModelState);
+                //    return View("Insert",suministroCredito);
+                //}
 
 
 
                 bool resultado = await _sumiCredRepository.Insert(suministroCredito);
                 //var resAdjuntar = await _sumiCredRepository.UploadFile(suministroCredito.RutFile);
+                if (resultado)
+                    PdfNew(int.Parse(suministroCredito.NumeroContador));
+                    
 
                 return RedirectToAction(nameof(Index));
 
@@ -171,6 +203,8 @@ namespace Formulario_SuministroCredito.Controllers
                 return View();
             }
         }
+
+
 
         public IActionResult PdfNew(int id)
         {
@@ -235,17 +269,50 @@ namespace Formulario_SuministroCredito.Controllers
 
             };
 
+            //var nombreArchivo = "probandoPdf.pdf";
+            var fileName = "probandoPdf.pdf";
+            //string filePath = Path.Combine(Server.MapPath("/Temp"), fileName);
+            string fullPath = @"c:\probando\" + fileName;
+            string path = Path.GetFullPath(fullPath);
 
             return new ViewAsPdf("PdfNew", suministroCredito)
 
             {
                 PageSize = Rotativa.AspNetCore.Options.Size.A4,
                 PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
-                FileName = "probandoPdf.pdf"
-            };
-        }
-    
+                FileName = "probandoPdf.pdf",
+                //SaveOnServerPath = @"c:\probando\" + nombreArchivo,
+                SaveOnServerPath = path
 
+            };                              //.BuildFile(this.ControllerContext);
+            //bool enviarDrive = _serviceFileUpload.SubirArchivoDrive(path);
+
+
+            //var myPDF = new ViewAsPdf("Index",suministroCredito)
+            //{
+            //    FileName = fileName,
+            //    PageSize = Rotativa.AspNetCore.Options.Size.A4,
+            //    PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
+            //    SaveOnServerPath = path
+            //};
+
+            //var enviarToDrive = _serviceFileUpload.SubirArchivoDrive(fullPath);
+
+            //return View();
+        }
+
+        public IActionResult EnviarDrive()
+        {
+            var fileName = "probandoPdf.pdf";
+            string fullPath = @"c:\probando\" + fileName;
+            string path = Path.GetFullPath(fullPath);
+            var enviarToDrive = _serviceFileUpload.SubirArchivoDrive(fullPath);
+
+            return View("Index");
+        }
+
+
+     
 
     }
 }

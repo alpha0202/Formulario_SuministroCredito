@@ -1,14 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 
 namespace Formulario_SuministroCredito.Models
 {
     public class SuministroCredito
     {
-        private DateTime _fechaRegistro;
+        //private DateTime _fechaRegistro;
 
         public int IdSuministro_Credito { get; set; }  
-        public DateTime Fecha_registro { get { return _fechaRegistro; } set { _fechaRegistro = value; } }
+        public DateTime Fecha_registro { get; set; }
         public string Tipo_solicitud { get; set; }
         public string Monto { get; set; }
         public string Plazo { get; set; }
@@ -90,8 +91,7 @@ namespace Formulario_SuministroCredito.Models
         public string NumeroContador { get; set; }
         public string Fecha_solicitud { get; set; }
 
-
-
+       
 
     }
 

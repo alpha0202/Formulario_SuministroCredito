@@ -151,6 +151,66 @@ function isEmail(email) {
 
 
 
+
+
+
+//extraer departamentes y ciudades COL
+function loadJSON(callback) {
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open("GET", 'https://raw.githubusercontent.com/marcovega/colombia-json/master/colombia.min.json', true); // Reemplaza colombia-json.json con el nombre que le hayas puesto
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+            callback(xobj.responseText);
+        }
+    };
+    xobj.send(null);
+}
+
+
+(() => {
+    loadJSON(function (response) {
+        // Parse JSON string into object
+        var JSONFinal = JSON.parse(response);
+        var departamento = JSONFinal[0].departamento;
+        var ciudades = JSONFinal[0].ciudades;
+        console.log("Departamento: " + departamento);
+        console.log("Ciudades: " + ciudades);
+
+
+    });
+})();
+
+
+
+//const request = new XMLHttpRequest();
+//request.open('GET', 'https://raw.githubusercontent.com/marcovega/colombia-json/master/colombia.min.json', true);
+//request.onload = function () {
+//    if (this.status === 200) {
+//        const data = JSON.parse(this.responseText);
+//        let options = '';
+//        for (let i = 0; i < data.length; i++) {
+//            options += '<option value="' + data[i].departamento + '">' + data[i].departamento + '</option>';
+//        }
+//        document.getElementById('departamentos').innerHTML = options;
+//    }
+//};
+//request.send();
+
+
+const request = new XMLHttpRequest();
+request.open('GET', 'https://raw.githubusercontent.com/marcovega/colombia-json/master/colombia.min.json', true);
+request.onload = function () {
+    if (this.status === 200) {
+        const data = JSON.parse(this.responseText);
+        let options = data.map(function (departamento) {
+            return '<option value="' + departamento.departamento + '">' + departamento.departamento + '</option>';
+        });
+        document.getElementById('departamentos').innerHTML = options.join('');
+    }
+};
+request.send();
+
 //$("#consecutivo").val('2');
 
 //$(function() {

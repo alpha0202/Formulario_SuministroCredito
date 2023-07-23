@@ -4,7 +4,9 @@ using Google.Apis.Auth.OAuth2;
 using Google.Apis.Drive.v3;
 using Google.Apis.Services;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Data;
+using System.Net.Http;
 using System.Security.Policy;
 using static iText.StyledXmlParser.Jsoup.Select.Evaluator;
 
@@ -14,11 +16,13 @@ namespace Formulario_SuministroCredito.Data
     {
         private readonly IDbConnection _dbconnection;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly HttpClient _httpClient;
 
-        public SumiCredRepository(IDbConnection dbConnection, IWebHostEnvironment webHostEnvironment)
+        public SumiCredRepository(IDbConnection dbConnection, IWebHostEnvironment webHostEnvironment, HttpClient httpClient)
         {
             _dbconnection = dbConnection;
             _webHostEnvironment = webHostEnvironment;
+            _httpClient = httpClient;
         }
 
 
@@ -67,7 +71,7 @@ namespace Formulario_SuministroCredito.Data
                                    representante_legal,
                                    cargo,
                                    correo_electronico,
-                                   direccion_correspondecia,
+                                   direccion_correspondencia,
                                    ciudad,
                                    departamento,
                                    telefono,
@@ -140,7 +144,7 @@ namespace Formulario_SuministroCredito.Data
         public async Task<bool> Insert(SuministroCredito suministroCredito)
         {
 
-
+         
             AdjuntarArchivos(suministroCredito.RutFile, 
                              suministroCredito.EstadoFinancieroFile, 
                              suministroCredito.ExistenciaFile, 
@@ -356,13 +360,18 @@ namespace Formulario_SuministroCredito.Data
                 });
 
                 return true;
+
+
+
+
             }
             catch (Exception ex)
             {
 
                 throw new Exception(ex.Message, ex);
-                return false;
+                //return false;
             }
+           
 
 
 
@@ -370,8 +379,7 @@ namespace Formulario_SuministroCredito.Data
 
 
 
-    
-
+   
 
         [NonAction]
         public  bool AdjuntarArchivos(IFormFile file, IFormFile file2, IFormFile file3, IFormFile file4, IFormFile file5, IFormFile file6)
@@ -623,31 +631,6 @@ namespace Formulario_SuministroCredito.Data
 
 
 
-            //try
-            //{
-            //    string pathArchAdjuntar = "";
-            //    if (file.Length > 0)
-            //    {
-            //        pathArchAdjuntar = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, "UploadedFiles"));
-            //        if (!Directory.Exists(pathArchAdjuntar))
-            //        {
-            //            Directory.CreateDirectory(pathArchAdjuntar);
-            //        }
-            //        using (var fileStream = new FileStream(Path.Combine(pathArchAdjuntar, file.FileName), FileMode.Create))
-            //        {
-            //            file.CopyToAsync(fileStream);
-            //        }
-            //        return true;
-            //    }
-            //    else
-            //    {
-            //        return false;
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw new Exception("File Copy Failed", ex);
-            //}
         }
 
         public SuministroCredito GetById(int id)
@@ -722,38 +705,70 @@ namespace Formulario_SuministroCredito.Data
             return detalle;
         }
 
-        public async Task<bool> UploadFile(IFormFile file)
-        {
-            string path = "";
-            try
-            {
-                if (file.Length > 0)
-                {
-                    path = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, "img"));
-                    if (!Directory.Exists(path))
-                    {
-                        Directory.CreateDirectory(path);
-                    }
-                    using (var fileStream = new FileStream(Path.Combine(path, file.FileName), FileMode.Create))
-                    {
-                        await file.CopyToAsync(fileStream);
-                    }
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("File Copy Failed", ex);
-            }
-        }
+        //public async Task<bool> UploadFile(IFormFile file)
+        //{
+        //    string path = "";
+        //    try
+        //    {
+        //        if (file.Length > 0)
+        //        {
+        //            path = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, "img"));
+        //            if (!Directory.Exists(path))
+        //            {
+        //                Directory.CreateDirectory(path);
+        //            }
+        //            using (var fileStream = new FileStream(Path.Combine(path, file.FileName), FileMode.Create))
+        //            {
+        //                await file.CopyToAsync(fileStream);
+        //            }
+        //            return true;
+        //        }
+        //        else
+        //        {
+        //            return false;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception("File Copy Failed", ex);
+        //    }
+        //}
+
+
+
+
+
+
+        //public async Task<List<DptoCiudades>> Dpto_Ciudades()
+        //{
+
+        //    var response = await _httpClient.GetAsync("https://raw.githubusercontent.com/marcovega/colombia-json/master/colombia.min.json");
+        //    var content = await response.Content.ReadAsStringAsync();
+        //    var colombia = JsonConvert.DeserializeObject<List<DptoCiudades>>(content);
+        //    //var colombia = JsonSerializer.Deserialize<List<Dictionary<string, object>>>(content);
+        //    //var colombia = System.Text.Json.JsonSerializer.Deserialize<List<DptoCiudades>>(content);
+        //    return colombia;
+
+        //}
+
+        //public async Task<IActionResult> Dpto_Ciudades()
+        //{
+
+        //    var response = await _httpClient.GetAsync("https://raw.githubusercontent.com/marcovega/colombia-json/master/colombia.min.json");
+        //    var content = await response.Content.ReadAsStringAsync();
+        //    var colombia = JsonConvert.DeserializeObject<List<DptoCiudades>>(content);
+        //    //var colombia = JsonSerializer.Deserialize<List<Dictionary<string, object>>>(content);
+        //    //var colombia = System.Text.Json.JsonSerializer.Deserialize<List<DptoCiudades>>(content);
+        //    return (IActionResult)colombia;
+
+        //}
+
+
+
 
     }
 
 
 
-    
+
 }
