@@ -24,8 +24,6 @@ namespace Formulario_SuministroCredito.Service
         }
 
 
-
-
         static string[] Scopes = { DriveService.Scope.Drive };
         static string ApplicationName = "Drive API .NET Quickstart";
         private const string MimeTypeFolder = "application/vnd.google-apps.folder";
@@ -36,24 +34,7 @@ namespace Formulario_SuministroCredito.Service
 
 
 
-        public string GetFile(string rutaPDF_firmar)
-        {
-            using (FileStream fs = new FileStream(rutaPDF_firmar, FileMode.Open))
-            {
-                using (StreamReader reader = new StreamReader(fs))
-                {
-                    string contents = reader.ReadToEnd();
-                    byte[] byteArray = Encoding.UTF8.GetBytes(contents);
-                    MemoryStream stream = new MemoryStream(byteArray);
-                    FilePdf = new FormFile(stream, 0, stream.Length, null, "ProbandoPdf.pdf");
-                }
-            }
-
-            AdjuntarArchivos(FilePdf);
-
-            return "listo";
-        }
-
+       
 
         public bool AdjuntarArchivos(IFormFile FilePdf)
         {
@@ -184,39 +165,49 @@ namespace Formulario_SuministroCredito.Service
         }
 
 
-        public bool SubirArchivoDrive( string pathPdf)
+        public string SubirArchivoDrive( string pathPdf_firma)
         {
-           var service =  ServicioDrive();
+            string res = "";
+            var service =  ServicioDrive();
 
-
-            string archivo0 = ("FIRMANTE-" + DateTime.Now.ToString("yyyyMMddHHmmss")).ToLower();
-            int BufferSize = 1130702268;//2130702268
-            byte[] fileByte = new byte[BufferSize];
-
-            //BinaryReader rdr1 = new BinaryReader(pathPdf.OpenReadStream());
-            //fileByte = rdr1.ReadBytes((int)FilePdf.Length);
-
-            var fileMetadata = new Google.Apis.Drive.v3.Data.File()
+          
+            if(File.Exists(pathPdf_firma))
             {
-                Name = System.IO.Path.GetFileName(pathPdf),
-                Description= "Test Description",
-                Parents = new List<string> { carpetaPrincipal }
+                string archivo0 = ("FIRMANTE-" + DateTime.Now.ToString("yyyyMMddHHmmss")).ToLower();
+                int BufferSize = 1130702268;//2130702268
+                byte[] fileByte = new byte[BufferSize];
 
-            };
-            FilesResource.CreateMediaUpload request;
-            using (var stream = new System.IO.FileStream(pathPdf, System.IO.FileMode.Open))
-            {
-                request = service.Files.Create(
-                    fileMetadata, stream, "application/octet-stream");
-                    request.Fields = "id, name, webViewLink";
-                    request.Upload();
+                //BinaryReader rdr1 = new BinaryReader(pathPdf.OpenReadStream());
+                //fileByte = rdr1.ReadBytes((int)FilePdf.Length);
+
+                var fileMetadata = new Google.Apis.Drive.v3.Data.File()
+                {
+                    Name = System.IO.Path.GetFileName(archivo0),
+                    Description= "Test Description",
+                    Parents = new List<string> { carpetaPrincipal }
+
+                };
+                FilesResource.CreateMediaUpload request;
+                using (var stream = new System.IO.FileStream(pathPdf_firma, System.IO.FileMode.Open))
+                {
+                    request = service.Files.Create(
+                        fileMetadata, stream, "application/octet-stream");
+                        request.Fields = "id, name, webViewLink";
+                        request.Upload();
+                }
+                if(request.ResponseBody.WebViewLink != null)
+                {
+                    url0 = request.ResponseBody.WebViewLink;
+                    res = url0;
+                    File.Delete(pathPdf_firma);
+                }
+                
+
             }
-            if(request.ResponseBody.WebViewLink != null)
+            else
             {
-                url0 = request.ResponseBody.WebViewLink;
+                res = "";
             }
-
-
 
 
 
@@ -247,7 +238,7 @@ namespace Formulario_SuministroCredito.Service
 
 
 
-            return true;
+            return res;
 
         }
 

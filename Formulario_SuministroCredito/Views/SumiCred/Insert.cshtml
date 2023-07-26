@@ -8,18 +8,17 @@
 
 
 
-
+<h3 style="color:dodgerblue">@ViewBag.Mensaje</h3>
 
 
 <div class="container ">
 
-  
 
 
     <div class="row">
         <div class="container mx-auto">
-            <form asp-action="Insert" asp-controller="SumiCred" name="suministros" class="validarForm" id="formSuministros" method="post" enctype="multipart/form-data" novalidate>
-               
+            <form method="post"  asp-controller="SumiCred" name="suministros" class="validarForm" id="formSuministros" method="post" enctype="multipart/form-data" novalidate>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="row">
                     <nav class="card  mb-4">
                         <div class="row">
@@ -158,8 +157,8 @@
                                     </div>
 
                                     <div>
-                                        <input asp-for="Monto" type="number" class="form-control" id="" placeholder="" required>
-
+                                        <input asp-for="Monto" type="number" min="1" class="form-control" id=""  required>
+                                        <span asp-validation-for="Monto" class="text-danger spanValidated"></span>
                                     </div>
                                     <div class="vr"></div>
                                     <div class="p-sm-2">
@@ -167,7 +166,7 @@
                                     </div>
 
                                     <div class="p-sm-2">
-                                        <input asp-for="Plazo" type="number" class="form-control me-auto" id="" placeholder="" required>
+                                        <input asp-for="Plazo" type="number" class="form-control me-auto" min="1" max="99" id="" placeholder="" required>
 
                                     </div>
 
@@ -200,12 +199,8 @@
                                         </div>
                                         <div class="p-sm-2"></div>
                                         <div class="col-sm-9">
-                                            <input asp-for="Apellidos_nombres_razon_social" class="form-control me-auto" type="text" placeholder="" aria-label="" required>
-
-                                            <div>
-                                                <span class="spanValidated" asp-validation-for="Apellidos_nombres_razon_social"></span>
-
-                                            </div>
+                                            <input asp-for="Apellidos_nombres_razon_social" class="form-control me-auto" type="text"  required>
+                                            <span class="spanValidated" asp-validation-for="Apellidos_nombres_razon_social"></span>                                         
 
                                         </div>
 
@@ -261,12 +256,10 @@
                                         </div>
 
                                         <div class="col-sm-2">
-                                            <input asp-for="Numero_identificacion" class="form-control me-auto" type="text" placeholder="" aria-label="" required>
+                                            <input asp-for="Numero_identificacion" class="form-control me-auto" type="number"min="1" required>
+                                            <span class="spanValidated" asp-validation-for="Numero_identificacion"></span>
 
-                                            <div>
-                                                <span class="spanValidated" asp-validation-for="Numero_identificacion"></span>
-
-                                            </div>
+                                          
                                         </div>
                                         <div class=" col-1 vr"></div>
                                         <span class="p-sm-4"></span>
@@ -277,11 +270,9 @@
                                         </div>
 
                                         <div class="col-sm-2">
-                                            <input asp-for="DV" class="form-control me-auto" type="text" placeholder="" aria-label="" required>
-                                            <div>
-                                                <span class="spanValidated" asp-validation-for="Tipo_identificacion"></span>
-
-                                            </div>
+                                            <input asp-for="DV" class="form-control me-auto" type="number" min="0"  required>
+                                             <span class="spanValidated" asp-validation-for="Tipo_identificacion"></span>
+                                          
                                         </div>
 
 
@@ -305,10 +296,9 @@
                                             </div>
 
                                             <div class="col-sm-3">
-                                                <input asp-for="Representante_legal" class="form-control me-auto" type="text" placeholder="" aria-label="" id="repLegalName" >
-                                                    <div>
+                                                <input asp-for="Representante_legal" class="form-control me-auto" type="text"  id="repLegalName" >
                                                     <span class="spanValidated" asp-validation-for="Representante_legal"></span>
-                                                    </div>
+                                                   
                                             </div>
                                             <div class="col-1 vr"></div>
 
@@ -317,10 +307,9 @@
                                             </div>
 
                                             <div class="col-sm-2">
-                                                <input asp-for="Cargo" class="form-control me-auto" type="text" placeholder="" aria-label="" >
-                                                    <div>
-                                                        <span class="spanValidated" asp-validation-for="Cargo"></span>
-                                                    </div>
+                                                <input asp-for="Cargo" class="form-control me-auto" type="text" id="cargoRepLegal" >
+                                                   <span class="spanValidated" asp-validation-for="Cargo"></span>
+                                                   
                                             </div>
 
                                             <div class="vr"></div>
@@ -330,16 +319,16 @@
                                             </div>
 
                                             <div class="form-control-rl col-sm-3">
-                                                <input asp-for="Correo_electronico" class="form-control me-auto" type="email" placeholder="" id="email_reprLegal" aria-label="">
-                                            <span asp-validation-for="Correo_electronico" class="text-danger"></span>
+                                                <input asp-for="Correo_electronico" class="form-control me-auto" type="email" id="email_reprLegal">
+                                               
                                                 <i class="fas fa-check-circle"></i>
                                                 <i class="fas fa-exclamation-circle"></i>
                                                 <small>Error message</small>
+                                                <p class="text-danger mb-2 d-none alertEmail" id="alertEmail"></p>
+                                                <span class="spanValidated" asp-validation-for="Correo_electronico"></span>
 
                                             </div>
-                                               @* <div>
-                                                    <span class="spanValidated" asp-validation-for="Correo_electronico"></span>
-                                                </div>*@
+                                              
 
                                         </div>
                                     </div>
@@ -356,6 +345,7 @@
                                             </div>
                                             <div class="col-sm-3 ">
                                                 <input asp-for="Direccion_correspondencia" class="form-control me-auto" type="text" placeholder="" aria-label="" required>
+                                                <span class="spanValidated" asp-validation-for="Direccion_correspondencia"></span>
                                             </div>
                                             <div class="col-1 vr"></div>
                                             <div class="p-sm-1">
@@ -363,6 +353,7 @@
                                             </div>
                                             <div class="col-sm-3">
                                             <input asp-for="Departamento" class="form-control me-auto" type="text" placeholder="" aria-label=""required>
+                                            <span class="spanValidated" asp-validation-for="Departamento"></span>
                                            @* <select asp-for="Departamento" class="form-select me-auto" aria-label="tipoIdentificacion" required >
                                                 
                                                 <option id="departamentos"></option>
@@ -382,6 +373,7 @@
 
                                             <div class="col-sm-2">
                                                 <input asp-for="Ciudad" class="form-control me-auto" type="text" placeholder="" aria-label="" required>
+                                                <span class="spanValidated" asp-validation-for="Ciudad"></span>
                                             </div>
 
 
@@ -398,22 +390,26 @@
                                                 <h6>Teléfono</h6>
                                             </div>
                                             <div class="col-sm-2">
-                                                <input asp-for="Telefono" class="form-control me-auto" type="tel" placeholder="" aria-label="" required>
+                                                <input asp-for="Telefono" class="form-control me-auto" type="number" min="0" required>
+                                                <span class="spanValidated" asp-validation-for="Telefono"></span>
                                             </div>
                                             <div class="col-1 vr"></div>
                                             <div class="p-sm-1">
                                                 <h6>Celular</h6>
                                             </div>
                                             <div class="col-sm-2">
-                                                <input asp-for="Celular" class="form-control me-auto" type="tel" placeholder="" aria-label="" required>
+                                                <input asp-for="Celular" class="form-control me-auto" type="number" min="0"  required>
+                                                <span class="spanValidated" asp-validation-for="Celular"></span>
                                             </div>
                                             <div class="col-1 vr"></div>
                                             <div class="p-sm-1">
                                                 <h6>Correo Electrónico Facturación</h6>
                                             </div>
 
-                                            <div class="col-sm-4">
-                                                <input asp-for="Correo_electronico_facturacion" class="form-control me-auto" type="email" placeholder="" aria-label="" required>
+                                        <div class="form-control-rl col-sm-3">
+                                            <input asp-for="Correo_electronico_facturacion" class="form-control me-auto" type="email" id="email_facturaElc" aria-label="" required>
+                                            <p class="text-danger mb-2 d-none alertEmail" id="alertEmail2"></p>
+                                            <span class="spanValidated" asp-validation-for="Correo_electronico_facturacion"></span>
                                             </div>
 
 
@@ -447,14 +443,16 @@
                                                 <h6>Entidad y/o Razón Social</h6>
                                             </div>
                                             <div class="col-sm-3 mx-0 px-0">
-                                                <input asp-for="Entidad_razon_social_ref_comerciales" class="form-control me-auto" type="text" placeholder="" aria-label="" required>
+                                                <input asp-for="Entidad_razon_social_ref_comerciales" class="form-control me-auto" type="text"  required>
+                                                <span class="spanValidated" asp-validation-for="Entidad_razon_social_ref_comerciales"></span>
                                             </div>
                                             <div class="vr"></div>
                                             <div class="p-sm-2 mx-0 px-0">
                                                 <h6>Dirección</h6>
                                             </div>
                                             <div class="col-sm-6 mx-0 px-0">
-                                                <input asp-for="Direccion_ref_comerciales" class="form-control me-auto" type="text" placeholder="" aria-label="" required>
+                                                <input asp-for="Direccion_ref_comerciales" class="form-control me-auto" type="text"  required>
+                                                <span class="spanValidated" asp-validation-for="Direccion_ref_comerciales"></span>
                                             </div>
 
                                         </div>
@@ -473,21 +471,24 @@
                                                 <h6>Nombre de Contacto</h6>
                                             </div>
                                             <div class="col-sm-4 mx-0 px-0">
-                                                <input asp-for="Nom_contacto_ref_comerciales" class="form-control me-auto" type="text" placeholder="" aria-label="" required>
+                                                <input asp-for="Nom_contacto_ref_comerciales" class="form-control me-auto" type="text"  required>
+                                                <span class="spanValidated" asp-validation-for="Nom_contacto_ref_comerciales"></span>
                                             </div>
                                             <div class="vr"></div>
                                             <div class="p-sm-2 mx-0 px-0">
                                                 <h6>Cargo</h6>
                                             </div>
                                             <div class="col-sm-3 mx-0 px-0">
-                                                <input asp-for="Cargo_ref_comerciales" class="form-control me-auto" type="text" placeholder="" aria-label="" required>
+                                                <input asp-for="Cargo_ref_comerciales" class="form-control me-auto" type="text"  required>
+                                                <span class="spanValidated" asp-validation-for="Cargo_ref_comerciales"></span>
                                             </div>
                                             <div class="vr"></div>
                                             <div class="p-sm-2 mx-0 px-0">
                                                 <h6>Telefono</h6>
                                             </div>
                                             <div class="col-sm-2 mx-0 px-0">
-                                                <input asp-for="Telefono_ref_comerciales" class="form-control me-auto" type="tel" placeholder="" aria-label="" required>
+                                                <input asp-for="Telefono_ref_comerciales" class="form-control me-auto" type="number" min="0" required>
+                                                <span class="spanValidated" asp-validation-for="Telefono_ref_comerciales"></span>
                                             </div>
 
                                         </div>
@@ -506,14 +507,16 @@
                                             <h6>Entidad y/o Razón Social</h6>
                                         </div>
                                         <div class="col-sm-3  mx-0 px-0">
-                                            <input asp-for="Entidad_razon_social_ref_comerciales_dos" class="form-control me-auto" type="text" placeholder="" aria-label="" required>
+                                            <input asp-for="Entidad_razon_social_ref_comerciales_dos" class="form-control me-auto" type="text"  required>
+                                            <span class="spanValidated" asp-validation-for="Entidad_razon_social_ref_comerciales_dos"></span>
                                         </div>
                                         <div class="vr"></div>
                                         <div class="p-sm-2">
                                             <h6>Dirección</h6>
                                         </div>
                                         <div class="col-sm-6">
-                                            <input asp-for="Direccion_ref_comerciales_dos" class="form-control me-auto" type="text" placeholder="" aria-label="" required>
+                                            <input asp-for="Direccion_ref_comerciales_dos" class="form-control me-auto" type="text"  required>
+                                            <span class="spanValidated" asp-validation-for="Direccion_ref_comerciales_dos"></span>
                                         </div>
 
                                     </div>
@@ -530,6 +533,7 @@
                                         </div>
                                         <div class="col-sm-4 mx-0 px-0">
                                             <input asp-for="Nom_contacto_ref_comerciales_dos" class="form-control me-auto" type="text" placeholder="" aria-label="" required>
+                                            <span class="spanValidated" asp-validation-for="Nom_contacto_ref_comerciales_dos"></span>
                                         </div>
                                         <div class="vr"></div>
                                         <div class="p-sm-2 mx-0 px-0">
@@ -537,13 +541,15 @@
                                         </div>
                                         <div class="col-sm-3 mx-0 px-0">
                                             <input asp-for="Cargo_ref_comerciales_dos" class="form-control me-auto" type="text" placeholder="" aria-label="" required>
+                                            <span class="spanValidated" asp-validation-for="Cargo_ref_comerciales_dos"></span>
                                         </div>
                                         <div class="vr"></div>
                                         <div class="p-sm-2 mx-0 px-0">
                                             <h6>Telefono</h6>
                                         </div>
                                         <div class="col-sm-2 mx-0 px-0">
-                                            <input asp-for="Telefono_ref_comerciales_dos" class="form-control me-auto" type="tel" placeholder="" aria-label="" required>
+                                            <input asp-for="Telefono_ref_comerciales_dos" class="form-control me-auto" type="number" min="0" required>
+                                            <span class="spanValidated" asp-validation-for="Telefono_ref_comerciales_dos"></span>
                                         </div>
 
                                     </div>
@@ -579,6 +585,7 @@
                                             </div>
                                             <div class="col-sm-3 mx-0 px-0">
                                                 <input asp-for="Entidad_financiera" class="form-control me-auto" type="text" placeholder="" aria-label="" required>
+                                                <span class="spanValidated" asp-validation-for="Entidad_financiera"></span>
                                             </div>
                                             <div class="col-1 vr"></div>
                                             <div class=" col-sm-2  mx-0 px-0">
@@ -611,14 +618,16 @@
                                                 <h6>Número de cuenta</h6>
                                             </div>
                                             <div class="col-sm-3 mx-0 px-0">
-                                                <input asp-for="Numero_cuenta" class="form-control me-auto" type="text" placeholder="" aria-label="" required>
+                                                <input asp-for="Numero_cuenta" class="form-control me-auto" type="number" min="0" required>
+                                                <span class="spanValidated" asp-validation-for="Numero_cuenta"></span>
                                             </div>
                                             <div class="col-1 vr"></div>
                                             <div class="col-sm-2">
                                                 <h6>Oficina</h6>
                                             </div>
                                             <div class="col-1 col-sm-4">
-                                                <input asp-for="Oficina" class="form-control me-auto" type="text" placeholder="" aria-label="" required>
+                                                <input asp-for="Oficina" class="form-control me-auto" type="text"  required>
+                                                <span class="spanValidated" asp-validation-for="Oficina"></span>
                                             </div>
 
                                         </div>
@@ -661,25 +670,32 @@
                                             <th scope="row">Tesorería</th>
                                             <td><input asp-for="Nombre_contacto_tesoreria" class="form-control me-auto" type="text" placeholder="" aria-label="" required></td>
                                             <td><input asp-for="Cargo_contacto_tesoreria" class="form-control me-auto" type="text" placeholder="" aria-label="" required></td>
-                                            <td><input asp-for="Telefono_contacto_tesoreria" class="form-control me-auto" type="tel" placeholder="" aria-label="" required></td>
-                                            <td><input asp-for="Celular_contacto_tesoreria" class="form-control me-auto" type="tel" placeholder="" aria-label="" required></td>
-                                            <td><input asp-for="Correo_electronico_contacto_tesoreria" class="form-control me-auto" type="email" placeholder="" aria-label="" required></td>
+                                            <td><input asp-for="Telefono_contacto_tesoreria" class="form-control me-auto" type="number" min="0" required></td>
+                                            <td><input asp-for="Celular_contacto_tesoreria" class="form-control me-auto" type="number" min="0" required></td>
+                                            <td><input asp-for="Correo_electronico_contacto_tesoreria" class="form-control me-auto" type="email" placeholder="" aria-label="" required>
+                                                <span asp-validation-for="Correo_electronico_contacto_tesoreria" class="text-danger spanValidated"></span>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Contabilidad</th>
                                             <td><input asp-for="Nombre_contacto_contabilidad" class="form-control me-auto" type="text" placeholder="" aria-label="" required></td>
                                             <td><input asp-for="Cargo_contacto_contabilidad" class="form-control me-auto" type="text" placeholder="" aria-label="" required></td>
-                                            <td><input asp-for="Telefono_contacto_contabilidad" class="form-control me-auto" type="tel" placeholder="" aria-label="" required></td>
-                                            <td><input asp-for="Celular_contacto_contabilidad" class="form-control me-auto" type="tel" placeholder="" aria-label="" required></td>
-                                            <td><input asp-for="Correo_electronico_contacto_contabilidad" class="form-control me-auto" type="email" placeholder="" aria-label="" required></td>
+                                            <td><input asp-for="Telefono_contacto_contabilidad" class="form-control me-auto" type="number" min="0"  required></td>
+                                            <td><input asp-for="Celular_contacto_contabilidad" class="form-control me-auto" type="number" min="0"  required></td>
+                                            <td><input asp-for="Correo_electronico_contacto_contabilidad" class="form-control me-auto" type="email" placeholder="" aria-label="" required>
+                                                <span asp-validation-for="Correo_electronico_contacto_contabilidad" class="text-danger spanValidated"></span>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <th scope="row">Compras</th>
                                             <td><input asp-for="Nombre_contacto_compras" class="form-control me-auto" type="text" placeholder="" aria-label="" required></td>
                                             <td><input asp-for="Cargo_contacto_compras" class="form-control me-auto" type="text" placeholder="" aria-label="" required></td>
-                                            <td><input asp-for="Telefono_contacto_compras" class="form-control me-auto" type="tel" placeholder="" aria-label="" required></td>
-                                            <td><input asp-for="Celular_contacto_compras" class="form-control me-auto" type="tel" placeholder="" aria-label="" required></td>
-                                            <td><input asp-for="Correo_electronico_contacto_compras" class="form-control me-auto" type="email" placeholder="" aria-label="" required></td>
+                                            <td><input asp-for="Telefono_contacto_compras" class="form-control me-auto" type="number" min="0"  required></td>
+                                            <td><input asp-for="Celular_contacto_compras" class="form-control me-auto" type="number" min="0"  required></td>
+                                            <td><input asp-for="Correo_electronico_contacto_compras" class="form-control me-auto" type="email" placeholder="" aria-label="" required>
+                                                <span asp-validation-for="Correo_electronico_contacto_compras" class="text-danger spanValidated"></span>
+                                            </td>
+
                                         </tr>
                                     </tbody>
                                 </table>
@@ -718,7 +734,7 @@
 
                             </div>
 
-                            <div class="card-body mx-0 px-0 border-bottom">
+                            <div class="card-body mx-0 px-0 border-bottom" id="estadoFinanciero">
                                 <div class="col-sm-12">
                                     <div class="row">
                                         <div class="hstack gap-2 ">
@@ -726,7 +742,7 @@
                                                 <p style="font-size:13px;">Estados Financieros a 31 de Diciembre vigencia inmediatamente anterior (Estado de situación financiera y Estado de Resultados).</p>
                                             </div>
                                             <div class="col-sm-3">
-                                                <input asp-for="EstadoFinancieroFile" class="form-control me-auto" type="file" accept="image/jpeg,image/png,application/pdf,.doc,.docx" placeholder="" aria-label="">
+                                                <input asp-for="EstadoFinancieroFile" class="form-control me-auto" type="file" accept="image/jpeg,image/png,application/pdf,.doc,.docx" id="estados_file">
                                             </div>
                                         </div>
 
@@ -736,7 +752,7 @@
 
                             </div>
 
-                            <div class="card-body mx-0 px-0 border-bottom">
+                            <div class="card-body mx-0 px-0 border-bottom" id="certificadoExistencia">
                                 <div class="col-sm-12">
                                     <div class="row">
                                         <div class="hstack gap-2 ">
@@ -746,7 +762,7 @@
                                                 </p>
                                             </div>
                                             <div class="col-sm-3">
-                                                <input asp-for="ExistenciaFile" class="form-control me-auto" type="file" accept="image/jpeg,image/png,application/pdf,.doc,.docx" placeholder="" aria-label="">
+                                                <input asp-for="ExistenciaFile" class="form-control me-auto" type="file" accept="image/jpeg,image/png,application/pdf,.doc,.docx" id="existencias_file">
                                             </div>
                                         </div>
 
@@ -770,7 +786,7 @@
                                                     </p>
                                                 </div>
                                                 <div class="col-sm-3">
-                                                    <input asp-for="CertificadoIngresosFile" class="form-control me-auto" type="file" accept="image/jpeg,image/png,application/pdf,.doc,.docx" placeholder="" aria-label="">
+                                                    <input asp-for="CertificadoIngresosFile" class="form-control me-auto" type="file" accept="image/jpeg,image/png,application/pdf,.doc,.docx" id="certIngr_file">
                                                 </div>
                                             </div>
 
@@ -792,7 +808,7 @@
                                                     </p>*@
                                                 </div>
                                                 <div class="col-sm-3">
-                                                    <input asp-for="TarjetaProfesionalFile" class="form-control me-auto" type="file" accept="image/jpeg,image/png,application/pdf,.doc,.docx" placeholder="" aria-label="">
+                                                    <input asp-for="TarjetaProfesionalFile" class="form-control me-auto" type="file" accept="image/jpeg,image/png,application/pdf,.doc,.docx" id="tarjPro_file">
                                                 </div>
                                             </div>
 
@@ -814,7 +830,7 @@
                                                     </p>*@
                                                 </div>
                                                 <div class="col-sm-3">
-                                                    <input asp-for="CertificadoAntecedentesFile" class="form-control me-auto" type="file" accept="image/jpeg,image/png,application/pdf,.doc,.docx" placeholder="" aria-label="">
+                                                    <input asp-for="CertificadoAntecedentesFile" class="form-control me-auto" type="file" accept="image/jpeg,image/png,application/pdf,.doc,.docx" id="antec_file">
                                                 </div>
                                             </div>
 
@@ -976,6 +992,7 @@
                                                     </div>
                                                     <div class="col-10 col-sm-6">
                                                         <input asp-for="Nombre_apellido_firma" class="form-control me-auto" type="text" placeholder="" aria-label=""required>
+                                                        <span class="spanValidated" asp-validation-for="Nombre_apellido_firma"></span>
                                                     </div>
 
                                                 </div>
@@ -988,7 +1005,8 @@
                                                         <p style="font-size:13px;">N° Cédula</p>
                                                     </div>
                                                     <div class="col-10 col-sm-6">
-                                                        <input asp-for="Nro_cedula_firma" class="form-control me-auto" type="text" placeholder="" aria-label="" required> 
+                                                        <input asp-for="Nro_cedula_firma" class="form-control me-auto" type="number" min="0"  required> 
+                                                        <span class="spanValidated" asp-validation-for="Nro_cedula_firma"></span>
                                                     </div>
 
                                                 </div>
@@ -1001,7 +1019,7 @@
                                                         <p style="font-size:13px;">En representación legal de</p>
                                                     </div>
                                                     <div class="col-10 col-sm-6 ">
-                                                        <input asp-for="Representante_legal" class="form-control me-auto" type="text" placeholder="" aria-label="" id="representaLegal_firma" disabled>
+                                                        <input asp-for="Representa_legal_firma" class="form-control me-auto" type="text"  id="representaLegal_firma" disabled>
                                                     </div>
 
 
@@ -1018,12 +1036,15 @@
                                         <div class="card border-0">
                                             <div class="card-body border-0"></div>
                                         </div>
-                                        <div class="card border-0">
+                                      @*  <div class="card border-0">
                                             <div class="card-body border-0"></div>
-                                        </div>
+                                        </div>*@
                                         <div class="card">
-                                            <div class="card-body">
-                                                SignRequest
+                                            <div class="card-subtitle">
+                                                <label style="font-size:10px; font-weight:bold">Espacio para firma digital</label>
+                                            </div>
+                                            <div class="card-body p-4">
+                                                
                                             </div>
 
                                         </div>
@@ -1077,7 +1098,7 @@
                                                 <p style="font-size:13px;">Cupo Sugerido $</p>
                                             </div>
                                             <div class="col-2 col-sm-2">
-                                                <input asp-for="Cupo_sugerido" class="form-control me-auto" type="text" placeholder="" aria-label="">
+                                                <input asp-for="Cupo_sugerido" class="form-control me-auto" type="number" min="1">
                                             </div>
                                             <span class="p-sm-4"></span>
                                             <div class="col-1 vr"></div>
@@ -1085,7 +1106,7 @@
                                                 <p style="font-size:13px;">Plazo(Días)</p>
                                             </div>
                                             <div class=" col-sm-2">
-                                                <input asp-for="Plazo_aliar" class="form-control me-auto" type="text" placeholder="" aria-label="">
+                                                <input asp-for="Plazo_aliar" class="form-control me-auto" type="number" min="1">
                                             </div>
 
                                         </div>
@@ -1133,21 +1154,43 @@
                         </div>
                     </div>
 
+
+
                     <div class="card mb-3">
                         <div class="container-fluid">
-                            <div class="card-body">
-                                <input type="submit" value="guardar" class="btn btn-outline-success" />
-                               
-                            </div>
-                           @* <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-4">
 
-                                        <a  value="generar" class="btn-outline-info" asp-action="PdfNew" asp-controller="SumiCred" >Pdf</a>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="card-body">
+                                        <input id="generarPdf" type="submit" value="Generar " asp-action="PdfNew" asp-controller="SumiCred" class="btn btn-outline-primary" />
+
                                     </div>
+
                                 </div>
 
-                            </div>*@
+                            </div>
+
+                            <div id="filaGuarda_Solicitud" class="row invisible">
+                                <div class="col-sm-6">
+                                    <div class="card-body">
+                                        <input id="guardaSolicitud" type="submit" value="Enviar Solicitud" asp-action="Insert" asp-controller="SumiCred" class="btn btn-outline-success" disabled />
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="alert alert-success mt-2 d-none" id="alertSuccess"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
                         </div>
                     </div>
 
@@ -1173,20 +1216,12 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </div>
 
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
 

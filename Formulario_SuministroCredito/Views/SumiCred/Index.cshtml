@@ -6,34 +6,39 @@
 
 <h1>Index</h1>
 
-<p>
-    <a asp-action="Insert">Create New</a>
-
-</p>
 <div class="row">
+    <div class="col-md-4">
+        <p>
+            <a asp-action="Insert">Create New</a>
+        </p>
+    </div>
+</div>
+
+
+<@*div class="row">
     <div class="col-4">
         <a asp-action="PdfNew">Pdf</a>
     </div>
 
-</div>
+</div>*@
 
 
 <div class="container">
     <div class="table-responsive">
-     <table class="table table-bordered">
+     <table class="table table-bordered" style="overflow-y:auto">
       
 
         <thead>
             <tr>
                  <th>
-                @Html.DisplayNameFor(model => model.IdSuministro_Credito)
+                    @Html.DisplayNameFor(model => model.IdSuministro_Credito)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Fecha_registro)
                 </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Fecha_solicitud)
-                    </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fecha_solicitud)
+                </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Tipo_solicitud)
                 </th>
@@ -115,7 +120,7 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Telefono_ref_comerciales_dos)
                 </th>
-                <th>
+              @*  <th>
                     @Html.DisplayNameFor(model => model.Entidad_financiera)
                 </th>
                 <th>
@@ -126,8 +131,8 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Oficina)
-                </th>
-                <th>
+                </th>*@
+               @* <th>
                     @Html.DisplayNameFor(model => model.Nombre_contacto_tesoreria)
                 </th>
                 <th>
@@ -171,7 +176,7 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Correo_electronico_contacto_compras)
-                </th>
+                </th>*@
                 <th>
                     @Html.DisplayNameFor(model => model.Ruta_rut)
                 </th>
@@ -189,6 +194,9 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Ruta_cert_antecedentes)
+                </th>
+                <th><
+                    @Html.DisplayNameFor(model => model.Ruta_pdf_firma)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Nombre_apellido_firma)
@@ -219,7 +227,7 @@
             {
                 <tr>
                       <td>
-                            @Html.DisplayFor(modelItem => item.IdSuministro_Credito)
+                        @Html.DisplayFor(modelItem => item.IdSuministro_Credito)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Fecha_registro)
@@ -308,7 +316,7 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Telefono_ref_comerciales_dos)
                     </td>
-                    <td>
+                   @* <td>
                         @Html.DisplayFor(modelItem => item.Entidad_financiera)
                     </td>
                     <td>
@@ -319,8 +327,8 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Oficina)
-                    </td>
-                    <td>
+                    </td>*@
+                   @* <td>
                         @Html.DisplayFor(modelItem => item.Nombre_contacto_tesoreria)
                     </td>
                     <td>
@@ -365,7 +373,9 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Correo_electronico_contacto_compras)
                     </td>
-                    <td>
+
+                   *@ 
+                   <td>
                         @Html.DisplayFor(modelItem => item.Ruta_rut)
                     </td>
                     <td>
@@ -383,6 +393,9 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Ruta_cert_antecedentes)
                     </td>
+                         <td>
+                            @Html.DisplayFor(modelItem => item.Ruta_pdf_firma)
+                        </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Nombre_apellido_firma)
                     </td>
@@ -407,8 +420,9 @@
                     <td>
                         @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
                         @Html.ActionLink("GoPDF", "PdfNew", new {  id=item.IdSuministro_Credito  }) |
-                        @Html.ActionLink("Details", "GetDatail", new {id=item.IdSuministro_Credito }) |
-                        @Html.ActionLink("Enviar_drive", "EnviarDrive", new { /* id=item.PrimaryKey */ })
+                        @*@Html.ActionLink("Details", "GetDatail", new {id=item.IdSuministro_Credito }) |*@
+                        @*@Html.ActionLink("Ver_pdf", "PdfNew", new { idSuministro=item.IdSuministro_Credito }) |*@
+                        @*@Html.ActionLink("Enviar_drive", "EnviarDrive", new { /* id=item.PrimaryKey */ })*@
                     </td>
                 </tr>
             }
