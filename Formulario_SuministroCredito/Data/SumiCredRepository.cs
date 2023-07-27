@@ -169,14 +169,14 @@ namespace Formulario_SuministroCredito.Data
             suministroCredito.Ruta_cert_antecedentes = Url5;
 
 
-            var fileName = "probandoPdf.pdf";
-            string fullPath = @"c:\probando\" + fileName;
-            string path = Path.GetFullPath(fullPath);
+            //var fileName = "probandoPdf.pdf";
+            //string fullPath = @"c:\probando\" + fileName;
+            //string path = Path.GetFullPath(fullPath);
 
 
-            var datoUrl = _serviceFileUpload.SubirArchivoDrive(path);
+            var datoUrl = _serviceFileUpload.SubirArchivoDrive();
             suministroCredito.Ruta_pdf_firma=datoUrl.ToString();
-            //PdfNew(suministroCredito);
+          
 
 
 

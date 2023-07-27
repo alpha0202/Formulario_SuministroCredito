@@ -21,6 +21,7 @@ using ViewAsPdf = Rotativa.AspNetCore.ViewAsPdf;
 using Formulario_SuministroCredito.Service;
 using DocumentFormat.OpenXml.Spreadsheet;
 using DocumentFormat.OpenXml.Office2013.Excel;
+using Microsoft.AspNetCore.Hosting;
 
 namespace Formulario_SuministroCredito.Controllers
 {
@@ -30,35 +31,34 @@ namespace Formulario_SuministroCredito.Controllers
         private readonly IServiceFileUpload _serviceFileUpload;
         private readonly IValidator<SuministroCredito> _validator;
         private readonly HttpClient _httpClient;    
-       
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public SumiCredController(ISumiCredRepository sumiCredRepository, IValidator<SuministroCredito> validator, HttpClient httpClient, IServiceFileUpload serviceFileUpload)
+
+        public SumiCredController(
+                                     ISumiCredRepository sumiCredRepository, 
+                                     IValidator<SuministroCredito> validator, 
+                                     HttpClient httpClient, 
+                                     IServiceFileUpload serviceFileUpload, 
+                                     IWebHostEnvironment webHostEnvironment)
         {
             _sumiCredRepository = sumiCredRepository;
             _validator = validator;
             _httpClient = httpClient;
             _serviceFileUpload = serviceFileUpload;
-           
+            _webHostEnvironment = webHostEnvironment;
         }
 
-      
+
 
         public async Task<ActionResult> Index()
         {
 
             var suministros = await _sumiCredRepository.GetAll();
-            //var registros = suministros.Count();
-            //var contador = _sumiCredRepository.CountRowDb();
-            //PdfNew(registros);
-            //var fileName = "probandoPdf.pdf";
-            //string fullPath = @"c:\probando\" + fileName;
-            //string path = Path.GetFullPath(fullPath);
-            //var enviarToDrive = _serviceFileUpload.SubirArchivoDrive(fullPath);
-
+           
             return View(suministros);
         }
 
-
+        //GET:SumiCredController/detail
         public async Task<ActionResult> GetDatail(int id)
         {
             var detalle = await _sumiCredRepository.GetDatail(id);
@@ -185,24 +185,12 @@ namespace Formulario_SuministroCredito.Controllers
 
                     };
 
-                    //SuministrosValidator validadorSumi = new SuministrosValidator();
-
-                    ////var resValidate = await _validator.ValidateAsync(suministroCredito);
-                    //var resValidate = await validadorSumi.ValidateAsync(suministroCredito);
-
-                    //if (!resValidate.IsValid)
-                    //{
-                    //    resValidate.AddToModelState(this.ModelState);
-                    //    return View("Insert",suministroCredito);
-                    //}
-
+       
 
 
                     bool resultado = await _sumiCredRepository.Insert(suministroCredito);
 
-                    //if (resultado)
-                    // PdfNew(int.Parse(suministroCredito.NumeroContador));
-                    //return View();
+                 
                     ViewBag.Mensaje = "Guardado Correcto";
                     return RedirectToAction(nameof(Index));
 
@@ -220,6 +208,7 @@ namespace Formulario_SuministroCredito.Controllers
         }
 
 
+        //creación del documento para firmar.
         public IActionResult PdfNew(IFormCollection collectionPdf)
         {
             var contador = _sumiCredRepository.CountRowDb();
@@ -282,17 +271,17 @@ namespace Formulario_SuministroCredito.Controllers
 
             };
 
-            var fileName = "probandoPdf.pdf";
-            string fullPath = @"c:\probando\" + fileName;
-            string path = Path.GetFullPath(fullPath);
+            string fileName = "DocumentoFirma.pdf";
+            string path_docFirma = _serviceFileUpload.CrearDirectorio_Firmante();
+
 
             return new ViewAsPdf("PdfNew", suministroCreditoPdf)
 
             {
                 PageSize = Rotativa.AspNetCore.Options.Size.A4,
                 PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
-                FileName = "probandoPdf.pdf",
-                SaveOnServerPath = path
+                FileName = fileName,
+                SaveOnServerPath = path_docFirma
 
             };
 
@@ -302,112 +291,112 @@ namespace Formulario_SuministroCredito.Controllers
 
         public IActionResult EnviarDrive()
         {
-            var fileName = "probandoPdf.pdf";
-            string fullPath = @"c:\probando\" + fileName;
-            string path = Path.GetFullPath(fullPath);
-            var enviarToDrive = _serviceFileUpload.SubirArchivoDrive(fullPath);
+            
+            var enviarToDrive = _serviceFileUpload.SubirArchivoDrive();
 
             return RedirectToAction("Index");
         }
-        
-        
-        
-        //public IActionResult PdfNew(int id)
-        //{
-        //    var contador = _sumiCredRepository.CountRowDb();
-        //    var detalle = _sumiCredRepository.GetById(id);
-
-        //    var suministroCredito = new SuministroCredito()
-        //    {
-        //        NumeroContador = contador,
-        //        IdSuministro_Credito = detalle.IdSuministro_Credito,
-        //        Fecha_registro = detalle.Fecha_registro,
-        //        Tipo_solicitud = detalle.Tipo_solicitud,
-        //        Monto = detalle.Monto,
-        //        Plazo = detalle.Plazo,
-        //        Apellidos_nombres_razon_social = detalle.Apellidos_nombres_razon_social,
-        //        Tipo_persona = detalle.Tipo_persona,
-        //        Tipo_identificacion = detalle.Tipo_identificacion,
-        //        Numero_identificacion = detalle.Numero_identificacion,
-        //        DV = detalle.DV,
-        //        Representante_legal = detalle.Representante_legal,
-        //        Cargo = detalle.Cargo,
-        //        Correo_electronico = detalle.Correo_electronico,
-        //        Direccion_correspondencia = detalle.Direccion_correspondencia,
-        //        Ciudad = detalle.Ciudad,
-        //        Departamento = detalle.Departamento,
-        //        Telefono = detalle.Telefono,
-        //        Celular = detalle.Celular,
-        //        Correo_electronico_facturacion = detalle.Correo_electronico_facturacion,
-        //        Entidad_razon_social_ref_comerciales = detalle.Entidad_razon_social_ref_comerciales,
-        //        Direccion_ref_comerciales = detalle.Direccion_ref_comerciales,
-        //        Nom_contacto_ref_comerciales = detalle.Nom_contacto_ref_comerciales,
-        //        Cargo_ref_comerciales = detalle.Cargo_ref_comerciales,
-        //        Telefono_ref_comerciales = detalle.Telefono_ref_comerciales,
-        //        Entidad_razon_social_ref_comerciales_dos = detalle.Entidad_razon_social_ref_comerciales_dos,
-        //        Direccion_ref_comerciales_dos = detalle.Direccion_ref_comerciales_dos,
-        //        Nom_contacto_ref_comerciales_dos = detalle.Nom_contacto_ref_comerciales_dos,
-        //        Cargo_ref_comerciales_dos = detalle.Cargo_ref_comerciales_dos,
-        //        Telefono_ref_comerciales_dos = detalle.Telefono_ref_comerciales_dos,
-        //        Entidad_financiera = detalle.Entidad_financiera,
-        //        Tipo_cuenta = detalle.Tipo_cuenta,
-        //        Numero_cuenta = detalle.Numero_cuenta,
-        //        Oficina = detalle.Oficina,
-        //        Nombre_contacto_tesoreria = detalle.Nombre_contacto_tesoreria,
-        //        Cargo_contacto_tesoreria = detalle.Cargo_contacto_tesoreria,
-        //        Telefono_contacto_tesoreria = detalle.Telefono_contacto_tesoreria,
-        //        Celular_contacto_tesoreria = detalle.Celular_contacto_tesoreria,
-        //        Correo_electronico_contacto_tesoreria = detalle.Correo_electronico_contacto_tesoreria,
-        //        Nombre_contacto_contabilidad = detalle.Nombre_contacto_contabilidad,
-        //        Cargo_contacto_contabilidad = detalle.Cargo_contacto_contabilidad,
-        //        Telefono_contacto_contabilidad = detalle.Telefono_contacto_contabilidad,
-        //        Celular_contacto_contabilidad = detalle.Celular_contacto_contabilidad,
-        //        Correo_electronico_contacto_contabilidad = detalle.Correo_electronico_contacto_contabilidad,
-        //        Nombre_contacto_compras = detalle.Nombre_contacto_compras,
-        //        Cargo_contacto_compras = detalle.Cargo_contacto_compras,
-        //        Telefono_contacto_compras = detalle.Telefono_contacto_compras,
-        //        Celular_contacto_compras = detalle.Celular_contacto_compras,
-        //        Correo_electronico_contacto_compras = detalle.Correo_electronico_contacto_compras,
-        //        Nombre_apellido_firma = detalle.Nombre_apellido_firma,
-        //        Nro_cedula_firma = detalle.Nro_cedula_firma,
-        //        Representa_legal_firma = detalle.Representa_legal_firma,
-        //        Fecha_solicitud = detalle.Fecha_solicitud
-
-        //    };
 
 
-        //    var fileName = "probandoPdf.pdf";
-        //    string fullPath = @"c:\probando\" + fileName;
-        //    string path = Path.GetFullPath(fullPath);
 
-        //    return new ViewAsPdf("PdfNew", suministroCredito)
+        public IActionResult pdf_firma_solicita(int id)
+        {
+            var contador = _sumiCredRepository.CountRowDb();
+            var detalle = _sumiCredRepository.GetById(id);
 
-        //    {
-        //        PageSize = Rotativa.AspNetCore.Options.Size.A4,
-        //        PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
-        //        FileName = "probandoPdf.pdf",
-        //        SaveOnServerPath = path
+            var suministroCredito = new SuministroCredito()
+            {
+                NumeroContador = contador,
+                IdSuministro_Credito = detalle.IdSuministro_Credito,
+                Fecha_registro = detalle.Fecha_registro,
+                Tipo_solicitud = detalle.Tipo_solicitud,
+                Monto = detalle.Monto,
+                Plazo = detalle.Plazo,
+                Apellidos_nombres_razon_social = detalle.Apellidos_nombres_razon_social,
+                Tipo_persona = detalle.Tipo_persona,
+                Tipo_identificacion = detalle.Tipo_identificacion,
+                Numero_identificacion = detalle.Numero_identificacion,
+                DV = detalle.DV,
+                Representante_legal = detalle.Representante_legal,
+                Cargo = detalle.Cargo,
+                Correo_electronico = detalle.Correo_electronico,
+                Direccion_correspondencia = detalle.Direccion_correspondencia,
+                Ciudad = detalle.Ciudad,
+                Departamento = detalle.Departamento,
+                Telefono = detalle.Telefono,
+                Celular = detalle.Celular,
+                Correo_electronico_facturacion = detalle.Correo_electronico_facturacion,
+                Entidad_razon_social_ref_comerciales = detalle.Entidad_razon_social_ref_comerciales,
+                Direccion_ref_comerciales = detalle.Direccion_ref_comerciales,
+                Nom_contacto_ref_comerciales = detalle.Nom_contacto_ref_comerciales,
+                Cargo_ref_comerciales = detalle.Cargo_ref_comerciales,
+                Telefono_ref_comerciales = detalle.Telefono_ref_comerciales,
+                Entidad_razon_social_ref_comerciales_dos = detalle.Entidad_razon_social_ref_comerciales_dos,
+                Direccion_ref_comerciales_dos = detalle.Direccion_ref_comerciales_dos,
+                Nom_contacto_ref_comerciales_dos = detalle.Nom_contacto_ref_comerciales_dos,
+                Cargo_ref_comerciales_dos = detalle.Cargo_ref_comerciales_dos,
+                Telefono_ref_comerciales_dos = detalle.Telefono_ref_comerciales_dos,
+                Entidad_financiera = detalle.Entidad_financiera,
+                Tipo_cuenta = detalle.Tipo_cuenta,
+                Numero_cuenta = detalle.Numero_cuenta,
+                Oficina = detalle.Oficina,
+                Nombre_contacto_tesoreria = detalle.Nombre_contacto_tesoreria,
+                Cargo_contacto_tesoreria = detalle.Cargo_contacto_tesoreria,
+                Telefono_contacto_tesoreria = detalle.Telefono_contacto_tesoreria,
+                Celular_contacto_tesoreria = detalle.Celular_contacto_tesoreria,
+                Correo_electronico_contacto_tesoreria = detalle.Correo_electronico_contacto_tesoreria,
+                Nombre_contacto_contabilidad = detalle.Nombre_contacto_contabilidad,
+                Cargo_contacto_contabilidad = detalle.Cargo_contacto_contabilidad,
+                Telefono_contacto_contabilidad = detalle.Telefono_contacto_contabilidad,
+                Celular_contacto_contabilidad = detalle.Celular_contacto_contabilidad,
+                Correo_electronico_contacto_contabilidad = detalle.Correo_electronico_contacto_contabilidad,
+                Nombre_contacto_compras = detalle.Nombre_contacto_compras,
+                Cargo_contacto_compras = detalle.Cargo_contacto_compras,
+                Telefono_contacto_compras = detalle.Telefono_contacto_compras,
+                Celular_contacto_compras = detalle.Celular_contacto_compras,
+                Correo_electronico_contacto_compras = detalle.Correo_electronico_contacto_compras,
+                Nombre_apellido_firma = detalle.Nombre_apellido_firma,
+                Nro_cedula_firma = detalle.Nro_cedula_firma,
+                Representa_legal_firma = detalle.Representa_legal_firma,
+                Fecha_solicitud = detalle.Fecha_solicitud
 
-        //    };
+            };
 
-        //    //.BuildFile(this.ControllerContext);
-        //    //bool enviarDrive = _serviceFileUpload.SubirArchivoDrive(path);
 
-        //    //var myPDF = new ViewAsPdf("PdfNew", suministroCredito)
-        //    //{
-        //    //    FileName = fileName,
-        //    //    PageSize = Rotativa.AspNetCore.Options.Size.A4,
-        //    //    PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
-        //    //    SaveOnServerPath = path
-        //    //};
-        //    //var enviarToDrive = _serviceFileUpload.SubirArchivoDrive(fullPath);
-        //    //return View("PdfNew", suministroCredito);
-        //}
+            string fileName = "DocumentoFirma.pdf";                   
+            string path_docFirma = _serviceFileUpload.CrearDirectorio_Firmante();
+
+
+
+
+            return new ViewAsPdf("pdf_firma_solicita", suministroCredito)
+
+            {
+                PageSize = Rotativa.AspNetCore.Options.Size.A4,
+                PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
+                FileName = fileName,
+                SaveOnServerPath = path_docFirma
+
+            };
+
+            //.BuildFile(this.ControllerContext);
+            //bool enviarDrive = _serviceFileUpload.SubirArchivoDrive(path);
+
+            //var myPDF = new ViewAsPdf("PdfNew", suministroCredito)
+            //{
+            //    FileName = fileName,
+            //    PageSize = Rotativa.AspNetCore.Options.Size.A4,
+            //    PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
+            //    SaveOnServerPath = path
+            //};
+            //var enviarToDrive = _serviceFileUpload.SubirArchivoDrive(fullPath);
+            //return View("PdfNew", suministroCredito);
+        }
 
         //public IActionResult PdfNew(int idSuministro)
         //{
         //    var detalle = _sumiCredRepository.GetById(idSuministro);
-        //    return PartialView("pdfNew",detalle);
+        //    return PartialView("pdfNew", detalle);
         //}
 
 

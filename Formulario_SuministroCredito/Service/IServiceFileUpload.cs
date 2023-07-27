@@ -5,6 +5,8 @@
       
         public bool AdjuntarArchivos(IFormFile FilePdf);
 
-        public string SubirArchivoDrive(string pathPdf);
+        public string SubirArchivoDrive();
+
+        public string CrearDirectorio_Firmante();
     }
 }
