@@ -9,6 +9,7 @@ using Google.Apis.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewEngines;
+using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
 using Rotativa.AspNetCore;
 using System.Data;
@@ -24,13 +25,15 @@ namespace Formulario_SuministroCredito.Data
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly HttpClient _httpClient;
         private readonly IServiceFileUpload _serviceFileUpload;
+        //private readonly MySqlConnection  _mySqlConnection;
 
-        public SumiCredRepository(IDbConnection dbConnection, IWebHostEnvironment webHostEnvironment, HttpClient httpClient, IServiceFileUpload serviceFileUpload)
+        public SumiCredRepository(IDbConnection dbConnection, IWebHostEnvironment webHostEnvironment, HttpClient httpClient, IServiceFileUpload serviceFileUpload /*MySqlConnection mySqlConnection*/)
         {
             _dbconnection = dbConnection;
             _webHostEnvironment = webHostEnvironment;
             _httpClient = httpClient;
             _serviceFileUpload = serviceFileUpload;
+            //_mySqlConnection = mySqlConnection;
         }
 
 

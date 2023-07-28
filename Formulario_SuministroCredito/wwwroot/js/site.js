@@ -122,6 +122,7 @@ function autoCompleteNew(e) {
             }
             else {
                 botonGenerar.classList.add("disabled")
+                botonGenerar.classList.add("invisible")
                 rowGuardar_solicitud.classList.remove("invisible")
             }
             form.classList.add('was-validated')

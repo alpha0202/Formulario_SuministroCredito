@@ -29,6 +29,7 @@ namespace Formulario_SuministroCredito.Service
         private const string MimeTypeFolder = "application/vnd.google-apps.folder";
         private const string carpetaPrincipal = "1pnWeHpy0Mm8LySCI5npA5PlE_pkdGzHx";
         private string url0 = "";
+        private string id_docDrive ="";
 
         public string Url0 { get { return url0; } }
 
@@ -216,7 +217,13 @@ namespace Formulario_SuministroCredito.Service
                 if(request.ResponseBody.WebViewLink != null)
                 {
                     url0 = request.ResponseBody.WebViewLink;
-                    res = url0;
+                    id_docDrive = request.ResponseBody.Id;
+                    
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append("https://drive.google.com/uc?export=download&id=").ToString();
+                    sb.Append(id_docDrive).ToString();
+                    res = sb.ToString();
+                    //res = url0;
                     File.Delete(pathPdf_firma);
                 }
                 

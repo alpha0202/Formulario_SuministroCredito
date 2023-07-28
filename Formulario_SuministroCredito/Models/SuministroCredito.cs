@@ -53,7 +53,7 @@ namespace Formulario_SuministroCredito.Models
         [Required(ErrorMessage = "Debe ingresar un correo electrónico")]
         [DataType(DataType.EmailAddress)]
         [EmailAddress(ErrorMessage = "Dirección de correo incorrecto")]
-        [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", ErrorMessage = "Formato de correo incorrecto.")]
+        [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", ErrorMessage = "Formato incorrecto.")]
         public string Correo_electronico_facturacion { get; set; }
 
         public string Entidad_razon_social_ref_comerciales { get; set; }
@@ -82,7 +82,7 @@ namespace Formulario_SuministroCredito.Models
         [Required(ErrorMessage = "Debe ingresar un correo electrónico.")]
         [DataType(DataType.EmailAddress)]
         [EmailAddress(ErrorMessage = "Dirección de correo incorrecto.")]
-        [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", ErrorMessage = "Formato de correo incorrecto.")]
+        [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", ErrorMessage = "Formato incorrecto.")]
         public string Correo_electronico_contacto_tesoreria { get; set; }
         public string Nombre_contacto_contabilidad { get; set; }
         public string Cargo_contacto_contabilidad { get; set; }
@@ -92,7 +92,7 @@ namespace Formulario_SuministroCredito.Models
         [Required(ErrorMessage = "Debe ingresar un correo electrónico.")]
         [DataType(DataType.EmailAddress)]
         [EmailAddress(ErrorMessage = "Dirección de correo incorrecto.")]
-        [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", ErrorMessage = "Formato de correo incorrecto.")]
+        [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", ErrorMessage = "Formato incorrecto.")]
         public string Correo_electronico_contacto_contabilidad { get; set; }
         public string Nombre_contacto_compras { get; set; }
         public string Cargo_contacto_compras { get; set; }

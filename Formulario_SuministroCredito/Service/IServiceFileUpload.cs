@@ -8,5 +8,7 @@
         public string SubirArchivoDrive();
 
         public string CrearDirectorio_Firmante();
+
+        //public Tuple<string, string> Resultado();
     }
 }

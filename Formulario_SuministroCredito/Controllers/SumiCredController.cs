@@ -40,6 +40,7 @@ namespace Formulario_SuministroCredito.Controllers
                                      HttpClient httpClient, 
                                      IServiceFileUpload serviceFileUpload, 
                                      IWebHostEnvironment webHostEnvironment)
+
         {
             _sumiCredRepository = sumiCredRepository;
             _validator = validator;
@@ -192,7 +193,8 @@ namespace Formulario_SuministroCredito.Controllers
 
                  
                     ViewBag.Mensaje = "Guardado Correcto";
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(Insert));
+                    //return Redirect("https://www.aliar.com.co/");
 
 
 
@@ -200,10 +202,12 @@ namespace Formulario_SuministroCredito.Controllers
                 catch
                 {
                     return View();
+
                 }
 
             }
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Insert));
+            //return Redirect("https://www.aliar.com.co/");
 
         }
 
@@ -274,7 +278,7 @@ namespace Formulario_SuministroCredito.Controllers
             string fileName = "DocumentoFirma.pdf";
             string path_docFirma = _serviceFileUpload.CrearDirectorio_Firmante();
 
-
+            ViewBag.Mensaje = "Guardado Correcto";
             return new ViewAsPdf("PdfNew", suministroCreditoPdf)
 
             {
