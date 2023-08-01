@@ -110,6 +110,8 @@ function autoCompleteNew(e) {
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
     const forms = document.querySelectorAll('.validarForm')
     const rowGuardar_solicitud = document.querySelector("#filaGuarda_Solicitud");
+    const btnGuardaSolicitud = document.querySelector("#guardaSolicitud");
+
 
     // Loop over them and prevent submission
     Array.from(forms).forEach(form => {
@@ -118,12 +120,18 @@ function autoCompleteNew(e) {
                 event.preventDefault()
                 event.stopPropagation()
                 botonGenerar.classList.remove("disabled")
-
+                //appendAlert('Formulario Incompleto.', 'warning')
+                CerrandoAlerta('Formulario Incompleto.','1')
+               
+               
             }
             else {
                 botonGenerar.classList.add("disabled")
                 botonGenerar.classList.add("invisible")
                 rowGuardar_solicitud.classList.remove("invisible")
+                //appendAlert('Registro de solicitud exitoso!', 'success')
+                CerrandoAlerta('Registro de solicitud exitoso!', '2')
+                btnGuardaSolicitud.classList.add("disabled")
             }
             form.classList.add('was-validated')
         }, false)
@@ -133,118 +141,40 @@ function autoCompleteNew(e) {
 
 
 
+//alertas
 
+const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+const appendAlert = (message, type) => {
+ 
+    const wrapper = document.createElement('div')
+   
+    wrapper.innerHTML = [
+        `<div class="alert alert-${type}  alert-dismissible" role="alert">`,      
+        `   <div><strong>${message}</strong></div>`,     
+        '</div>'
+    ].join('')
+    alertPlaceholder.appendChild(wrapper) 
+}
 
+function CerrandoAlerta(message,tipoAlert) {
 
+    let alerta = "";
+    if (tipoAlert == '1')
+        alerta = "alert-warning"
+    else
+        alerta = "alert-success"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//const alertaEmail = document.querySelectorAll('.alertEmail')
-//const form = document.getElementById("formSuministros");
-//const email = document.getElementById("email_reprLegal");
-//const emailFact = document.getElementById("email_facturaElc");
-//const alertSuccess = document.getElementById("alertSuccess");
-//const alertEmail = document.getElementById("alertEmail");
-//const alertEmail2 = document.getElementById("alertEmail2");
-//const regUserEmail = /^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$/;
-
-//const pintarMensajeExito = () => {
-//    alertSuccess.classList.remove("d-none");
-//    alertSuccess.textContent = "Solicitud enviado con éxito";
-//};
-
-//const pintarMensajeError = (errores) => {
-//    errores.forEach((item) => {
-//        item.tipo.classList.remove("d-none");
-//        item.tipo.textContent = item.msg;
-//    });
-//};
-
-
-
-//form.addEventListener('submit', e => {
-//    e.preventDefault();
-
-
-//    alertSuccess.classList.add("d-none");
-//    const errores = [];
-
-
-//    // validar email
-//    if (!regUserEmail.test(email.value) || !regUserEmail.test(emailFact.value) || !email.value.trim() || !emailFact.value.trim())  {
-//        email.classList.add("is-invalid");
-//        emailFact.classList.add("is-invalid");
-
-//        errores.push({
-//            tipo: alertEmail,
-//            msg: "Escriba un correo válido",
-//        });
-//    } else {
-//        email.classList.remove("is-invalid");
-//        email.classList.add("is-valid");
-//        emailFact.classList.remove("is-invalid");
-//        emailFact.classList.add("is-valid");
-//        alertEmail.classList.add("d-none");
-//        alertEmail2.classList.add("d-none");
-//    }
-
-//    if (errores.length !== 0) {
-//        pintarMensajeError(errores);
-//        return;
-//    }
-
-//    console.log("Formulario enviado con éxito");
-//    pintarMensajeExito();
-
-
-//});
-
-
-
-
-
-
-//form.addEventListener('submit', e => {
-//    e.preventDefault();
-
-//    checkInputs();
-//});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    const mensaje = message;
+    const x = document.getElementById("ok");
+    x.style.display = "block";
+    x.innerHTML = mensaje;
+    x.classList.add(alerta);
+    x.classList.add("show");
+   
+    setTimeout(function () {
+        $("#ok").fadeOut(2000);
+    }, 2000);
+}
 
 
 

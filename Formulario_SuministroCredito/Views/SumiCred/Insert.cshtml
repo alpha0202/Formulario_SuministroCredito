@@ -1157,34 +1157,50 @@
                         <div class="container-fluid">
 
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <div class="card-body">
                                         <input id="generarPdf" type="submit" value="Generar " asp-action="PdfNew" asp-controller="SumiCred" class="btn btn-outline-primary" />
 
                                     </div>
 
                                 </div>
+                                <div class="col-sm-4">
+                                    <div class="card-body px-0">
+                                        <div id="ok" class="alert " style="display:none" role="alert">
+                                            <i class="fa fa-check-circle" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                               
 
                             </div>
 
                             <div id="filaGuarda_Solicitud" class="row invisible">
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <div class="card-body">
                                         <input id="guardaSolicitud" type="submit" value="Enviar Solicitud" asp-action="Insert" asp-controller="SumiCred" class="btn btn-outline-success" disabled />
 
                                     </div>
 
                                 </div>
-
+                                <div class="col-sm-4">
+                                    <div class="card-body px-0">
+                                        <div id="ok" class="alert " style="display:none" role="alert">
+                                            <i class="fa fa-check-circle" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <div class="alert alert-success mt-2 d-none" id="alertSuccess"></div>
+                                           @* <div class="alert alert-success mt-2 d-none" id="alertSuccess">
+                                            <h3 style="color:dodgerblue">@ViewBag.Mensaje</h3>
+                                            </div>
+                                            <div id="liveAlertPlaceholder"></div>*@
                                         </div>
-                                        <h3 style="color:dodgerblue">@ViewBag.Mensaje</h3>
-
+                                       
                                     </div>
 
                                 </div>

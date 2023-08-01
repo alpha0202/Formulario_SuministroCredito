@@ -193,6 +193,7 @@ namespace Formulario_SuministroCredito.Controllers
 
                  
                     ViewBag.Mensaje = "Guardado Correcto";
+                    TempData["MensajeAccion"] = "Solicitud creada correctamente!";
                     return RedirectToAction(nameof(Insert));
                     //return Redirect("https://www.aliar.com.co/");
 
@@ -278,7 +279,8 @@ namespace Formulario_SuministroCredito.Controllers
             string fileName = "DocumentoFirma.pdf";
             string path_docFirma = _serviceFileUpload.CrearDirectorio_Firmante();
 
-            ViewBag.Mensaje = "Guardado Correcto";
+            //ViewBag.Mensaje = "Guardado Correcto";
+            TempData["MensajeAccion"] = "Documento PDF generado correctamente..!";
             return new ViewAsPdf("PdfNew", suministroCreditoPdf)
 
             {
@@ -298,6 +300,7 @@ namespace Formulario_SuministroCredito.Controllers
             
             var enviarToDrive = _serviceFileUpload.SubirArchivoDrive();
 
+            TempData["MensajeAccion"] = "Documento enviado OK...!";
             return RedirectToAction("Index");
         }
 
@@ -371,7 +374,7 @@ namespace Formulario_SuministroCredito.Controllers
             string path_docFirma = _serviceFileUpload.CrearDirectorio_Firmante();
 
 
-
+            TempData["MensajeAccion"] = "Documento PDF creado correctamente...!";
 
             return new ViewAsPdf("pdf_firma_solicita", suministroCredito)
 
@@ -381,7 +384,8 @@ namespace Formulario_SuministroCredito.Controllers
                 FileName = fileName,
                 SaveOnServerPath = path_docFirma
 
-            };
+            }; 
+            
 
             //.BuildFile(this.ControllerContext);
             //bool enviarDrive = _serviceFileUpload.SubirArchivoDrive(path);
