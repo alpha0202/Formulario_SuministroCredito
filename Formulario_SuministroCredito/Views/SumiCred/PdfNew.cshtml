@@ -33,17 +33,20 @@
             color:white;
             font-size: 13px;
             font-weight:bold;
+            
         }
 
-      /*  .table {
+        table {
             width: 100%;
+            border:1px solid;
         }
-*/
-        td, th {
+
+        td {
             /*border: 1px solid #dddddd;
             text-align: left;*/
-            padding: 0px;
-            font-size:12px
+           
+            font-size:12px; 
+            border:0.5px dashed;
         }
 
         .titulos_encabezados {
@@ -53,7 +56,11 @@
         
         .td_titulos {
             font-weight:bold;
+            padding-left: 6px;
         }
+
+
+        
 
         .table_encabezados {
             
@@ -109,7 +116,7 @@
 
 
     
-        <table xmlns="http://www.w3.org/1999/xhtml" cellspacing="0" cellpadding="0" dir="ltr">
+        <table  xmlns="http://www.w3.org/1999/xhtml" cellspacing="0" cellpadding="0" dir="ltr">
             <colgroup><col width="198" /><col width="53" /><col width="57" /><col width="64" /><col width="64" /><col width="58" /><col width="64" /><col width="50" /><col width="66" /><col width="61" /><col width="57" /><col width="58" /><col width="110" /><col width="82" /><col width="75" /><col width="79" /></colgroup>
             <tbody>
                 <tr>
@@ -129,7 +136,7 @@
             </tbody>
         </table>
         <br />
-        <table xmlns="http://www.w3.org/1999/xhtml" cellspacing="0" cellpadding="0" dir="ltr">
+        <table style="border:1px solid black;border-collapse:collapse;" xmlns="http://www.w3.org/1999/xhtml" cellspacing="1" cellpadding="1" dir="ltr">
             <colgroup><col width="198" /><col width="53" /><col width="57" /><col width="64" /><col width="64" /><col width="58" /><col width="64" /><col width="50" /><col width="66" /><col width="61" /><col width="57" /><col width="58" /><col width="110" /><col width="82" /><col width="75" /><col width="79" /></colgroup>
             <tbody>
                 <tr>
@@ -139,17 +146,17 @@
                     <td rowspan="1" class="td_titulos" colspan="6">Apellidos y Nombres o Raz&oacute;n Social</td>
                     <td rowspan="1" colspan="10" style="padding-left:8px">@Model.Apellidos_nombres_razon_social</td>
                 </tr>
-                <tr>
+                <tr style="border:1px dashed">
                     <td class="td_titulos">Tipo de Persona</td>
-                    <td rowspan="1" colspan="3" style="padding-left:8px">@Model.Tipo_persona</td>
+                    <td rowspan="1" colspan="3" style="padding-left:8px;">@Model.Tipo_persona</td>
                     <td rowspan="1" colspan="3" class="td_titulos">Tipo de Identificaci&oacute;n</td>
-                    <td rowspan="1" colspan="3" style="padding-left:8px">@Model.Tipo_identificacion</td>
+                    <td rowspan="1" colspan="3" style="padding-left:8px;border:1px">@Model.Tipo_identificacion</td>
                     <td rowspan="1" colspan="2" class="td_titulos">N&uacute;mero</td>
-                    <td rowspan="1" colspan="2" style="padding-left:8px">@Model.Numero_identificacion</td>
+                    <td rowspan="1" colspan="2" style="padding-left:8px;border:1px">@Model.Numero_identificacion</td>
                     <td class="td_titulos">DV</td>
                     <td style="padding-left:8px">@Model.DV</td>
                 </tr>
-                <tr>
+                <tr style="border:1px dashed">
                     <td class="td_titulos">Representante Legal</td>
                     <td rowspan="1" colspan="6" style="padding-left:8px">@Model.Representante_legal</td>
                     <td rowspan="1" colspan="2" class="td_titulos">Cargo</td>
@@ -157,13 +164,13 @@
                     <td class="td_titulos">Correo Electr&oacute;nico</td>
                     <td rowspan="1" colspan="3" style="padding-left:8px">@Model.Correo_electronico</td>
                 </tr>
-                <tr>
+                <tr style="border:1px dashed">
                     <td class="td_titulos" colspan="6">Direcci&oacute;n de Correspondencia</td>
                     <td rowspan="1" colspan="10" style="padding-left:8px">@Model.Direccion_correspondencia</td>
 
                 
                 </tr>
-                <tr>
+                <tr style="border:1px dashed">
                     <td class="td_titulos">Departamento</td>
                     <td rowspan="1" colspan="6" style="padding-left:8px">@Model.Departamento</td>
                     <td class="td_titulos">Ciudad</td>
@@ -172,7 +179,7 @@
                     <td rowspan="1" colspan="3" style="padding-left:8px">@Model.Telefono</td>
                 </tr>
 
-                <tr>
+                <tr style="border:1px dashed">
                     <td class="td_titulos">Celular</td>
                     <td rowspan="1" colspan="4" style="padding-left:8px">@Model.Celular</td>
                     <td class="td_titulos" rowspan="1" colspan="6" >Correo para Facturaci&oacute;n Electr&oacute;nica</td>
@@ -181,7 +188,7 @@
             </tbody>
         </table>
         <br />
-        <table xmlns="http://www.w3.org/1999/xhtml" cellspacing="0" cellpadding="0" dir="ltr">
+        <table cellspacing="0" cellpadding="0" dir="ltr">
             <colgroup><col width="198" /><col width="53" /><col width="57" /><col width="64" /><col width="64" /><col width="58" /><col width="64" /><col width="50" /><col width="66" /><col width="61" /><col width="57" /><col width="58" /><col width="110" /><col width="82" /><col width="75" /><col width="79" /></colgroup>
             <tbody>
                 <tr>
@@ -232,15 +239,15 @@
                     <td rowspan="1" colspan="3">@Model.Tipo_cuenta</td>
                     <td class="td_titulos" rowspan="1" >N&uacute;mero de Cuenta</td>
                     <td rowspan="1" colspan="2">@Model.Numero_cuenta</td>
-                    <td class="td_titulos">Oficina</td>
-                    <td rowspan="1" colspan="2">@Model.Oficina</td>
+                    <td colspan="2" class="td_titulos">Oficina</td>
+                    <td rowspan="1" colspan="3">@Model.Oficina</td>
                 </tr>
             </tbody>
         </table>
         
         <br />
         <table xmlns="http://www.w3.org/1999/xhtml" cellspacing="0" cellpadding="0" dir="ltr">
-            <colgroup><col width="198" /><col width="53" /><col width="57" /><col width="64" /><col width="64" /><col width="58" /><col width="64" /><col width="50" /><col width="66" /><col width="61" /><col width="57" /><col width="58" /><col width="110" /><col width="82" /><col width="75" /><col width="79" /></colgroup>
+            @* <colgroup><col width="198" /><col width="53" /><col width="57" /><col width="64" /><col width="64" /><col width="58" /><col width="64" /><col width="50" /><col width="66" /><col width="61" /><col width="57" /><col width="58" /><col width="110" /><col width="82" /><col width="75" /><col width="79" /></colgroup> *@
             <tbody>
                 <tr>
                     <td rowspan="1" colspan="16" class="Encabezados">5. CONTACTOS</td>
@@ -281,39 +288,38 @@
         </table>
 
         <br />
-        <table xmlns="http://www.w3.org/1999/xhtml" cellspacing="0" cellpadding="0" dir="ltr">
-            <colgroup><col width="198" /><col width="53" /><col width="57" /><col width="64" /><col width="64" /><col width="58" /><col width="64" /><col width="50" /><col width="66" /><col width="61" /><col width="57" /><col width="58" /><col width="110" /><col width="82" /><col width="75" /><col width="79" /></colgroup>
+        <table xmlns="http://www.w3.org/1999/xhtml" cellspacing="2" cellpadding="2" dir="ltr">
+            @* <colgroup><col width="198" /><col width="53" /><col width="57" /><col width="64" /><col width="64" /><col width="58" /><col width="64" /><col width="50" /><col width="66" /><col width="61" /><col width="57" /><col width="58" /><col width="110" /><col width="82" /><col width="75" /><col width="79" /></colgroup> *@
             <tbody>
                 <tr>
                     <td rowspan="1" colspan="16" class="Encabezados">6. DOCUMENTOS REQUERIDOS</td>
                 </tr>
                 <tr>
                     <td colspan="15"></td>
+                    <td colspan="1" class="td_titulos">Anexos</td>
                     
-                    <td class="td_titulos">Anexos</td>
-                    <td></td>
-                </tr>
+                </tr>  
                 <tr>
-                    <td rowspan="1" colspan="15" >* RUT Actualizado.</td>
+                    <td rowspan="1" colspan="15">* RUT Actualizado.</td>
                     
                     <td style="padding-left:6px"><input type="checkbox" checked /></td>
-                    <td></td>
+                    
                 </tr>
                 <tr>
                     <td rowspan="1" colspan="15" >* Estados Financieros a 31 de Diciembre vigencia inmediatamente anterior (Estado de situaci&oacute;n financiera y Estado de Resultados).</td>
                     <td style ="padding-left:6px"><input type="checkbox" checked /></td>
-                    <td></td>
+                    
                    
                 </tr>
                 <tr>
                     <td rowspan="1" colspan="15" >* Certificado de Existencia y Representaci&oacute;n Legal inferior a 30 d&iacute;as.</td>
                    
                     <td style="padding-left:6px"><input type="checkbox" checked /></td>
-                    <td></td>
+                    
                 </tr>
                 <tr>
-                    <td rowspan="1" colspan="15" >* Para no obligados a llevar contabilidad, anexar certificaci&oacute;n de ingresos firmada por Contador P&uacute;blico, adjuntar fotocopia de la tarjeta profesional y certificado de antecedentes expedido por la Junta Cental de Contadores.</td>
-                    <td></td>
+                    <td rowspan="1" colspan="16" >* Para no obligados a llevar contabilidad, anexar certificaci&oacute;n de ingresos firmada por Contador P&uacute;blico, adjuntar fotocopia de la tarjeta profesional y certificado de antecedentes expedido por la Junta Cental de Contadores.</td>
+                   
                     
                 </tr>
                 <tr>
@@ -332,7 +338,7 @@
                 </tr>
                 <tr>
                     <td rowspan="1" colspan="16">
-                        <p style="text-align:justify;font-size:12px">
+                        <p style="text-align:justify;font-size:12px;padding:3px">
                             De forma libre, previamente informada y voluntaria, autorizo a <strong>AGROPECUARIA ALIAR S.A.</strong> a reportar, consultar, y solicitar a las centrales de riesgos de información
                             financiera o cualquier otra entidad que maneje, tenga acceso, o administre base de datos con los mismos fines, todos los datos personales relativos a mi comportamiento comercial,
                             financiero y de servicios, los cuales sean el resultado o surjan con ocasión a la relación comercial entre el titular y la compañía. Lo anterior implica que el
@@ -356,7 +362,7 @@
                 </tr>
                 <tr>
                     <td rowspan="1" colspan="16">
-                        <p style="text-align:justify;font-size:12px">
+                        <p style="text-align:justify;font-size:12px;padding:3px">
                             En el evento de ser aceptada la solicitud de suministro crédito aquí presentada, <strong>MANIFESTAMOS</strong> lo siguiente:<br />
                             <b>1.</b> Entendemos que se configura un acuerdo comercial de suministro y que <strong>AGROPECUARIA ALIAR S.A. –LA FAZENDA-</strong> se obliga para con la sociedad o persona natural
                             que represento <strong>-CLIENTE-</strong> a suministrar periódicamente los productos cárnicos requeridos,
@@ -383,9 +389,9 @@
         </table>
       
         <br />
-        <table xmlns="http://www.w3.org/1999/xhtml" cellspacing="0" cellpadding="0" dir="ltr">
+        <table xmlns="http://www.w3.org/1999/xhtml"  cellspacing="0" cellpadding="0" dir="ltr">
             <colgroup><col width="198" /><col width="53" /><col width="57" /><col width="64" /><col width="64" /><col width="58" /><col width="64" /><col width="50" /><col width="66" /><col width="61" /><col width="57" /><col width="58" /><col width="110" /><col width="82" /><col width="75" /><col width="79" /></colgroup>
-            <tbody>
+            <tbody style="border-color:black">
                 <tr>
                     <td rowspan="1" colspan="16" class="Encabezados">9. FIRMA</td>
                 </tr>

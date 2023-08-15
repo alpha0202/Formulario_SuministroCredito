@@ -35,36 +35,39 @@
             font-weight:bold;
         }
 
-      /*  .table {
+
+        table {
             width: 100%;
+            border: 1px thin;
         }
-*/
-        td, th {
+
+        td {
             /*border: 1px solid #dddddd;
-            text-align: left;*/
-            padding: 0px;
-            font-size:12px
+                    text-align: left;*/
+
+            font-size: 12px;
+            border: 1px thin;
         }
 
         .titulos_encabezados {
-            text-align:center;
-            padding-left:5px;
+            text-align: center;
+            padding-left: 5px;
         }
-        
+
         .td_titulos {
-            font-weight:bold;
+            font-weight: bold;
+            padding-left: 6px;
         }
+
+
+
 
         .table_encabezados {
-            
-            
-            width:100%;
-                   
-           
+            width: 100%;
         }
 
-        p{
-            font-size:10px;
+        p {
+            font-size: 10px;
         }
      
     </style>
@@ -228,19 +231,19 @@
                 <tr>
                     <td class="td_titulos">Entidad Financiera</td>
                     <td rowspan="1" colspan="3">@Model.Entidad_financiera</td>
-                    <td class="td_titulos" rowspan="1" >Tipo de Cuenta</td>
+                    <td class="td_titulos" rowspan="1">Tipo de Cuenta</td>
                     <td rowspan="1" colspan="3">@Model.Tipo_cuenta</td>
-                    <td class="td_titulos" rowspan="1" >N&uacute;mero de Cuenta</td>
+                    <td class="td_titulos" rowspan="1">N&uacute;mero de Cuenta</td>
                     <td rowspan="1" colspan="2">@Model.Numero_cuenta</td>
-                    <td class="td_titulos">Oficina</td>
-                    <td rowspan="1" colspan="2">@Model.Oficina</td>
+                    <td colspan="2" class="td_titulos">Oficina</td>
+                    <td rowspan="1" colspan="3">@Model.Oficina</td>
                 </tr>
             </tbody>
         </table>
         
         <br />
         <table xmlns="http://www.w3.org/1999/xhtml" cellspacing="0" cellpadding="0" dir="ltr">
-            <colgroup><col width="198" /><col width="53" /><col width="57" /><col width="64" /><col width="64" /><col width="58" /><col width="64" /><col width="50" /><col width="66" /><col width="61" /><col width="57" /><col width="58" /><col width="110" /><col width="82" /><col width="75" /><col width="79" /></colgroup>
+            @* <colgroup><col width="198" /><col width="53" /><col width="57" /><col width="64" /><col width="64" /><col width="58" /><col width="64" /><col width="50" /><col width="66" /><col width="61" /><col width="57" /><col width="58" /><col width="110" /><col width="82" /><col width="75" /><col width="79" /></colgroup> *@
             <tbody>
                 <tr>
                     <td rowspan="1" colspan="16" class="Encabezados">5. CONTACTOS</td>
@@ -289,32 +292,31 @@
                 </tr>
                 <tr>
                     <td colspan="15"></td>
-                    
-                    <td class="td_titulos">Anexos</td>
-                    <td></td>
+                    <td colspan="1" class="td_titulos">Anexos</td>
+
                 </tr>
                 <tr>
-                    <td rowspan="1" colspan="15" >* RUT Actualizado.</td>
-                    
+                    <td rowspan="1" colspan="15">* RUT Actualizado.</td>
+
                     <td style="padding-left:6px"><input type="checkbox" checked /></td>
-                    <td></td>
+
                 </tr>
                 <tr>
-                    <td rowspan="1" colspan="15" >* Estados Financieros a 31 de Diciembre vigencia inmediatamente anterior (Estado de situaci&oacute;n financiera y Estado de Resultados).</td>
-                    <td style ="padding-left:6px"><input type="checkbox" checked /></td>
-                    <td></td>
-                   
-                </tr>
-                <tr>
-                    <td rowspan="1" colspan="15" >* Certificado de Existencia y Representaci&oacute;n Legal inferior a 30 d&iacute;as.</td>
-                   
+                    <td rowspan="1" colspan="15">* Estados Financieros a 31 de Diciembre vigencia inmediatamente anterior (Estado de situaci&oacute;n financiera y Estado de Resultados).</td>
                     <td style="padding-left:6px"><input type="checkbox" checked /></td>
-                    <td></td>
+
+
                 </tr>
                 <tr>
-                    <td rowspan="1" colspan="15" >* Para no obligados a llevar contabilidad, anexar certificaci&oacute;n de ingresos firmada por Contador P&uacute;blico, adjuntar fotocopia de la tarjeta profesional y certificado de antecedentes expedido por la Junta Cental de Contadores.</td>
-                    <td></td>
-                    
+                    <td rowspan="1" colspan="15">* Certificado de Existencia y Representaci&oacute;n Legal inferior a 30 d&iacute;as.</td>
+
+                    <td style="padding-left:6px"><input type="checkbox" checked /></td>
+
+                </tr>
+                <tr>
+                    <td rowspan="1" colspan="16">* Para no obligados a llevar contabilidad, anexar certificaci&oacute;n de ingresos firmada por Contador P&uacute;blico, adjuntar fotocopia de la tarjeta profesional y certificado de antecedentes expedido por la Junta Cental de Contadores.</td>
+
+
                 </tr>
                 <tr>
                     <td rowspan="1" colspan="16"><span><strong>Importante:</strong></span><span> Una vez aprobado el cr&eacute;dito Agropecuaria Aliar le enviar&aacute; un pagar&eacute; y la carta de instrucci&oacute;nes por correo certificado a la direcci&oacute;n de correspondencia diligenciada en el formato para su firma y autenticaci&oacute;n biom&eacute;trica, el cual debe enviar a la oficina principal ubicada en la direcci&oacute;n: Calle 29 N&deg;25-72 Centro Comercial Ca&ntilde;averal Ed. Urbanas Piso 3 y 4 en Floridablanca, Santander.</span></td>
@@ -332,7 +334,7 @@
                 </tr>
                 <tr>
                     <td rowspan="1" colspan="16">
-                        <p style="text-align:justify;font-size:12px">
+                        <p style="text-align:justify;font-size:12px;padding:3px">
                             De forma libre, previamente informada y voluntaria, autorizo a <strong>AGROPECUARIA ALIAR S.A.</strong> a reportar, consultar, y solicitar a las centrales de riesgos de información
                             financiera o cualquier otra entidad que maneje, tenga acceso, o administre base de datos con los mismos fines, todos los datos personales relativos a mi comportamiento comercial,
                             financiero y de servicios, los cuales sean el resultado o surjan con ocasión a la relación comercial entre el titular y la compañía. Lo anterior implica que el
@@ -356,7 +358,7 @@
                 </tr>
                 <tr>
                     <td rowspan="1" colspan="16">
-                        <p style="text-align:justify;font-size:12px">
+                        <p style="text-align:justify;font-size:12px;padding:3px">
                             En el evento de ser aceptada la solicitud de suministro crédito aquí presentada, <strong>MANIFESTAMOS</strong> lo siguiente:<br />
                             <b>1.</b> Entendemos que se configura un acuerdo comercial de suministro y que <strong>AGROPECUARIA ALIAR S.A. –LA FAZENDA-</strong> se obliga para con la sociedad o persona natural
                             que represento <strong>-CLIENTE-</strong> a suministrar periódicamente los productos cárnicos requeridos,
@@ -385,7 +387,7 @@
         <br />
         <table xmlns="http://www.w3.org/1999/xhtml" cellspacing="0" cellpadding="0" dir="ltr">
             <colgroup><col width="198" /><col width="53" /><col width="57" /><col width="64" /><col width="64" /><col width="58" /><col width="64" /><col width="50" /><col width="66" /><col width="61" /><col width="57" /><col width="58" /><col width="110" /><col width="82" /><col width="75" /><col width="79" /></colgroup>
-            <tbody>
+            <tbody style="border-color:black">
                 <tr>
                     <td rowspan="1" colspan="16" class="Encabezados">9. FIRMA</td>
                 </tr>

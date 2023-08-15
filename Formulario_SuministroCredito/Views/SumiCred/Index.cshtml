@@ -421,8 +421,8 @@
                         @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
                             @Html.ActionLink("GoPDF", "pdf_firma_solicita", new {  id=item.IdSuministro_Credito  }) |
                         @*@Html.ActionLink("Details", "GetDatail", new {id=item.IdSuministro_Credito }) |*@
-                        @*@Html.ActionLink("Ver_pdf", "PdfNew", new { idSuministro=item.IdSuministro_Credito }) |*@
-                        @Html.ActionLink("Enviar_drive", "EnviarDrive", new { /* id=item.PrimaryKey */ })
+                            @Html.ActionLink("Ver_pdf", "VerPdfNew", new { idSuministro=item.IdSuministro_Credito }) |
+                        @* @Html.ActionLink("Enviar_drive", "EnviarDrive", new { /* id=item.PrimaryKey */ }) *@
                     </td>
                 </tr>
             }
