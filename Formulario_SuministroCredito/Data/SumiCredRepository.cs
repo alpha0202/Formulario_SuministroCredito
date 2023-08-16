@@ -631,14 +631,6 @@ namespace Formulario_SuministroCredito.Data
                 }
 
 
-
-
-
-
-
-
-
-
                 return true;
 
 
