@@ -1,4 +1,10 @@
-﻿
+﻿/**
+ * @version     2023.08.15.3
+ * @author      edwin.martinez
+ * @copyright   Aliar S.A
+ * **/
+
+
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
 })
@@ -180,7 +186,7 @@ function CerrandoAlerta(message,tipoAlert) {
 
 
 
-
+//#region Sin Uso
 
 //function checkInputs() {
 //    // trim to remove the whitespaces
@@ -327,3 +333,6 @@ function CerrandoAlerta(message,tipoAlert) {
 //    console.log(contador);
 //}
 //window.onload = generarNumero;
+
+//#endregion
+

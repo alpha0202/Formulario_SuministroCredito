@@ -401,6 +401,7 @@ namespace Formulario_SuministroCredito.Controllers
             //return View("PdfNew", suministroCredito);
         }
 
+
         public IActionResult VerPdfNew(int idSuministro)
         {
             var detalle = _sumiCredRepository.GetById(idSuministro);

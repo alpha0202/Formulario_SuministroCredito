@@ -73,6 +73,82 @@ namespace Formulario_SuministroCredito.Service
             
         }
 
+        public string CrearDirectorio_Firmante()
+        {
+            var fileName = "DocumentoFirma.pdf";
+           
+
+            string pathDoc_pdf = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, "DocumentoFirma"));
+            string path_docFirma;
+            if (!Directory.Exists(pathDoc_pdf))
+            {
+                Directory.CreateDirectory(pathDoc_pdf);
+                string contentRootPath = _webHostEnvironment.ContentRootPath;
+                path_docFirma = Path.Combine(contentRootPath, "DocumentoFirma", fileName);
+            }
+            else
+            {
+
+                string contentRootPath = _webHostEnvironment.ContentRootPath;
+                path_docFirma = Path.Combine(contentRootPath, "DocumentoFirma", fileName);
+            }
+
+            return path_docFirma;
+        }
+
+        public string SubirArchivoDrive( )
+        {
+            string res = "";
+            var service =  ServicioDrive();
+
+            string pathPdf_firma = CrearDirectorio_Firmante();
+
+            if (File.Exists(pathPdf_firma))
+            {
+                string archivo0 = ("FIRMANTE-" + DateTime.Now.ToString("yyyyMMddHHmmss")).ToLower();
+               
+
+                var fileMetadata = new Google.Apis.Drive.v3.Data.File()
+                {
+                    Name = System.IO.Path.GetFileName(archivo0),
+                    Description= "Test Description",
+                    Parents = new List<string> { carpetaPrincipal }
+
+                };
+                FilesResource.CreateMediaUpload request;
+                using (var stream = new System.IO.FileStream(pathPdf_firma, System.IO.FileMode.Open))
+                {
+                    request = service.Files.Create(
+                        fileMetadata, stream, "application/octet-stream");
+                        request.Fields = "id, name, webViewLink";
+                        request.Upload();
+                }
+                if(request.ResponseBody.WebViewLink != null)
+                {
+                    url0 = request.ResponseBody.WebViewLink;
+                    id_docDrive = request.ResponseBody.Id;
+                    
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append("https://drive.google.com/uc?export=download&id=").ToString();
+                    sb.Append(id_docDrive).ToString();
+                    res = sb.ToString();
+                    //res = url0;
+                    File.Delete(pathPdf_firma);
+                }
+                
+
+            }
+            else
+            {
+                res = "";
+            }
+
+            return res;
+
+        }
+
+
+        //sin uso
         public bool AdjuntarArchivos(IFormFile FilePdf)
         {
 
@@ -160,82 +236,6 @@ namespace Formulario_SuministroCredito.Service
 
 
            
-        }
-
-
-        public string CrearDirectorio_Firmante()
-        {
-            var fileName = "DocumentoFirma.pdf";
-           
-
-            string pathDoc_pdf = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, "DocumentoFirma"));
-            string path_docFirma;
-            if (!Directory.Exists(pathDoc_pdf))
-            {
-                Directory.CreateDirectory(pathDoc_pdf);
-                string contentRootPath = _webHostEnvironment.ContentRootPath;
-                path_docFirma = Path.Combine(contentRootPath, "DocumentoFirma", fileName);
-            }
-            else
-            {
-
-                string contentRootPath = _webHostEnvironment.ContentRootPath;
-                path_docFirma = Path.Combine(contentRootPath, "DocumentoFirma", fileName);
-            }
-
-            return path_docFirma;
-        }
-
-
-        public string SubirArchivoDrive( )
-        {
-            string res = "";
-            var service =  ServicioDrive();
-
-            string pathPdf_firma = CrearDirectorio_Firmante();
-
-            if (File.Exists(pathPdf_firma))
-            {
-                string archivo0 = ("FIRMANTE-" + DateTime.Now.ToString("yyyyMMddHHmmss")).ToLower();
-               
-
-                var fileMetadata = new Google.Apis.Drive.v3.Data.File()
-                {
-                    Name = System.IO.Path.GetFileName(archivo0),
-                    Description= "Test Description",
-                    Parents = new List<string> { carpetaPrincipal }
-
-                };
-                FilesResource.CreateMediaUpload request;
-                using (var stream = new System.IO.FileStream(pathPdf_firma, System.IO.FileMode.Open))
-                {
-                    request = service.Files.Create(
-                        fileMetadata, stream, "application/octet-stream");
-                        request.Fields = "id, name, webViewLink";
-                        request.Upload();
-                }
-                if(request.ResponseBody.WebViewLink != null)
-                {
-                    url0 = request.ResponseBody.WebViewLink;
-                    id_docDrive = request.ResponseBody.Id;
-                    
-                    StringBuilder sb = new StringBuilder();
-                    sb.Append("https://drive.google.com/uc?export=download&id=").ToString();
-                    sb.Append(id_docDrive).ToString();
-                    res = sb.ToString();
-                    //res = url0;
-                    File.Delete(pathPdf_firma);
-                }
-                
-
-            }
-            else
-            {
-                res = "";
-            }
-
-            return res;
-
         }
 
     }

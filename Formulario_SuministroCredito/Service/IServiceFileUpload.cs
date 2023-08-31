@@ -2,7 +2,7 @@
 {
     public interface IServiceFileUpload
     {
-      
+      //sin uso
         public bool AdjuntarArchivos(IFormFile FilePdf);
 
         public string SubirArchivoDrive();
